@@ -4,6 +4,7 @@ import { OverviewComponent } from './overview/overview.component';
 
 const routes: Routes = [
   {
+    path: '',
     children: [
       {
         path: '',
