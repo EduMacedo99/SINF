@@ -5,20 +5,16 @@
     left: 0;
     width: 260px;
     display: block;
-    z-index: 5;
-    color: #fff;
     font-weight: 200;
     background-size: cover;
     background-position: center center;
 
     .sidebar-wrapper{
         position: relative;
-        max-height: calc(100vh - 75px);
         min-height: 100%;
         overflow: auto;
         width: 260px;
         z-index: 4;
-
         padding-bottom: 75px;
     }
 
@@ -36,8 +32,6 @@
     }
 
     .nav{
-        margin-top: 20px;
-        float: none;
 
         p{
             margin: 0;
@@ -46,16 +40,6 @@
             font-weight: 600;
             text-transform: uppercase;
             margin-left: 45px;
-            color: white;
-        }
-
-        i{
-            font-size: 28px;
-            float: left;
-            margin-right: 15px;
-            line-height: 30px;
-            width: 30px;
-            text-align: center;
             color: white;
         }
 
