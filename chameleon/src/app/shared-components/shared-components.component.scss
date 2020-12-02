@@ -91,12 +91,22 @@ nav button:hover {
 .menu_btn {
     padding: 1rem;
     background-color: #20689f;
-    margin-top: 1rem;
+    margin-top: 2rem;
     border-radius: .25rem;
 }
 
 .menu_btn.active {
     background-color: #4392cf;
+}
+
+.menu_btn:hover {
+    background-color: #4392cf;
+    transition: 1s;
+    cursor: pointer;
+}
+
+#overview_btn,#sales_btn,#purchases_btn,#financial_btn,#inventory_btn {
+    margin-left: 0%;
 }
 
 
