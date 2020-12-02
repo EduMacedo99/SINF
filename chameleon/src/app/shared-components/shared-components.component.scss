@@ -89,7 +89,7 @@ nav button:hover {
 }
 
 .menu_btn {
-    padding: 1rem;
+    padding: .5rem;
     background-color: #20689f;
     margin-top: 2rem;
     border-radius: .25rem;
@@ -105,8 +105,13 @@ nav button:hover {
     cursor: pointer;
 }
 
-#overview_btn,#sales_btn,#purchases_btn,#financial_btn,#inventory_btn {
+#overview_btn p,#sales_btn p,#purchases_btn p,#financial_btn p,#inventory_btn p{
     margin-left: 0%;
+}
+
+#overview_btn img,#sales_btn img,#purchases_btn img,#financial_btn img,#inventory_btn img {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 
