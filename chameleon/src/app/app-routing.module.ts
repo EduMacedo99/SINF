@@ -7,6 +7,11 @@ import { SharedComponentsComponent } from './shared-components/shared-components
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'overview',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: SharedComponentsComponent,
     children: [
       {
@@ -19,6 +24,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+  {
+    path: '**',
+    redirectTo: 'overview'
+  }
 ];
   
 
