@@ -1,4 +1,4 @@
-.sidebar{
+.sidebar {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -8,67 +8,64 @@
     font-weight: 200;
     background-size: cover;
     background-position: center center;
+}
 
-    .sidebar-wrapper{
-        position: relative;
-        min-height: 100%;
-        overflow: auto;
-        width: 260px;
-        z-index: 4;
-        padding-bottom: 75px;
-    }
+.sidebar .sidebar-wrapper{
+    position: relative;
+    min-height: 100%;
+    overflow: auto;
+    width: 260px;
+    z-index: 4;
+    padding-bottom: 75px;
+}
 
-    .logo{
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+.sidebar .logo {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-        p{
-            float: left;
-            font-size: 20px;
-            margin: 10px 10px;
-            color: white;
-            line-height: 20px;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-    }
+.sidebar .logo p {
+    float: left;
+    font-size: 20px;
+    margin: 10px 10px;
+    color: white;
+    line-height: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
-    .nav{
+.sidebar .nav p {
+    margin: 0;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: 45px;
+    color: white;
+}
 
-        p{
-            margin: 0;
-            line-height: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-left: 45px;
-            color: white;
-        }
+.sidebar:after,
+.sidebar:before{
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
 
-    }
-
-    &:after,
-    &:before{
-        display: block;
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 2;
-    }
-
-    &:before{
-        background: #20689f;
-    }
+.sidebar:before{
+    background: #20689f;
 }
 
 nav button {
     background-color: #20689f;
     border: #20689f;
+    text-decoration: none;
 }
 
 nav button:hover {
-    background-color: #164a72;
+    background-color: #4392cf;
     border: #20689f;
 }
 
@@ -85,8 +82,12 @@ nav button:hover {
 
 .menu_btn:hover {
     background-color: #4392cf;
-    transition: 1s;
+    transition: .5s;
     cursor: pointer;
+}
+
+#overview_btn,#sales_btn,#purchases_btn,#financial_btn,#inventory_btn{
+    text-decoration: none;
 }
 
 #overview_btn p,#sales_btn p,#purchases_btn p,#financial_btn p,#inventory_btn p{
