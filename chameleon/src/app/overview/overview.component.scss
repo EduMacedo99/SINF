@@ -1,0 +1,42 @@
+main {
+    width: calc(100% - 260px); 
+    float:right;
+    padding: 3.5rem 5rem;
+}
+
+main h1 {
+    color: #20689f;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+}
+
+main p {
+    margin-bottom: 0%;
+}
+
+main .value_board {
+    margin-left: 0%;
+}
+
+main #overview_content {
+    margin-top: 2rem;
+}
+
+main #overview_content .value_board {
+    padding: 2rem;
+    background-color: white;
+    border-radius: .25rem;
+    border: solid .5px #a8b2b9;
+    margin-top: 3rem;
+}
+
+main #overview_content .value_board h2{
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+main #overview_content .value_board p{
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+}
