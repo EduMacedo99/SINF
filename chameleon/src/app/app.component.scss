@@ -50,3 +50,27 @@ main .graphic_board-100 {
 main .graphic_board-50 {
     height: 50%;
 }
+
+main .list_board {
+    margin-left: 0%;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: .25rem;
+    border: solid .5px #a8b2b9;
+    width: 100%;
+}
+
+main .list_board h2{
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+main .list_board ul {
+    list-style: none;
+    padding-left: 0%;
+    margin-top: 1rem;
+}
+
+main .list_board ul li {
+    border-top: solid .5px #a8b2b9;
+}
