@@ -7,6 +7,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { LoginComponent } from './login/login.component';
 import { SharedComponentsComponent } from './shared-components/shared-components.component';
 import { SalesComponent } from './sales/sales.component';
+import { PurchasesComponent } from './purchases/purchases.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SalesComponent } from './sales/sales.component';
     OverviewComponent,
     LoginComponent,
     SharedComponentsComponent,
-    SalesComponent
+    SalesComponent,
+    PurchasesComponent
   ],
   imports: [
     BrowserModule,
