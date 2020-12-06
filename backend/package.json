@@ -1,15 +1,15 @@
 {
-  "name": "example-node-server",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Example Node Server w/ Babel",
+  "description": "Backend for the Chameleon app",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel lib -d dist",
-    "start": "npm run build && nodemon dist/index.js",
-    "serve": "npm run build && node dist/index.js",
-    "test": "npm run build && mocha --require @babel/register"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib",
+    "parse": "node lib/parser.js",
+    "serve": "node lib/server.js"
   },
-  "author": "James Kyle <me@thejameskyle.com>",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
