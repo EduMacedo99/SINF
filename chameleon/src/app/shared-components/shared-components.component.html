@@ -13,20 +13,22 @@
 </nav>
 
 <!--Sidebar-->
-<div class="sidebar">
-    <div class="logo p-1">
-        <a class="navbar-brand p-1 m-auto text-center" href="/overview">
-            <img src="./../assets/full_logo.PNG" width="80%" alt="full_logo" loading="lazy" class="m-auto">
-        </a>
-    </div>
-    <ul class="nav responsive-nav d-flex flex-column pl-3 pr-3">
-        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} menu_btn">
-            <a [routerLink]="[menuItem.path]" class="row" id="{{menuItem.type}}_btn">
-                <img src="./../assets/{{menuItem.type}}.png" alt="{{menuItem.type}}" loading="lazy" class="col-4">
-                <p class="col-8 my-auto">{{menuItem.title}}</p>
+<div class="navbar navbar-expand-lg">
+    <div class="navbar-collapse collapse sidebar flex-column">
+        <div class="logo p-1">
+            <a class="navbar-brand p-1 m-auto text-center" href="/overview">
+                <img src="./../assets/full_logo.PNG" width="80%" alt="full_logo" loading="lazy" class="m-auto">
             </a>
-        </li>
-    </ul>
+        </div>
+        <ul class="nav responsive-nav d-flex flex-column pl-3 pr-3">
+            <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} menu_btn">
+                <a [routerLink]="[menuItem.path]" class="row" id="{{menuItem.type}}_btn">
+                    <img src="./../assets/{{menuItem.type}}.png" alt="{{menuItem.type}}" loading="lazy" class="col-4">
+                    <p class="col-8 my-auto">{{menuItem.title}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 <router-outlet></router-outlet>
 <!--Footer-->
