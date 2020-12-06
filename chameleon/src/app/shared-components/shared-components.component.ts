@@ -23,11 +23,57 @@ export const ROUTES: RouteInfo[] = [
 export class SharedComponentsComponent implements OnInit {
 
   menuItems: any[] = [];
+  private sidebarVisible: boolean;
 
-  constructor() { }
+  constructor() { 
+    this.sidebarVisible = false;
+  }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
+  sidebarOpen() {
+    const side_bar = document.getElementById('side-bar');
+    const import_btn = document.getElementById('import-btn');
+    const logout_btn = document.getElementById('logout-btn');
+    if (side_bar != null) {
+      side_bar.classList.remove('collapse');
+    }
+    if (import_btn != null) {
+      import_btn.classList.remove('d-none');
+      import_btn.classList.remove('d-lg-block');
+    }
+    if (logout_btn != null) {
+      logout_btn.classList.remove('d-none');
+      logout_btn.classList.remove('d-lg-block');
+    }
+
+    this.sidebarVisible = true;
+  };
+  sidebarClose() {
+      const side_bar = document.getElementById('side-bar');
+      const import_btn = document.getElementById('import-btn');
+      const logout_btn = document.getElementById('logout-btn');
+      if (side_bar != null) {
+        side_bar.classList.add('collapse');
+      }
+      if (import_btn != null) {
+        import_btn.classList.add('d-none');
+        import_btn.classList.add('d-lg-block');
+      }
+      if (logout_btn != null) {
+        logout_btn.classList.add('d-none');
+        logout_btn.classList.add('d-lg-block');
+      }
+
+      this.sidebarVisible = false;
+  };
+  sidebarToggle() {
+      if (this.sidebarVisible === false) {
+          this.sidebarOpen();
+      } else {
+          this.sidebarClose();
+      }
+  };
 
 }

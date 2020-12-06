@@ -1,20 +1,23 @@
 <!--Navbar-->
 <nav class="navbar navbar-light bg-light d-flex flex-row-reverse p-4">
     <form class="form-inline">
-        <button class="btn btn-primary mr-5" type="button">
+        <button class="btn btn-primary mr-5 d-none d-lg-block" type="button" id="import-btn">
             <img src="./../assets/import.png" width="20rem" alt="import_icon" loading="lazy" style="vertical-align: sub;"> 
             Import
         </button>
-        <button class="btn btn-primary mr-5" type="button">
+        <button class="btn btn-primary mr-5 d-none d-lg-block" type="button" id="logout-btn">
             <img src="./../assets/logout.png" width="20rem" alt="logout_icon" loading="lazy" style="vertical-align: sub;">
             Logout
+        </button>
+        <button type="button" class="navbar-toggler d-lg-none" data-toggle="collapse" (click)="sidebarToggle()">
+            <span class="navbar-toggler-icon"></span>
         </button>
     </form>
 </nav>
 
 <!--Sidebar-->
 <div class="navbar navbar-expand-lg">
-    <div class="navbar-collapse collapse sidebar flex-column">
+    <div class="navbar-collapse collapse sidebar flex-column" id="side-bar">
         <div class="logo p-1">
             <a class="navbar-brand p-1 m-auto text-center" href="/overview">
                 <img src="./../assets/full_logo.PNG" width="80%" alt="full_logo" loading="lazy" class="m-auto">
