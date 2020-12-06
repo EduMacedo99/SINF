@@ -9,6 +9,7 @@ import { SharedComponentsComponent } from './shared-components/shared-components
 import { SalesComponent } from './sales/sales.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { FinancialComponent } from './financial/financial.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FinancialComponent } from './financial/financial.component';
     SharedComponentsComponent,
     SalesComponent,
     PurchasesComponent,
-    FinancialComponent
+    FinancialComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,

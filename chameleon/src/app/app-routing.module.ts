@@ -6,6 +6,7 @@ import { SharedComponentsComponent } from './shared-components/shared-components
 import { SalesComponent } from './sales/sales.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { FinancialComponent } from './financial/financial.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'financial',
         component: FinancialComponent
+      },
+      {
+        path: 'inventory',
+        component: InventoryComponent
       },
     ],
   },
