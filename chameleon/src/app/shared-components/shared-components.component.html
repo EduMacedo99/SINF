@@ -20,34 +20,10 @@
         </a>
     </div>
     <ul class="nav responsive-nav d-flex flex-column pl-3 pr-3">
-        <li class="menu_btn active">
-            <a href="/overview" class="row" id="overview_btn">
-                <img src="./../assets/overview.png" alt="overview" loading="lazy" class="col-4">
-                <p class="col-8 my-auto">Overview</p>
-            </a>
-        </li>
-        <li class="menu_btn">
-            <a href="/sales" class="row" id="sales_btn">
-                <img src="./../assets/sales.png" alt="sales" loading="lazy" class="col-4">
-                <p class="col-8 my-auto">Sales</p>
-            </a>
-        </li>
-        <li class="menu_btn">
-            <a href="" class="row" id="purchases_btn">
-                <img src="./../assets/purchases.png" alt="purchases" loading="lazy" class="col-4">
-                <p class="col-8 my-auto">Purchases</p>
-            </a>
-        </li>
-        <li class="menu_btn">
-            <a href="" class="row" id="financial_btn">
-                <img src="./../assets/financial.png" alt="financial" loading="lazy" class="col-4">
-                <p class="col-8 my-auto">Financial</p>
-            </a>
-        </li>
-        <li class="menu_btn">
-            <a href="" class="row" id="inventory_btn">
-                <img src="./../assets/inventory.png" alt="inventory" loading="lazy" class="col-4">
-                <p class="col-8 my-auto">Inventory</p>
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} menu_btn">
+            <a [routerLink]="[menuItem.path]" class="row" id="{{menuItem.type}}_btn">
+                <img src="./../assets/{{menuItem.type}}.png" alt="{{menuItem.type}}" loading="lazy" class="col-4">
+                <p class="col-8 my-auto">{{menuItem.title}}</p>
             </a>
         </li>
     </ul>
