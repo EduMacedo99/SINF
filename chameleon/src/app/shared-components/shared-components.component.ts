@@ -24,9 +24,11 @@ export class SharedComponentsComponent implements OnInit {
 
   menuItems: any[] = [];
   private sidebarVisible: boolean;
+  private modalVisible: boolean;
 
   constructor() { 
     this.sidebarVisible = false;
+    this.modalVisible = false;
   }
 
   ngOnInit() {
@@ -73,6 +75,38 @@ export class SharedComponentsComponent implements OnInit {
           this.sidebarOpen();
       } else {
           this.sidebarClose();
+      }
+  };
+
+  modalOpen() {
+    const modal = document.getElementsByClassName('modal-dialog')[0];
+    const main = document.getElementsByTagName('main')[0];
+    if (modal != null) {
+      modal.classList.remove('d-none');
+    }
+    if (main != null) {
+      main.style.filter = "blur(4px)";
+    }
+
+    this.modalVisible = true;
+  };
+  modalClose() {
+    const modal = document.getElementsByClassName('modal-dialog')[0];
+    const main = document.getElementsByTagName('main')[0];
+    if (modal != null) {
+      modal.classList.add('d-none');
+    }
+    if (main != null) {
+      main.style.filter = "blur(0px)";
+    }
+
+    this.modalVisible = false;
+  };
+  modalToggle() {
+      if (this.modalVisible === false) {
+          this.modalOpen();
+      } else {
+          this.modalClose();
       }
   };
 

@@ -65,6 +65,14 @@ nav button:hover {
     padding-right: 1.5rem;
 }
 
+.modal-dialog {
+    position: fixed;
+    z-index: 10;
+    top: 30%;
+    left: 50%;
+    
+}
+
 footer div {
     float: right;
     width: 100%;
