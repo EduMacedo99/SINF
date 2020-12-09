@@ -1,4 +1,4 @@
-modules.export = (server, db) => {
+module.exports = (server, db) => {
     server.get('/sales/sales-per-district', (req, res) => {
         let startDate = 'start-date' in req.query ? new Date(req.query['start-date']) : null;
         let endDate = 'end-date' in req.query ? new Date(req.query['end-date']) : null;
