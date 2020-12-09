@@ -23,8 +23,8 @@
             <button type="button" class="close" (click)="modalToggle()">&times;</button>
         </div>
         <div class="modal-body">
-            <form method="put">
-                <input type="file" id="myFile" name="filename">
+            <form>
+                <input type="file" id="myFile" name="filename" ng-files="getTheFiles($files)">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" (click)="modalToggle()">Close</button>
                     <input type="submit" class="btn btn-primary" (click)="modalToggle()" value="Send">

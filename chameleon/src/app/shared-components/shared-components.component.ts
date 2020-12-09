@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 
 declare const $: any;
 declare interface RouteInfo {
@@ -26,8 +26,9 @@ export class SharedComponentsComponent implements OnInit {
   menuItems: any[] = [];
   private sidebarVisible: boolean;
   private modalVisible: boolean;
+  private formdata: FormData = new FormData;
 
-  constructor() {//private http: HttpClient) { 
+  constructor(private http: HttpClient) { 
     this.sidebarVisible = false;
     this.modalVisible = false;
   }
@@ -111,11 +112,14 @@ export class SharedComponentsComponent implements OnInit {
       }
   };
 
-  /*sendFile() {
+  sendFile() {
     let puts;
-
-    puts = this.http.put('/cenas','<div></div>');
-
+    puts = this.http.put('/cenas',this.formdata);
     console.log(puts);
-  }*/
+  };
+
+  getTheFiles(files: any) {
+      this.formdata = new FormData();
+      this.formdata.append(files[0].key, files[0].value);
+  } 
 }
