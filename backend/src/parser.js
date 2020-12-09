@@ -64,12 +64,12 @@ const parseContents = (json) => {
     ...TaxTable,
   };
 
-  //parseSourceDocuments(parsed);
+  parseSourceDocuments(parsed);
 
   return JSON.stringify(parsed);
 };
 
-/*
+
 const parseSourceDocuments = (obj) => {
   let SalesInvoices = obj.SourceDocuments.SalesInvoices;
 
@@ -104,4 +104,4 @@ const parseSourceDocuments = (obj) => {
   obj.StockMovements = StockMovement;
 
   delete obj.SourceDocuments;
-};*/
+};
