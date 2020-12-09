@@ -1,10 +1,14 @@
-import http from "http";
+import commandLineArgs from "command-line-args";
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Hello World\n");
-}).listen(1337, "127.0.0.1");
+const optionDefinitions = [
+  {
+    name: "source",
+    alias: "s",
+    type: String,
+    defaultValue: "SAFT_Sample_Accounting_2019.xml",
+  },
+];
 
-console.log("Server running at http://127.0.0.1:1337/");
+const options = commandLineArgs(optionDefinitions);
 
-export default server;
+export default options;
