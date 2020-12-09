@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { HttpClient } from '@angular/common/http'
 
 declare const $: any;
 declare interface RouteInfo {
@@ -26,7 +27,7 @@ export class SharedComponentsComponent implements OnInit {
   private sidebarVisible: boolean;
   private modalVisible: boolean;
 
-  constructor() { 
+  constructor() {//private http: HttpClient) { 
     this.sidebarVisible = false;
     this.modalVisible = false;
   }
@@ -110,4 +111,11 @@ export class SharedComponentsComponent implements OnInit {
       }
   };
 
+  /*sendFile() {
+    let puts;
+
+    puts = this.http.put('/cenas','<div></div>');
+
+    console.log(puts);
+  }*/
 }
