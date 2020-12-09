@@ -3,6 +3,10 @@ const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 
+const db = router.db.__wrapped__;
+
+const sales = require('./modules/sales');
+
 /**
  * add routes
  */
@@ -12,6 +16,7 @@ server.get('/echo', (req, res) => {
     res.jsonp(req.query)
 })
 
+sales(server, db);
 
 // set a timestamp on every resource created, probably not needed
 server.use(jsonServer.bodyParser)
