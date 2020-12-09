@@ -5,8 +5,7 @@ module.exports = (server, db) => {
 
         let cities = {};
 
-        db.SalesInvoices.forEach((invoice) =>
-        {
+        db.SalesInvoices.forEach((invoice) => {
             const type = invoice.InvoiceType;
 
             if (!(invoice.Line.length && (type == 'FT' || type == 'FS' || type == 'FR' || type == 'VD')))
@@ -32,12 +31,66 @@ module.exports = (server, db) => {
 
         cities = Object.keys(cities)
             //.sort((a, b) => cities[b].quantity - cities[a].quantity)
-            .map(elem => ({
-                id: elem,
-                value: cities[elem].quantity,
-                netTotal: cities[elem].netTotal
-            }));
+            .map(elem =>
+                ({
+                    id: elem,
+                    value: cities[elem].quantity,
+                    netTotal: cities[elem].netTotal
+                }));
 
         res.json(cities);
     });
+
+    server.get('/sales/top-customers', (req, res) => {
+        let startDate = 'start-date' in req.query ? new Date(req.query['start-date']) : null;
+        let endDate = 'end-date' in req.query ? new Date(req.query['end-date']) : null;
+
+        let clients = {};
+
+        db.SalesInvoices.forEach((invoice) => {
+            const type = invoice.InvoiceType;
+            
+            if (!(invoice.Line.length && (type == 'FT' || type == 'FS' || type == 'FR' || type == 'VD')))
+                return;
+
+            let invoiceDate = new Date(invoice.InvoiceDate);
+
+            if ((startDate == null || startDate <= invoiceDate) && (endDate == null || invoiceDate <= endDate)) {
+                const customer = invoice.CustomerID;
+
+                let purchased = 0;
+
+                invoice.Line.forEach((line) => {
+                    const {
+                        UnitPrice,
+                        Quantity
+                    } = line;
+
+                    purchased += UnitPrice * Quantity;
+                })
+
+                if (clients.hasOwnProperty(customer)) {
+                    clients[customer].totalPurchased += purchased;
+                    clients[customer].nPurchases++;
+                } else {
+                    clients[customer] = {
+                        totalPurchased: purchased,
+                        nPurchases: 1
+                    }
+                }
+            }
+
+        })
+
+
+        clients = Object.keys(clients).sort((a, b) =>
+            clients[b].totalPurchased - clients[a].totalPurchased).map(elem =>
+                ({
+                    client: elem,
+                    totalPurchased: clients[elem].totalPurchased,
+                    nPurchases: clients[elem].nPurchases
+                }));
+
+        res.json(clients);
+    })
 }
