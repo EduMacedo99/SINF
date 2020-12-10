@@ -94,8 +94,9 @@ module.exports = (server, db) => {
         res.json(clients);
     })
 
-    server.put('/cenas', (req, res) => {
-        console.log(req);
+    server.put('/sales/cenas', (req, res) => {
+        console.log("ola");
+        console.log(req.body);
         res.json(req);
     })
 }

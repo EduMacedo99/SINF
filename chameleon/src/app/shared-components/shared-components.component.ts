@@ -115,7 +115,7 @@ export class SharedComponentsComponent implements OnInit {
 
   sendFile() {
     let puts;
-    puts = this.http.put<any>('localhost:3000/cenas',this.formdata)
+    puts = this.http.put<any>('http://localhost:3000/sales/cenas',this.formdata)
         .subscribe(data => this.postId = data.id);
     console.log(puts);
   };
