@@ -27,7 +27,7 @@
                 <input type="file" id="myFile" name="filename" ng-files="getTheFiles($files)">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" (click)="modalToggle()">Close</button>
-                    <input type="submit" class="btn btn-primary" (click)="modalToggle()" value="Send">
+                    <input type="button" class="btn btn-primary" (click)="modalToggle()" (click)="sendFile()" value="Send">
                 </div>
             </form>              
         </div>

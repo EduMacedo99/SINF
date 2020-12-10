@@ -27,6 +27,7 @@ export class SharedComponentsComponent implements OnInit {
   private sidebarVisible: boolean;
   private modalVisible: boolean;
   private formdata: FormData = new FormData;
+  private postId: any;
 
   constructor(private http: HttpClient) { 
     this.sidebarVisible = false;
@@ -114,7 +115,8 @@ export class SharedComponentsComponent implements OnInit {
 
   sendFile() {
     let puts;
-    puts = this.http.put('/cenas',this.formdata);
+    puts = this.http.put<any>('localhost:3000/cenas',this.formdata)
+        .subscribe(data => this.postId = data.id);
     console.log(puts);
   };
 
