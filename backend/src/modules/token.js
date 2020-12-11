@@ -1,24 +1,30 @@
 const request = require("request");
 
-module.exports = (server, db) => {
+module.exports = (server, db, accounts) => {
   server.get("/token", (req, res) => {
-    const options = {
-      method: "POST",
-      url: "https://identity.primaverabss.com/connect/token",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      formData: {
-        client_id: "FEUPSINF",
-        client_secret: "23f8ba55-b745-4857-9f6f-d7f53391750b",
-        scope: "application",
-        grant_type: "client_credentials",
-      },
-    };
+    let username = 'username' in req.query ? req.query['username'] : null;
+    let password = 'password' in req.query ? req.query['password'] : null;
+    if (JSON.stringify(accounts.User.username) == username && JSON.stringify(accounts.User.password) == password) {
+      const options = {
+        method: "POST",
+        url: "https://identity.primaverabss.com/connect/token",
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Access-Control-Allow-Origin": "*",
+        },
+        formData: {
+          client_id: "FEUPSINF",
+          client_secret: "23f8ba55-b745-4857-9f6f-d7f53391750b",
+          scope: "application",
+          grant_type: "client_credentials",
+        },
+      };
 
-    request(options, function (error, response, body) {
-      if (error) throw new Error(error);
-      res.json(body);
-    });
+      request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.json(body);
+      });
+    }
   });
 };

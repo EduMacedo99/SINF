@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api: 'https://identity.primaverabss.com/connect', // Verify port
+  safTApi: 'http://localhost:3000',
+  company: 'Chameleon',
+  instance: 'DEFAULT',
+  grant_type: 'client_credentials',
+  scope: 'application',
+  client_id: 'FEUPSINF',
+  client_secret: '23f8ba55-b745-4857-9f6f-d7f53391750b'
 };
 
 /*

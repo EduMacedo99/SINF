@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //import { HttpClient } from '@angular/common/http'
+import { AuthenticationService } from 'src/app/account/authentication/authentication.service';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -27,7 +28,7 @@ export class SharedComponentsComponent implements OnInit {
   private sidebarVisible: boolean;
   private modalVisible: boolean;
 
-  constructor() {//private http: HttpClient) { 
+  constructor(private auth: AuthenticationService) {//private http: HttpClient) { 
     this.sidebarVisible = false;
     this.modalVisible = false;
   }
@@ -110,6 +111,10 @@ export class SharedComponentsComponent implements OnInit {
           this.modalClose();
       }
   };
+
+  logout() {
+    this.auth.logout();
+  }
 
   /*sendFile() {
     let puts;
