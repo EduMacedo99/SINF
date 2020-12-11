@@ -6,7 +6,8 @@ module.exports = (server, db) => {
       method: "POST",
       url: "https://identity.primaverabss.com/connect/token",
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
       },
       formData: {
         client_id: "FEUPSINF",
@@ -18,6 +19,7 @@ module.exports = (server, db) => {
 
     request(options, function (error, response, body) {
       if (error) throw new Error(error);
+      res.header("Access-Control-Allow-Origin", "*");
       res.json(body);
     });
   });
