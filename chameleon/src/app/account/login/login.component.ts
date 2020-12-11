@@ -27,8 +27,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const { username, password} = this.loginForm.value;
     this.auth.setCredentials(username, password);
-    if (this.auth.checkCredentials(this.api.checkCredentials()))
+    if (this.auth.checkCredentials(this.api.checkCredentials())) {
+      console.log("ola")
       this.auth.login(this.api.fetchToken());
+    }
   }
 
 }

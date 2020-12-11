@@ -23,10 +23,7 @@ export class AuthenticationService {
   checkCredentials(credentialAction: Observable<Object>): boolean {
     credentialAction.subscribe(
       (res) => {
-        console.log(res)
-        if (res)
-          return true;
-        return false;
+        //just missing this
       }
     );
     return false;

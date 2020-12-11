@@ -61,6 +61,7 @@ export class ApiService {
       `http://localhost:3000/authentication?username="${this.auth.getUsername()}"&password="${this.auth.getPassword()}"`
     ).pipe(retry(2),tap(
       (response: any) => {
+        JSON.parse(response);
       }
     ));
   }
