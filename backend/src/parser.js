@@ -64,7 +64,7 @@ const parseContents = (json) => {
     ...TaxTable,
   };
 
-  parseSourceDocuments(parsed);
+  // parseSourceDocuments(parsed);
 
   return JSON.stringify(parsed);
 };
