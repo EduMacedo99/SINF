@@ -24,18 +24,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  sleep(milliseconds: number) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-  }
-
   onSubmit() {
     const { username, password} = this.loginForm.value;
     this.auth.setCredentials(username, password);
-    this.auth.login(this.api.fetchToken());
+    if (this.auth.checkCredentials(this.api.checkCredentials()))
+      this.auth.login(this.api.fetchToken());
   }
 
 }

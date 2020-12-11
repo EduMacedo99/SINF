@@ -56,6 +56,15 @@ export class ApiService {
     ));
   }
 
+  checkCredentials() : Observable<Object> {
+    return this.http.get(
+      `http://localhost:3000/authentication?username="${this.auth.getUsername()}"&password="${this.auth.getPassword()}"`
+    ).pipe(retry(2),tap(
+      (response: any) => {
+      }
+    ));
+  }
+
   /**
    * Methods to handle Primavera Token
    */
