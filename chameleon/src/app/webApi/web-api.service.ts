@@ -57,8 +57,17 @@ export class ApiService {
   }
 
   checkCredentials() : Observable<Object> {
+
+    const headerDict = {
+  'Access-Control-Allow-Origin': '*',
+}
+
+    const requestOptions = {                                                                                                                                                                                 
+  headers: new HttpHeaders(headerDict), 
+};
+
     return this.http.get(
-      `http://localhost:3000/authentication?username="${this.auth.getUsername()}"&password="${this.auth.getPassword()}"`
+      `http://localhost:3000/authentication?username="${this.auth.getUsername()}"&password="${this.auth.getPassword()}"`, requestOptions
     ).pipe(retry(2),tap(
       (response: any) => {
         JSON.parse(response);
