@@ -6,7 +6,7 @@ module.exports = (server, db) => {
       method: "POST",
       url: "https://identity.primaverabss.com/connect/token",
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "multipart/form-data"
       },
       formData: {
         client_id: "FEUPSINF",

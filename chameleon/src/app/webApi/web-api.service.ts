@@ -46,23 +46,12 @@ export class ApiService {
    * Fetch the Authentication Token from the api and save it
    */
   fetchToken() : Observable<Object> {
-    return this.http.post(
-      `${environment.api}/token`,
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }),
-        body: {
-          grant_type: `${environment.grant_type}`,
-          scope: `${environment.scope}`,
-          client_id: `${environment.client_id}`,
-          client_secret: `${environment.client_secret}`
-        }
-      }
+    return this.http.get(
+      `${environment.safTApi}/token`
     ).pipe(retry(2),tap(
       (response: any) => {
-        console.log(response.access_token);
-        this.setToken(response.access_token)
+        let token = JSON.parse(response).access_token;
+        this.setToken(token)
       }
     ));
   }
