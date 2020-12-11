@@ -8,7 +8,6 @@ const db = router.db.__wrapped__;
 const accounts = router2.db.__wrapped__;
 
 const sales = require('./modules/sales');
-const accounts = require('./modules/accounts');
 const token = require("./modules/token");
 
 /**
