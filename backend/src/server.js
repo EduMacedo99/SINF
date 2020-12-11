@@ -7,6 +7,7 @@ const db = router.db.__wrapped__;
 
 const sales = require('./modules/sales');
 const accounts = require('./modules/accounts');
+const token = require("./modules/token");
 
 /**
  * add routes
@@ -19,6 +20,7 @@ server.get('/echo', (req, res) => {
 
 sales(server, db);
 accounts(server, db);
+token(server, db);
 
 // set a timestamp on every resource created, probably not needed
 server.use(jsonServer.bodyParser)
