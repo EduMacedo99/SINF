@@ -20,15 +20,6 @@ export class AuthenticationService {
     this.password = password;
   }
 
-  checkCredentials(credentialAction: Observable<Object>): boolean {
-    credentialAction.subscribe(
-      (res) => {
-        //just missing this
-      }
-    );
-    return false;
-  }
-
   getUsername(): string {
     return this.username;
   }

@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import { tap, retry } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/account/authentication/authentication.service';
-import { LoginComponent } from 'src/app/account/login/login.component';
 
 @Injectable({
   providedIn: 'root',
@@ -48,38 +47,13 @@ export class ApiService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get(`${environment.safTApi}/token`, requestOptions).pipe(
+    return this.http.get(`${environment.safTApi}/token?username="${this.auth.getUsername()}"&password="${this.auth.getPassword()}"`, requestOptions).pipe(
       retry(2),
       tap((response: any) => {
         let token = JSON.parse(response).access_token;
         this.setToken(token);
       })
     );
-  }
-
-  checkCredentials(): Observable<Object> {
-
-    const headerDict = {
-      'Access-Control-Allow-Origin': '*',
-    };
-
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
-
-    return this.http
-      .get(
-        `http://localhost:3000/authentication?username="${this.auth.getUsername()}"&password="${this.auth.getPassword()}"`,
-        requestOptions
-      )
-      .pipe(
-        retry(2),
-        tap((response: any) => {
-          
-          //LoginComponent.login = response;
-          //JSON.parse(response);
-        })
-      );
   }
 
   /**

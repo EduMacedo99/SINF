@@ -10,8 +10,6 @@ import { ApiService } from 'src/app/webApi/web-api.service';
 })
 export class LoginComponent implements OnInit {
 
-  public login = false;
-
   public loginForm = new FormGroup({
     username: new FormControl('', [
       Validators.required
@@ -27,16 +25,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const { username, password} = this.loginForm.value;
+    const {username, password} = this.loginForm.value;
     this.auth.setCredentials(username, password);
-    const result = this.api.checkCredentials();
-    console.log(result);
-    if (this.login) {
-      console.log("login sucessful");
-      this.auth.login(this.api.fetchToken());
-    }else{
-      console.log("login failed");
-    }
+    this.auth.login(this.api.fetchToken());
   }
 
 }
