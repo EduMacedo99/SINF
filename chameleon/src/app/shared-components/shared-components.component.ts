@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-//import { HttpClient } from '@angular/common/http'
+import { HttpClient,HttpHeaders } from '@angular/common/http'
 import { AuthenticationService } from 'src/app/account/authentication/authentication.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -27,8 +28,13 @@ export class SharedComponentsComponent implements OnInit {
   menuItems: any[] = [];
   private sidebarVisible: boolean;
   private modalVisible: boolean;
+  public importForm = new FormGroup({
+    filename: new FormControl('', [
+      Validators.required
+    ])
+  });
 
-  constructor(private auth: AuthenticationService) {//private http: HttpClient) { 
+  constructor(private auth: AuthenticationService, private http: HttpClient) { 
     this.sidebarVisible = false;
     this.modalVisible = false;
   }
@@ -116,11 +122,16 @@ export class SharedComponentsComponent implements OnInit {
     this.auth.logout();
   }
 
-  /*sendFile() {
-    let puts;
-
-    puts = this.http.put('/cenas','<div></div>');
-
-    console.log(puts);
-  }*/
+  sendFile() {
+    const {filename} = this.importForm.value;
+    const headerDict = {
+      'Access-Control-Allow-Origin': '*',
+      "Content-Type": "application/json",
+    };
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    this.http.put<any>('http://localhost:3000/api/import',{file: filename},requestOptions)
+        .subscribe();
+  };
 }

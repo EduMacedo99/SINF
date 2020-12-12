@@ -9,6 +9,7 @@ const accounts = router2.db.__wrapped__;
 
 const sales = require('./modules/sales');
 const token = require("./modules/token");
+const saft = require("./modules/importSaft");
 
 /**
  * add routes
@@ -21,6 +22,7 @@ server.get('/echo', (req, res) => {
 
 sales(server, db);
 token(server, db, accounts);
+saft(server, db);
 
 // set a timestamp on every resource created, probably not needed
 server.use(jsonServer.bodyParser)
