@@ -2203,6 +2203,7 @@ module.exports = (server, db) => {
     server.get('/api/financial/gross-profit-margin', (req, res) => {
         const journal = db.GeneralLedgerEntries.Journal;
         const grossProfit = calculateGrossProfitMargin(journal);
+        res.header("Access-Control-Allow-Origin", "*");
         res.json(grossProfit);
     });
 
