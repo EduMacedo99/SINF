@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './account/login/login.component';
+import { AuthGuard } from './account/authGuard/auth.guard';
+import { UnauthGuard } from './account/unauthGuard/unauth.guard';
 import { OverviewComponent } from './overview/overview.component';
 import { SharedComponentsComponent } from './shared-components/shared-components.component';
 import { SalesComponent } from './sales/sales.component';
@@ -11,15 +13,11 @@ import { InventoryComponent } from './inventory/inventory.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'overview',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
     component: SharedComponentsComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'overview',
+        path: '',
         component: OverviewComponent
       },
       {
@@ -42,11 +40,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [UnauthGuard],
   },
   {
     path: '**',
-    redirectTo: 'overview'
+    redirectTo: 'login'
   }
 ];
   
