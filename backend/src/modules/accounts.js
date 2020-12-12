@@ -2153,6 +2153,7 @@ module.exports = (server, db) => {
     server.get('/api/financial/balance-sheet', (req, res) => {
         const accounts = db.GeneralLedgerAccounts.Account;
         const balanceSheetResponse = calculateBalanceSheet(accounts);
+        res.header("Access-Control-Allow-Origin", "*");
         res.json(balanceSheetResponse);
     });
 
@@ -2203,6 +2204,7 @@ module.exports = (server, db) => {
     server.get('/api/financial/gross-profit-margin', (req, res) => {
         const journal = db.GeneralLedgerEntries.Journal;
         const grossProfit = calculateGrossProfitMargin(journal);
+        res.header("Access-Control-Allow-Origin", "*");
         res.json(grossProfit);
     });
 

@@ -12,6 +12,7 @@ const token = require("./modules/token");
 const saft = require("./modules/importSaft");
 const inventory = require("./modules/inventory");
 server.use(jsonServer.bodyParser);
+const account = require("./modules/accounts");
 
 /**
  * add routes
@@ -26,6 +27,7 @@ sales(server, db);
 token(server, db, accounts);
 saft(server, db);
 inventory(server, db);
+account(server, db);
 
 // set a timestamp on every resource created, probably not needed
 server.use(jsonServer.bodyParser)
