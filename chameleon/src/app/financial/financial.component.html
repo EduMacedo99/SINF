@@ -1,100 +1,151 @@
 <main class="container-fluid">
     <div class="main">
         <div class="row" id="content">
-            <div class="col-xl-5">
+            <div class="col-xl-7">
                 <div class="board-100">
                     <div class="list_board info_board flex-column">
                         <h2>Balance Sheet</h2>
-                        <ul>
-                            <li class="subtitles">
-                                <div class="row">
-                                    <p class="col-sm-4">Description</p>
-                                    <p class="col-sm-4">Debit</p>
-                                    <p class="col-sm-4">Credit</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Cash</p>
-                                    <p class="col-sm-4">-</p>
-                                    <p class="col-sm-4">€1.000,00</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Cash deposit</p>
-                                    <p class="col-sm-4">-</p>
-                                    <p class="col-sm-4">€5.000,00</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Accounts Receivable</p>
-                                    <p class="col-sm-4">-</p>
-                                    <p class="col-sm-4">€10.725,25</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Accounts Receivable</p>
-                                    <p class="col-sm-4">€3.613,45</p>
-                                    <p class="col-sm-4">-</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">State and other public entities</p>
-                                    <p class="col-sm-4">-</p>
-                                    <p class="col-sm-4">€200,00</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Purchases</p>
-                                    <p class="col-sm-4">€101.382,00</p>
-                                    <p class="col-sm-4">-</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Cost of Goods Sold</p>
-                                    <p class="col-sm-4">€100.410,00</p>
-                                    <p class="col-sm-4">-</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Sales</p>
-                                    <p class="col-sm-4">-</p>
-                                    <p class="col-sm-4">€800.675,00</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Services Provision</p>
-                                    <p class="col-sm-4">-</p>
-                                    <p class="col-sm-4">€701,00</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Salaries</p>
-                                    <p class="col-sm-4">€310.000,00</p>
-                                    <p class="col-sm-4">-</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-4">Total</p>
-                                    <p class="col-sm-4">€515.405,45</p>
-                                    <p class="col-sm-4">€808.302,25</p>
-                                </div>
-                            </li>
-                        </ul>
+                        <div>
+                            <ul class="balance-sheet-ul">
+                                <h3 class="titles">Current Assets</h3>
+                                <li class="subtitles">
+                                    <div class="row">
+                                        <p class="col-sm-4">Description</p>
+                                        <p class="col-sm-4">Liabilities</p>
+                                        <p class="col-sm-4">Assets</p>
+                                    </div>
+                                </li>
+                                <li *ngFor="let currentAssets of getCurrentAssets()">
+                                    <div class="row">
+                                        <p class="col-sm-4">{{currentAssets['name']}}</p>
+                                        <p class="col-sm-4">-</p>
+                                        <p class="col-sm-4">€{{currentAssets['value']}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="balance-sheet-ul">
+                                <h3 class="titles">Non Current Assets</h3>
+                                <li class="subtitles">
+                                    <div class="row">
+                                        <p class="col-sm-4">Description</p>
+                                        <p class="col-sm-4">Liabilities</p>
+                                        <p class="col-sm-4">Assets</p>
+                                    </div>
+                                </li>
+                                <li *ngFor="let nonCurrentAssets of getNonCurrentAssets()">
+                                    <div class="row">
+                                        <p class="col-sm-4">{{nonCurrentAssets['name']}}</p>
+                                        <p class="col-sm-4">-</p>
+                                        <p class="col-sm-4">€{{nonCurrentAssets['value']}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="balance-sheet-ul">
+                                <h3 class="titles">Current Liabilities</h3>
+                                <li class="subtitles">
+                                    <div class="row">
+                                        <p class="col-sm-4">Description</p>
+                                        <p class="col-sm-4">Liabilities</p>
+                                        <p class="col-sm-4">Assets</p>
+                                    </div>
+                                </li>
+                                <li *ngFor="let currentLiabilities of getCurrentLiabilities()">
+                                    <div class="row">
+                                        <p class="col-sm-4">{{currentLiabilities['name']}}</p>
+                                        <p class="col-sm-4">€{{currentLiabilities['value']}}</p>
+                                        <p class="col-sm-4">-</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="balance-sheet-ul">
+                                <h3 class="titles">Non Current Liabilites</h3>
+                                <li class="subtitles">
+                                    <div class="row">
+                                        <p class="col-sm-4">Description</p>
+                                        <p class="col-sm-4">Liabilities</p>
+                                        <p class="col-sm-4">Assets</p>
+                                    </div>
+                                </li>
+                                <li *ngFor="let nonCurrentLiabilities of getNonCurrentLiabilities()">
+                                    <div class="row">
+                                        <p class="col-sm-4">{{nonCurrentLiabilities['name']}}</p>
+                                        <p class="col-sm-4">€{{nonCurrentLiabilities['value']}}</p>
+                                        <p class="col-sm-4">-</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="balance-sheet-ul">
+                                <h3 class="titles">Totals</h3>
+                                <li>
+                                    <div class="row">
+                                        <p class="col-sm-4">Total Current Assets</p>
+                                        <p class="col-sm-4">{{getTotalCurrentAssets()}}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <p class="col-sm-4">Total Non Current Assets</p>
+                                        <p class="col-sm-4">{{getTotalCurrentAssets()}}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <p class="col-sm-4">Total Assets</p>
+                                        <p class="col-sm-4">{{getTotalAssets()}}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <p class="col-sm-4">Total Current Liabilities</p>
+                                        <p class="col-sm-4">{{getTotalCurrentLiabilities()}}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <p class="col-sm-4">Total Non Current Liabilities</p>
+                                        <p class="col-sm-4">{{getTotalCurrentLiabilities()}}</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <p class="col-sm-4">Total Liabilities</p>
+                                        <p class="col-sm-4">{{getTotalLiabilities()}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="titles">Equity</h3>
+                            <ul class="balance-sheet-ul">
+                                <li class="subtitles">
+                                    <div class="row">
+                                        <p class="col-sm-4">Description</p>
+                                        <p class="col-sm-4">Liabilities</p>
+                                        <p class="col-sm-4">Assets</p>
+                                    </div>
+                                </li>
+                                <li *ngFor="let accountEquity of getAccountsEquity()">
+                                    <div class="row">
+                                        <p class="col-sm-4">{{accountEquity['name']}}</p>
+                                        <p class="col-sm-4">-</p>
+                                        <p class="col-sm-4">€{{accountEquity['value']}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="balance-sheet-ul">
+                                <h3 class="titles">Totals</h3>
+                                <li>
+                                    <div class="row">
+                                        <p class="col-sm-4">Total Equity</p>
+                                        <p class="col-sm-4">{{getTotalEquity()}}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-7">
+            <div class="col-xl-5">
                 <div class="row board-50">
                     <div class="value_board flex-column">
                         <h2>Sales vs Cost of Goods Sold</h2>
