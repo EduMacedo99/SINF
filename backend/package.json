@@ -24,6 +24,7 @@
     "dependencies": {
         "@babel/polyfill": "^7.12.1",
         "command-line-args": "^5.1.1",
+        "multer": "^1.4.2",
         "read-file": "^0.2.0",
         "request": "^2.88.2",
         "shelljs": "^0.8.4",

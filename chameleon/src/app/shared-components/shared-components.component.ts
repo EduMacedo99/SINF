@@ -29,6 +29,7 @@ export class SharedComponentsComponent implements OnInit {
     uploadAPI: {
       url: 'http://localhost:3000/api/import',
       headers: {
+        "Access-Control-Allow-Methods": "POST",
         'Access-Control-Allow-Origin': '*',
       },
       responseType: 'blob',
