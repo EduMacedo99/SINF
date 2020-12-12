@@ -2127,8 +2127,7 @@ module.exports = (server, db) => {
                 break;
             }
         }
-        console.log(`accounts receivable: ${assets.current[i].value}`);
-        console.log(assets);
+        res.header("Access-Control-Allow-Origin", "*");
         res.json(assets.current[i].value.toFixed(2));
     });
 
