@@ -8,9 +8,14 @@ import { SaftApiService } from 'src/app/saftApi/saft-api.service';
 })
 export class FinancialComponent implements OnInit {
 
-  constructor() { }
+  constructor(private saftApi: SaftApiService) { }
 
   ngOnInit(): void {
+    this.saftApi.get('api/financial/balance-sheet').subscribe(
+      (data:Object) => {
+        if('assets' in data) console.log(data['assets'])
+      }
+    );
   }
 
 }

@@ -8,7 +8,7 @@ import { SaftApiService } from 'src/app/saftApi/saft-api.service';
 })
 export class OverviewComponent implements OnInit {
 
-  public profitMargin: number = 0;
+  private profitMargin: number = 0;
 
   constructor(private saftApi: SaftApiService) { }
 

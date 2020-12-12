@@ -2153,6 +2153,7 @@ module.exports = (server, db) => {
     server.get('/api/financial/balance-sheet', (req, res) => {
         const accounts = db.GeneralLedgerAccounts.Account;
         const balanceSheetResponse = calculateBalanceSheet(accounts);
+        res.header("Access-Control-Allow-Origin", "*");
         res.json(balanceSheetResponse);
     });
 

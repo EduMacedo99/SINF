@@ -14,8 +14,14 @@ export class SaftApiService {
    * GET request to the saf-T Api
    */
   get(endpoint: string) : Observable<Object> {
+    const headerDict = {
+      'Access-Control-Allow-Origin': '*',
+    };
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
     return this.http.get(
-      `${environment.safTApi}/${endpoint}`,
+      `${environment.safTApi}/${endpoint}`,requestOptions
     );
   }
 }
