@@ -126,12 +126,11 @@ export class SharedComponentsComponent implements OnInit {
     const {filename} = this.importForm.value;
     const headerDict = {
       'Access-Control-Allow-Origin': '*',
-      "Content-Type": "application/json",
     };
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
     };
-    this.http.put<any>('http://localhost:3000/api/import',{file: filename},requestOptions)
+    this.http.put<any>(`http://localhost:3000/api/import?filename="${filename}"`,{},requestOptions)
         .subscribe();
   };
 }

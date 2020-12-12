@@ -1,6 +1,6 @@
 module.exports = (server, db) => {
     server.put('/api/import', (req, res) => {
-        console.log("ola");
-        console.log(req.body);
+        let file = 'filename' in req.query ? req.query['filename'] : null;
+        console.log(file);
     })
 }
