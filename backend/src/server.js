@@ -11,6 +11,8 @@ const sales = require('./modules/sales');
 const token = require("./modules/token");
 const saft = require("./modules/importSaft");
 
+server.use(jsonServer.bodyParser);
+
 /**
  * add routes
  */

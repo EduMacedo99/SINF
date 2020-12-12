@@ -1,6 +1,8 @@
 module.exports = (server, db) => {
-    server.put('/api/import', (req, res) => {
-        let file = 'filename' in req.query ? req.query['filename'] : null;
-        console.log(file);
+    server.post('/api/import', (req, res) => {
+        console.log("aaaaaaaaaaa");
+        console.log(req);
+        res.header("Access-Control-Allow-Origin", "*");
+        res.json("receieved file");
     })
 }
