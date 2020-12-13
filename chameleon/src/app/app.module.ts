@@ -14,6 +14,7 @@ import { PurchasesComponent } from './purchases/purchases.component';
 import { FinancialComponent } from './financial/financial.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
+import { SalesLineChartComponent } from './sales/sales-line-chart/sales-line-chart.component';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
     FinancialComponent,
     InventoryComponent,
     BarChartComponent,
+    SalesLineChartComponent,
     LineChartComponent
   ],
   imports: [
