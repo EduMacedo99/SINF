@@ -1,42 +1,36 @@
-const request = require("request");
-
 module.exports = (server, db) => {
-
-    const processPurchases = (orders, year) => {
-      const monthlyCumulativeValue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-      orders
-        // eslint-disable-next-line eqeqeq
-        .filter((order) => moment(order.documentDate).year() == year)
-        .forEach(({ documentDate, payableAmount }) => {
-          const month = moment(documentDate).month();
-
-          monthlyCumulativeValue[month] += payableAmount.amount;
-        });
-
-      return monthlyCumulativeValue;
-    };
-
-  server.get('/api/purchases', (req, res) => {
-
+  server.get('/api/purchases/suppliers', (req, res) => {
     const options = {
-      method: "GET",
-      url:
-        "https://my.jasminsoftware.com/api/242845/242845-0001/materialscore/materialsitems",
+      method: 'GET',
+      url: `${basePrimaveraUrl}/purchases/orders`,
       headers: {
-        Authorization: "Bearer " + req.body.token,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
 
-    request(options, function (error, response, body) {
-       let monthlyCumulativeValue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-       monthlyCumulativeValue = processPurchases(
-         JSON.parse(body),
-         req.query.year
-       );
-      res.header("Access-Control-Allow-Origin", "*");
-      res.json(processWarehouses(JSON.parse(body)));
+    if (!global.primaveraRequests)
+      return res.json({ msg: 'Primavera token missing' });
+
+    return global.primaveraRequests(options, function (error, response, body) {
+      if (error) throw new Error(error);
+
+      res.json(processProductSuppliers(null, JSON.parse(body), req.query.year));
     });
-    });
+  });
+
+  server.get('/api/purchases/cogs', (req, res) => {
+    // TODO
+  });
+
+  server.get('/api/purchases/total-purchases', (req, res) => {
+    // TODO
+  });
+
+  server.get('/api/purchases/monthly-cumulative-purchases', (req, res) => {
+    // TODO
+  });
+
+  server.get('/api/purchases/orders', (req, res) => {
+    // TODO
+  });
 };

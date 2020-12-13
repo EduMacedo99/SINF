@@ -30,6 +30,10 @@ module.exports = (server, db) => {
         res.json(salesPerCity);
     });
 
+    server.get('/api/sales/total-sales', (req, res) => {
+        // TODO
+    });
+
     server.get('/api/sales/monthly-cumulative-sales', (req, res) => {
         const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
         const sales = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -40,7 +44,7 @@ module.exports = (server, db) => {
                 sales[parseInt(invoice.Period, 10) - 1];
         });
 
-        res.json({ sales });
+        res.json( {sales} );
     });
 
     server.get('/api/sales/top-products', (req, res) => {
