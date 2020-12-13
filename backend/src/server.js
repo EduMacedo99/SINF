@@ -15,6 +15,8 @@ const saft = require("./modules/importSaft");
 const inventory = require("./modules/inventory");
 server.use(jsonServer.bodyParser);
 const account = require("./modules/accounts");
+const purchases = require('./modules/purchases')
+const url = "https://my.jasminsoftware.com/api/242845/242845-0001"
 
 /**
  * add routes
@@ -25,7 +27,8 @@ server.get('/echo', (req, res) => {
     res.jsonp(req.query)
 })
 
-sales(server, dbJasmin);
+sales(server, dbJasmin, url);
+purchases(server, dbJasmin, url);
 token(server, db, accounts);
 saft(server, db);
 inventory(server, db);

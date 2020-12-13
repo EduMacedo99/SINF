@@ -1,4 +1,4 @@
-module.exports = (server, db) => {
+module.exports = (server, db, basePrimaveraUrl) => {
     server.get('/api/sales/sales-per-city', (req, res) => {
         const sales = db.SourceDocuments.SalesInvoices.Invoice;
         const validTypes = ['FT', 'FS', 'FR', 'VD'];

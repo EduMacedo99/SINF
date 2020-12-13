@@ -1,4 +1,4 @@
-module.exports = (server, db) => {
+module.exports = (server, db, basePrimaveraUrl) => {
   server.get('/api/purchases/suppliers', (req, res) => {
     const options = {
       method: 'GET',
