@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SaftApiService } from 'src/app/saftApi/saft-api.service';
+import { LineChartComponent } from 'src/app/charts/line-chart/line-chart.component'
 
 @Component({
   selector: 'app-sales',
@@ -9,13 +10,20 @@ import { SaftApiService } from 'src/app/saftApi/saft-api.service';
 export class SalesComponent implements OnInit {
   constructor(private saftApi: SaftApiService) {}
 
+  private lineChart: LineChartComponent = new LineChartComponent;
   private profitMargin: number = 0;
   private accountsReceivable = 0;
+  private sales: any;
+  private data: Array<Array<any>> = [];
+  private labels: any = [{'label':'Monthly Sales'},{'label':'Cumulative'}];
 
   ngOnInit(): void {
     this.saftApi.get('api/sales/monthly-cumulative-sales').subscribe(
       (data:Object) => {
-        console.log(data);
+        if('sales' in data) {
+          this.sales = data['sales'];
+          this.data.push(this.sales);
+        }
       }
     );
     this.saftApi
@@ -25,7 +33,6 @@ export class SalesComponent implements OnInit {
     this.saftApi
       .get('api/financial/accounts-receivable')
       .subscribe((data) => this.parseAccountsReceivable(data));
-    
   }
 
   private parseGrossProfitMargin(data: any) {
@@ -37,11 +44,14 @@ export class SalesComponent implements OnInit {
   }
 
   private parseAccountsReceivable(data: any) {
-    console.log(data);
     this.accountsReceivable = data;
   }
 
   public getAccountsReceivable() {
     return this.accountsReceivable;
+  }
+
+  public getSales() {
+    return this.sales;
   }
 }

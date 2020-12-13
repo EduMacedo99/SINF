@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./line-chart.component.scss'],
 })
 export class LineChartComponent {
+  constructor() {}
+
   public chartType: any = 'line';
 
   public chartDatasets: Array<any> = [
@@ -13,7 +15,7 @@ export class LineChartComponent {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'My Second dataset' }
   ];
 
-  public chartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public chartLabels: Array<any> = ['October', 'November', 'December'];
 
   public chartColors: Array<any> = [
     {
@@ -33,4 +35,13 @@ export class LineChartComponent {
   };
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
+
+  public setChartDatasets(data: Array<Array<any>>, label: Array<Array<any>>) {
+    for (let i = 0; i < data.length; i++) {
+      let d = data[i];
+      let l = label[i];
+      let array = [d, l];
+      this.chartDatasets.push(array);
+    }
+  }
 }
