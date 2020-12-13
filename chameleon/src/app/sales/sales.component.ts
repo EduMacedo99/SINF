@@ -13,6 +13,11 @@ export class SalesComponent implements OnInit {
   private accountsReceivable = 0;
 
   ngOnInit(): void {
+    this.saftApi.get('api/sales/monthly-cumulative-sales').subscribe(
+      (data:Object) => {
+        console.log(data);
+      }
+    );
     this.saftApi
       .get('api/financial/gross-profit-margin')
       .subscribe((data) => this.parseGrossProfitMargin(data));
