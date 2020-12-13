@@ -24,8 +24,8 @@ module.exports = (server, db) => {
     };
 
     const processProducts = (stockData) => {
-        const page = 1;
-        const pageSize = 5;
+        /*const page = req.query.page || 1;
+        const pageSize = req.query.pageSize || 5;*/
 
         const response = {
             products: []
@@ -91,9 +91,6 @@ module.exports = (server, db) => {
         );
 
     server.get("/inventory/stock", (req, res) => {
-
-        console.log(req.body.token);
-        console.log("aaaaaa");
         var stock = 0;
         const options = {
             method: "GET",
@@ -105,7 +102,6 @@ module.exports = (server, db) => {
         };
 
         request(options, function(error, response, body) {
-
             stock = processStock(JSON.parse(response.body));
             if (error) throw new Error(error);
             res.header("Access-Control-Allow-Origin", "*");
