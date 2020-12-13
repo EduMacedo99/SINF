@@ -1,47 +1,58 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
-  styleUrls: ['./line-chart.component.scss'],
+  styleUrls: ['./line-chart.component.scss']
 })
-export class LineChartComponent {
-  constructor() {}
+export class LineChartComponent implements OnInit {
 
-  public chartType: any = 'line';
+  constructor() { }
 
-  public chartDatasets: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'My First dataset' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'My Second dataset' }
-  ];
-
-  public chartLabels: Array<any> = ['October', 'November', 'December'];
-
-  public chartColors: Array<any> = [
-    {
-      backgroundColor: 'rgba(105, 0, 132, .2)',
-      borderColor: 'rgba(200, 99, 132, .7)',
-      borderWidth: 2,
-    },
-    {
-      backgroundColor: 'rgba(0, 137, 132, .2)',
-      borderColor: 'rgba(0, 10, 130, .7)',
-      borderWidth: 2,
-    }
-  ];
-
-  public chartOptions: any = {
-    responsive: true
-  };
-  public chartClicked(e: any): void { }
-  public chartHovered(e: any): void { }
-
-  public setChartDatasets(data: Array<Array<any>>, label: Array<Array<any>>) {
-    for (let i = 0; i < data.length; i++) {
-      let d = data[i];
-      let l = label[i];
-      let array = [d, l];
-      this.chartDatasets.push(array);
-    }
+  ngOnInit() {
   }
+
+  @Input() public data: Array<any> = [];
+
+  @Input() public labels: Array<any> = [];
+
+  public options: any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    legend: {
+      position: 'bottom'
+    }
+  };
+
+  public type: any = 'line';
+
+  public colors: Array<any> = [
+    { // blue
+      backgroundColor: ' #20689f73',
+      borderColor: '#20689f',
+      pointBackgroundColor: '#20689f',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: '#20689f'
+    },
+    { // green
+      backgroundColor: ' #209f797c',
+      borderColor: ' #209f79',
+      pointBackgroundColor: ' #209f79',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: ' #209f79'
+    }
+  ];
+
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
+
 }
+
