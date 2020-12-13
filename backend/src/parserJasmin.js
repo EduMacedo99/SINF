@@ -27,7 +27,7 @@ fs.writeFile("dbJasmin.json", "", function () {
 fs.readFile(args.source, "utf8", function (err, data) {
   let searchString = "<AuditFile xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"urn:OECD:StandardAuditFile-Tax:PT_1.04_01\">";
     let re = new RegExp("^.*" + searchString + ".*$", "gm");
-    let formatted = data.replace(re, "<AuditFile  xmlns=\"urn:OECD:StandardAuditFile-Tax:PT_1.04_01\">");
+    let formatted = data.replace(re, "<AuditFile xmlns=\"urn:OECD:StandardAuditFile-Tax:PT_1.04_01\">");
 
   fs.writeFileSync(args.source, formatted, "utf8", function (err) {
   });
@@ -36,7 +36,6 @@ fs.readFile(args.source, "utf8", function (err, data) {
   console.log(formatted);
 
   for (var i = 0; i < 10000; i++){
-
   }
 
 });
