@@ -30,6 +30,19 @@ module.exports = (server, db) => {
         res.json(salesPerCity);
     });
 
+    server.get('/api/sales/monthly-cumulative-sales', (req, res) => {
+        const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
+        const sales = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        salesInvoices.forEach(invoice => {
+            sales[parseInt(invoice.Period, 10) - 1] =
+                parseFloat(invoice.DocumentTotals.GrossTotal) +
+                sales[parseInt(invoice.Period, 10) - 1];
+        });
+
+        res.json( {sales} );
+    });
+
     server.get('/api/sales/top-customers', (req, res) => {
         const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
         const validTypes = ['FT', 'FS', 'FR', 'VD'];
