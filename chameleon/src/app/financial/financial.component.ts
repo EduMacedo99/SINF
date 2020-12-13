@@ -11,6 +11,15 @@ export class FinancialComponent implements OnInit {
   private liabilities: any;
   private equity: any;
 
+  private depreciation: any;
+  private ebit: any;
+  private ebitda: any;
+  private expenses: any;
+  private interest: any;
+  private netIncome: any;
+  private revenue: any;
+  private taxes: any;
+
   constructor(private saftApi: SaftApiService) { }
 
   ngOnInit(): void {
@@ -19,14 +28,30 @@ export class FinancialComponent implements OnInit {
         if('assets' in data) 
           this.assets = data['assets'];
         if('liabilities' in data)
-          this.liabilities = data['assets'];
+          this.liabilities = data['liabilities'];
         if('equity' in data)
           this.equity = data['equity'];
       }
     );
     this.saftApi.get('api/financial/profit-loss').subscribe(
       (data:Object) => {
-        console.log(data)
+        if('depreciation' in data) 
+          this.depreciation = data['depreciation'];
+        if('ebit' in data)
+          this.ebit = data['ebit'];
+        if('ebitda' in data)
+          this.ebitda = data['ebitda'];
+        if('expenses' in data) 
+          this.expenses = data['expenses'];
+        if('interest' in data)
+          this.interest = data['interest'];
+        if('netIncome' in data)
+          this.netIncome = data['netIncome'];
+        if('revenue' in data)
+          this.revenue = data['revenue'];
+        if('taxes' in data)
+          this.taxes = data['taxes'];
+          console.log(data)
       }
     );
   }
@@ -101,5 +126,54 @@ export class FinancialComponent implements OnInit {
     if (this.liabilities!= null && 'total' in this.liabilities)
       return Math.round(this.liabilities['total']*100/100);
     return 0;
+  }
+
+
+  getDepreciation(): Array<any> {
+    if (this.depreciation!= null)
+      return this.depreciation;
+    return Array<any>();
+  }
+
+  getEbit(): number {
+    if (this.ebit!= null)
+      return this.ebit;
+    return 0;
+  }
+
+  getEbitda(): number {
+    if (this.ebitda!= null)
+      return this.ebitda;
+    return 0;
+  }
+
+  getExpenses(): Array<any> {
+    if (this.expenses!= null)
+      return this.expenses;
+    return Array<any>();
+  }
+
+  getInterest(): Array<any> {
+    if (this.interest!= null)
+      return this.interest;
+    return Array<any>();
+  }
+
+  getNetIncome(): number {
+    if (this.netIncome!= null)
+      return this.netIncome;
+    return 0;
+  }
+
+  getRevenue(): Array<any> {
+    if (this.revenue!= null)
+      return this.revenue;
+    return Array<any>();
+  }
+
+  getTaxes(): Array<any> {
+    if (this.taxes!= null)
+      return this.taxes;
+    return Array<any>();
   }
 }
