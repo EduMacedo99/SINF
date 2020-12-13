@@ -29,11 +29,15 @@ fs.readFile(args.source, "utf8", function (err, data) {
     let re = new RegExp("^.*" + searchString + ".*$", "gm");
     let formatted = data.replace(re, "<AuditFile  xmlns=\"urn:OECD:StandardAuditFile-Tax:PT_1.04_01\">");
 
-  fs.writeFile(args.source, formatted, "utf8", function (err) {
+  fs.writeFileSync(args.source, formatted, "utf8", function (err) {
   });
 
   console.log("changed line!");
   console.log(formatted);
+
+  for (var i = 0; i < 10000; i++){
+
+  }
 
 });
 
