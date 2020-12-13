@@ -2015,7 +2015,6 @@ const calculateProfitLoss = (journals, accounts) => {
         expensesInterest -
         pl.taxes.reduce((acc, curr) => acc + curr.value, 0);
 
-    console.log(pl);
     return pl;
 };
 
@@ -2188,8 +2187,6 @@ module.exports = (server, db) => {
         const accounts = db.GeneralLedgerAccounts.Account;
         const currentAssets = calculateAssets(accounts).totalCurrent;
         const currentLiabilities = calculateLiabilities(accounts).totalCurrent;
-        console.log(currentAssets);
-        console.log(currentLiabilities);
         res.json((currentAssets / currentLiabilities).toFixed(2));
     });
 
@@ -2211,6 +2208,7 @@ module.exports = (server, db) => {
         const accounts = db.GeneralLedgerAccounts.Account;
         const journal = db.GeneralLedgerEntries.Journal;
         const pl = calculateProfitLoss(journal, accounts);
+        res.header("Access-Control-Allow-Origin", "*");
         res.json(pl);
     });
 };

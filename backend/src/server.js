@@ -1,10 +1,12 @@
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
+const routerJasmin = jsonServer.router('dbJasmin.json')
 const router2 = jsonServer.router('accounts.json')
 const middlewares = jsonServer.defaults()
 
 const db = router.db.__wrapped__;
+const dbJasmin = routerJasmin.db.__wrapped__;
 const accounts = router2.db.__wrapped__;
 
 const sales = require('./modules/sales');
@@ -23,7 +25,7 @@ server.get('/echo', (req, res) => {
     res.jsonp(req.query)
 })
 
-sales(server, db);
+sales(server, dbJasmin);
 token(server, db, accounts);
 saft(server, db);
 inventory(server, db);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http'
 import { AuthenticationService } from 'src/app/account/authentication/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -130,7 +131,7 @@ export class SharedComponentsComponent implements OnInit {
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
     };
-    this.http.put<any>(`http://localhost:3000/api/import?filename="${filename}"`,{},requestOptions)
+    this.http.put<any>(`${environment.safTApi}/api/import?filename="${filename}"`,{},requestOptions)
         .subscribe();
   };
 }
