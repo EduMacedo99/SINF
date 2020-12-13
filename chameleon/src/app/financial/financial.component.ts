@@ -22,7 +22,11 @@ export class FinancialComponent implements OnInit {
           this.liabilities = data['assets'];
         if('equity' in data)
           this.equity = data['equity'];
-        console.log(data);
+      }
+    );
+    this.saftApi.get('api/financial/profit-loss').subscribe(
+      (data:Object) => {
+        console.log(data)
       }
     );
   }
