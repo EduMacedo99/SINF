@@ -28,7 +28,7 @@ server.get('/echo', (req, res) => {
 })
 
 sales(server, dbJasmin, url);
-purchases(server, dbJasmin, url);
+purchases(server, db, url);
 token(server, db, accounts);
 saft(server, db);
 inventory(server, db);

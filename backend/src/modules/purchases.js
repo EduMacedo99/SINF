@@ -85,6 +85,36 @@ const processMonthlyPurchases = (purchasesData) => {
   return response;
 };
 
+function processTransaction(transaction, account_filter) {
+  function processLine(line, type) {
+    if (line.AccountID.indexOf(account_filter) != 0) return 0;
+    return type == 'credit' ? Number.parseInt(line.CreditAmount) : Number.parseInt(line.DebitAmount);
+  }
+
+  let totalCredit = 0
+  let totalDebit = 0
+  if (transaction.Lines.CreditLine && Array.isArray(transaction.Lines.CreditLine)) {
+    totalCredit += transaction.Lines.CreditLine.map(line => {
+      return processLine(line, 'credit');
+    }).reduce((n1, n2) => n1 + n2);
+  } else if (transaction.Lines.CreditLine) {
+    totalCredit += processLine(transaction.Lines.CreditLine, 'credit');
+  }
+
+  if (transaction.Lines.DebitLine && Array.isArray(transaction.Lines.DebitLine)) {
+    totalDebit += transaction.Lines.DebitLine.map(line => {
+      return processLine(line, 'debit');
+    }).reduce((n1, n2) => n1 + n2);
+  } else if (transaction.Lines.DebitLine) {
+    totalDebit += processLine(transaction.Lines.DebitLine, 'debit');
+  }
+
+  return {
+    totalCredit: totalCredit,
+    totalDebit: totalDebit
+  }
+}
+
 const extractTimestamp = (date) => {
   const match = date.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
   return `${match[1]}-${match[2]}`;
@@ -111,7 +141,24 @@ module.exports = (server, db, basePrimaveraUrl) => {
   });
 
   server.get('/api/purchases/accounts-payable', (req, res) => {
-    // TODO
+    let totalCredit = 0;
+    let totalDebit = 0;
+
+    db.GeneralLedgerEntries.Journal.forEach(journal => {
+      if (Array.isArray(journal.Transaction)) {
+        for (let i = 0; i < journal.Transaction.length; i++) {
+          let ret = processTransaction(journal.Transaction[i], 22);
+          totalCredit += ret.totalCredit;
+          totalDebit += ret.totalDebit;
+        }
+      } else if (journal.Transaction) {
+        let ret = processTransaction(journal.Transaction, 22);
+        totalCredit += ret.totalCredit;
+        totalDebit += ret.totalDebit;
+      }
+    });
+
+    res.json((totalCredit - totalDebit).toFixed(2));
   });
 
   server.get('/api/purchases/total-purchases', (req, res) => {
