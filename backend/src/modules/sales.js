@@ -43,8 +43,8 @@ module.exports = (server, db, basePrimaveraUrl) => {
                 parseFloat(invoice.DocumentTotals.GrossTotal) +
                 sales[parseInt(invoice.Period, 10) - 1];
         });
-
-        res.json( {sales} );
+        res.header("Access-Control-Allow-Origin", "*");
+        res.json({ sales });
     });
 
     server.get('/api/sales/top-products', (req, res) => {
