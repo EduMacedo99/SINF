@@ -63,6 +63,34 @@ module.exports = (server, db, basePrimaveraUrl) => {
         });
     };
 
+    const processMonthlyPurchases = (purchasesData) => {
+        const purchasesByTimestamp = {};
+
+        const response = {
+            purchasesByTimestamp: {}
+        };
+
+        purchasesData.forEach((purchase) => {
+            const timestamp = extractTimestamp(purchase.documentDate.split("T")[0]);
+
+            if (purchasesByTimestamp[timestamp] == undefined) {
+                purchasesByTimestamp[timestamp] = 0;
+            }
+
+            purchasesByTimestamp[timestamp] += purchase.payableAmount.amount;
+        });
+
+        Object.keys(purchasesByTimestamp).sort().forEach((key) => {
+            response.purchasesByTimestamp[key] = purchasesByTimestamp[key];
+        });
+        return response;
+    };
+
+    const extractTimestamp = (date) => {
+        const match = date.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+        return `${match[1]}-${match[2]}`;
+    }
+
     server.get('/purchases/suppliers', (req, res) => {
         var suppliers = 0;
         const options = {
@@ -87,11 +115,41 @@ module.exports = (server, db, basePrimaveraUrl) => {
     });
 
     server.get('/purchases/total-purchases', (req, res) => {
-        // TODO
+        var monthlyPurchases = 0;
+        const options = {
+            method: "GET",
+            url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
+            headers: {
+                Authorization: "Bearer " + req.body.token,
+                "Content-Type": "application/json",
+            },
+        };
+
+        request(options, function(error, response, body) {
+            monthlyPurchases = processMonthlyPurchases(JSON.parse(response.body));
+            if (error) throw new Error(error);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json(monthlyPurchases);
+        });
     });
 
-    server.get('/purchases/monthly-cumulative-purchases', (req, res) => {
-        // TODO
+    server.get('/purchases/monthly-purchases', (req, res) => {
+        var monthlyPurchases = 0;
+        const options = {
+            method: "GET",
+            url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
+            headers: {
+                Authorization: "Bearer " + req.body.token,
+                "Content-Type": "application/json",
+            },
+        };
+
+        request(options, function(error, response, body) {
+            monthlyPurchases = processMonthlyPurchases(JSON.parse(response.body));
+            if (error) throw new Error(error);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json(monthlyPurchases);
+        });
     });
 
     server.get('/purchases/orders', (req, res) => {
