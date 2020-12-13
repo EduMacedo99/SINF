@@ -1,4 +1,6 @@
-module.exports = (server, db, basePrimaveraUrl) => {
+const request = require("request");
+
+module.exports = (server, db) => {
     server.get('/api/sales/sales-per-city', (req, res) => {
         const sales = db.SourceDocuments.SalesInvoices.Invoice;
         const validTypes = ['FT', 'FS', 'FR', 'VD'];
@@ -43,8 +45,9 @@ module.exports = (server, db, basePrimaveraUrl) => {
                 parseFloat(invoice.DocumentTotals.GrossTotal) +
                 sales[parseInt(invoice.Period, 10) - 1];
         });
+
         res.header("Access-Control-Allow-Origin", "*");
-        res.json({ sales });
+        res.json( {sales} );
     });
 
     server.get('/api/sales/top-products', (req, res) => {
@@ -82,7 +85,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
                     ).toFixed(2),
                 ),
             }));
-
+        res.header("Access-Control-Allow-Origin", "*");
         res.json(products);
     });
 
@@ -163,6 +166,51 @@ module.exports = (server, db, basePrimaveraUrl) => {
         }
 
         const sorted = customers.sort((a, b) => a.totalPurchased > b.totalPurchased);
-        res.json(sorted.slice(0, 5));
+        res.json(sorted);
     });
+
+    server.get("/api/sales/revenue", (req, res) => {
+      const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
+      const monthlyCumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      salesInvoices.forEach((invoice) => {
+        monthlyCumulative[parseInt(invoice.Period, 10) - 1] =
+          parseFloat(invoice.DocumentTotals.GrossTotal) +
+          monthlyCumulative[parseInt(invoice.Period, 10) - 1];
+      });
+      res.header("Access-Control-Allow-Origin", "*");
+      res.json({ monthlyCumulative });
+    });
+
+    server.get("/api/sales/revenueFromSales", (req, res) => {
+      const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
+      const monthlyCumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      salesInvoices.forEach((invoice) => {
+        monthlyCumulative[parseInt(invoice.Period, 10) - 1] =
+          parseFloat(invoice.DocumentTotals.GrossTotal) +
+          monthlyCumulative[parseInt(invoice.Period, 10) - 1];
+      });
+      res.header("Access-Control-Allow-Origin", "*");
+      res.json(monthlyCumulative[11]);
+    });
+
+    server.get("/api/customers", (req, res) => {
+      
+        const options = {
+          method: "GET",
+          url:
+            "https://my.jasminsoftware.com/api/242845/242845-0001/salesCore/customerParties",
+          headers: {
+            Authorization: "Bearer " + req.body.token,
+            "Content-Type": "application/json",
+          },
+        };
+
+        request(options, function (error, response, body) {
+          
+          res.header("Access-Control-Allow-Origin", "*");
+          res.json((JSON.parse(body)));
+        });
+
+    });
+
 }

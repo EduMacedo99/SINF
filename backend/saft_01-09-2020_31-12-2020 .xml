@@ -16,7 +16,7 @@
       <Country xsi:type="xsd:string">PT</Country>
     </CompanyAddress>
     <FiscalYear>2020</FiscalYear>
-    <StartDate>2020-12-01</StartDate>
+    <StartDate>2020-09-01</StartDate>
     <EndDate>2020-12-31</EndDate>
     <CurrencyCode xsi:type="xsd:string">EUR</CurrencyCode>
     <DateCreated>2020-12-13</DateCreated>
@@ -28,6 +28,46 @@
   </Header>
   <MasterFiles>
     <Customer>
+      <CustomerID>0001.1</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>999999990</CustomerTaxID>
+      <CompanyName>Eduardo Macedo</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>Desconhecido</StreetName>
+        <AddressDetail>Eduardo Macedo</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>0001.2</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>999999990</CustomerTaxID>
+      <CompanyName>Eduardo Macedo</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>Desconhecido</StreetName>
+        <AddressDetail>Eduardo Macedo</AddressDetail>
+        <City>Desconhecido</City>
+        <PostalCode>Desconhecido</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
       <CustomerID>0004.509491863</CustomerID>
       <AccountID>Desconhecido</AccountID>
       <CustomerTaxID>509491863</CustomerTaxID>
@@ -35,9 +75,29 @@
       <BillingAddress>
         <BuildingNumber>Desconheci</BuildingNumber>
         <StreetName>RUA DE NOSSA SENHORA DO AMPARO</StreetName>
-        <AddressDetail>Esp�rito Critico Arquitectura, Lda.  RUA DE NOSSA SENHORA DO AMPARO 118 SALA 5  4435-350 RIO TINTO</AddressDetail>
+        <AddressDetail>Desconhecido</AddressDetail>
         <City>RIO TINTO</City>
         <PostalCode>4435-350</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>0005.504482254</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>504482254</CustomerTaxID>
+      <CompanyName>MERCAFAR - DISTRIBUI��O FARMAC�UTICA, S.A.</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>RUA PEDRO JOS� FERREIRA</StreetName>
+        <AddressDetail>MERCAFAR - DISTRIBUI��O FARMAC�UTICA, S.A.  RUA PEDRO JOS� FERREIRA 200/210  4420-612 GONDOMAR</AddressDetail>
+        <City>GONDOMAR</City>
+        <PostalCode>4420-612</PostalCode>
         <Region>Desconhecido</Region>
         <Country>PT</Country>
       </BillingAddress>
@@ -75,9 +135,29 @@
       <BillingAddress>
         <BuildingNumber>Desconheci</BuildingNumber>
         <StreetName>RUA DO MOLHE</StreetName>
-        <AddressDetail>A+B - DESIGNERS ASSOCIADOS, LDA  RUA DO MOLHE 204 HAB 2  4150-499 PORTO</AddressDetail>
+        <AddressDetail>Desconhecido</AddressDetail>
         <City>PORTO</City>
         <PostalCode>4150-499</PostalCode>
+        <Region>Desconhecido</Region>
+        <Country>PT</Country>
+      </BillingAddress>
+      <Telephone>Desconhecido</Telephone>
+      <Fax>Desconhecido</Fax>
+      <Email>Desconhecido</Email>
+      <Website>Desconhecido</Website>
+      <SelfBillingIndicator>0</SelfBillingIndicator>
+    </Customer>
+    <Customer>
+      <CustomerID>0009.503643327</CustomerID>
+      <AccountID>Desconhecido</AccountID>
+      <CustomerTaxID>503643327</CustomerTaxID>
+      <CompanyName>A.B.E. - APOIOS E BORRACHAS ESTEF�NIA, LDA</CompanyName>
+      <BillingAddress>
+        <BuildingNumber>Desconheci</BuildingNumber>
+        <StreetName>TRAVESSA REBELO DA SILVA</StreetName>
+        <AddressDetail>A.B.E. - APOIOS E BORRACHAS ESTEF�NIA, LDA  TRAVESSA REBELO DA SILVA 11A P 3  1000-257 LISBOA</AddressDetail>
+        <City>LISBOA</City>
+        <PostalCode>1000-257</PostalCode>
         <Region>Desconhecido</Region>
         <Country>PT</Country>
       </BillingAddress>
@@ -189,6 +269,27 @@
     </Customer>
     <Product>
       <ProductType>P</ProductType>
+      <ProductCode>C0006</ProductCode>
+      <ProductGroup>Sem fam�lia</ProductGroup>
+      <ProductDescription>Pack de 4 Canetas Paper Mate (preta)</ProductDescription>
+      <ProductNumberCode>C0006</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>CAD0002</ProductCode>
+      <ProductGroup>Sem fam�lia</ProductGroup>
+      <ProductDescription>Cadeira estirador (tecido azul)</ProductDescription>
+      <ProductNumberCode>CAD0002</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>CD0001</ProductCode>
+      <ProductGroup>Sem fam�lia</ProductGroup>
+      <ProductDescription>Caderno pautado A4</ProductDescription>
+      <ProductNumberCode>CD0001</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
       <ProductCode>AG0001</ProductCode>
       <ProductGroup>Sem fam�lia</ProductGroup>
       <ProductDescription>Agenda 172x240mm (preto)</ProductDescription>
@@ -224,6 +325,20 @@
     </Product>
     <Product>
       <ProductType>P</ProductType>
+      <ProductCode>CD0002</ProductCode>
+      <ProductGroup>Sem fam�lia</ProductGroup>
+      <ProductDescription>Caderno quadriculado A4</ProductDescription>
+      <ProductNumberCode>CD0002</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>CV0002</ProductCode>
+      <ProductGroup>Sem fam�lia</ProductGroup>
+      <ProductDescription>Cavalete superficie lacada 70x92 cm</ProductDescription>
+      <ProductNumberCode>CV0002</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
       <ProductCode>PP0002</ProductCode>
       <ProductGroup>Sem fam�lia</ProductGroup>
       <ProductDescription>Resma 500 f papel A4</ProductDescription>
@@ -242,6 +357,13 @@
       <ProductGroup>Sem fam�lia</ProductGroup>
       <ProductDescription>Caneta Paper Mate (var.cores)</ProductDescription>
       <ProductNumberCode>C0005</ProductNumberCode>
+    </Product>
+    <Product>
+      <ProductType>P</ProductType>
+      <ProductCode>BG0002</ProductCode>
+      <ProductGroup>Sem fam�lia</ProductGroup>
+      <ProductDescription>Bengaleiro decorativo 1,30x0,38 m MDF cores</ProductDescription>
+      <ProductNumberCode>BG0002</ProductNumberCode>
     </Product>
     <Product>
       <ProductType>P</ProductType>
@@ -374,9 +496,79 @@
   </MasterFiles>
   <SourceDocuments>
     <SalesInvoices>
-      <NumberOfEntries>8</NumberOfEntries>
+      <NumberOfEntries>14</NumberOfEntries>
       <TotalDebit>0</TotalDebit>
-      <TotalCredit>2201.700000</TotalCredit>
+      <TotalCredit>2566.980000</TotalCredit>
+      <Invoice>
+        <InvoiceNo>FA 2020/1</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2020-12-10T16:03:24</InvoiceStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>V/f48SRNr5xUSouQyJ8jjTNIsUKbrUSgaKZ2BvkEeFyTgrwNwJOD9bQAzSDfqf5ONdTr8WkI3/u3NKkSmv9WgT+Ub14Ta78cgyON+Eu7KfIv7THGbibAKSrCKTQBGKdlWHO8fjLcHnMhZDWXPHnGfzmT9aX5UBxfcHrLCx6/8SI=</Hash>
+        <HashControl>1</HashControl>
+        <Period>12</Period>
+        <InvoiceDate>2020-12-10</InvoiceDate>
+        <InvoiceType>FT</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-10T16:03:24</SystemEntryDate>
+        <CustomerID>0001.1</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>Desconhecido</StreetName>
+            <AddressDetail>O seu endere�o</AddressDetail>
+            <City>Desconhecido</City>
+            <PostalCode>Desconhecido</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Dr. Roberto Frias - FEUP</StreetName>
+            <AddressDetail>O Nosso Endere�o Rua Dr. Roberto Frias - FEUP   4200-465 Porto</AddressDetail>
+            <City>Porto</City>
+            <PostalCode>4200-465</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2020-12-10T16:04:49</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>001</ProductCode>
+          <ProductDescription>L�pis de grafite n� 2001</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>0.000000</UnitPrice>
+          <TaxPointDate>2020-12-10</TaxPointDate>
+          <Description>L�pis de grafite n� 2001</Description>
+          <CreditAmount>0.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>0.00</TaxPayable>
+          <NetTotal>0.00</NetTotal>
+          <GrossTotal>0.00</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
       <Invoice>
         <InvoiceNo>FA 2020/2</InvoiceNo>
         <ATCUD>0</ATCUD>
@@ -1297,6 +1489,777 @@
           <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
         </WithholdingTax>
       </Invoice>
+      <Invoice>
+        <InvoiceNo>FS 2020/1</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2020-12-13T16:33:10</InvoiceStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>jd7zMgqxfxYudoX3ogX3S3thZBST/sXjT9zPM/N+NNdZMLvWcMmnkKTP8YuF6R4RUzBcv/q3wMvkU14427WgD7lkyiv6v85f4ZvxrKTF3Rz5k5cmPRCT02KQPnBfflbACWpbpVl10tNCZ1wnm8RnX6DiKAZbfpA9Yx4osE6/KhY=</Hash>
+        <HashControl>1</HashControl>
+        <Period>10</Period>
+        <InvoiceDate>2020-10-08</InvoiceDate>
+        <InvoiceType>FS</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T16:33:10</SystemEntryDate>
+        <CustomerID>0012.513900101</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>ESTRADA MILITAR</StreetName>
+            <AddressDetail>O seu endere�o ESTRADA MILITAR 8A VNV  2700-588 AMADORA</AddressDetail>
+            <City>AMADORA</City>
+            <PostalCode>2700-588</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Dr. Roberto Frias - FEUP</StreetName>
+            <AddressDetail>O Nosso Endere�o Rua Dr. Roberto Frias - FEUP   4200-465 Porto</AddressDetail>
+            <City>Porto</City>
+            <PostalCode>4200-465</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2020-12-13T16:35:10</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>C0004</ProductCode>
+          <ProductDescription>Pack de 50 Canetas Bic (preto)</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>15.040000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Pack de 50 Canetas Bic (preto)</Description>
+          <CreditAmount>15.040000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>3.46</TaxPayable>
+          <NetTotal>15.04</NetTotal>
+          <GrossTotal>18.50</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FS 2020/2</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2020-12-13T16:41:16</InvoiceStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>DnPCXTVwl3oYJ+1J312GgRx70nGG7wqKUjE81BHJUxExifKPYKN1XCFtMgRQxmALmmPCEv/QCu69zsgCvwJDmLivYj8KyVD05oixqXBNj2A4gvEcVgEz243oPDT34oq4y0fv+Y7teYyEC0ASyMY3CFlDq04fEYZKkxsJVSPoXfY=</Hash>
+        <HashControl>1</HashControl>
+        <Period>10</Period>
+        <InvoiceDate>2020-10-14</InvoiceDate>
+        <InvoiceType>FS</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T16:41:16</SystemEntryDate>
+        <CustomerID>0004.509491863</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>RUA DE NOSSA SENHORA DO AMPARO</StreetName>
+            <AddressDetail>O seu endere�o RUA DE NOSSA SENHORA DO AMPARO 118 SALA 5  4435-350 RIO TINTO</AddressDetail>
+            <City>RIO TINTO</City>
+            <PostalCode>4435-350</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Dr. Roberto Frias - FEUP</StreetName>
+            <AddressDetail>O Nosso Endere�o Rua Dr. Roberto Frias - FEUP   4200-465 Porto</AddressDetail>
+            <City>Porto</City>
+            <PostalCode>4200-465</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2020-12-13T16:43:16</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>C0006</ProductCode>
+          <ProductDescription>Pack de 4 Canetas Paper Mate (preta)</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>4.860000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Pack de 4 Canetas Paper Mate (preta)</Description>
+          <CreditAmount>4.860000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>ARM0001</ProductCode>
+          <ProductDescription>Arm�rio de arquivo 100x198x42 cm (A�o preto)</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>68.600000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Arm�rio de arquivo 100x198x42 cm (A�o preto)</Description>
+          <CreditAmount>68.600000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>16.90</TaxPayable>
+          <NetTotal>73.46</NetTotal>
+          <GrossTotal>90.36</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FR 2020/1</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2020-12-13T16:45:36</InvoiceStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>DPVazrnJiBOdyNtXEAXvLGWRvHWZ1WVZsFsyTqTInWG/xPbZL5tigQEHxVgC6c+62y+sEpPz6+aHGY7DFz0Ufzok6qpV6gxM1Zy5cmsZuG/M3Z0AKSaZcM8TWYyddACnZnxXtsJfpPsjWqTyNqtrEFgZyS9anka82VbBWqBSrFE=</Hash>
+        <HashControl>1</HashControl>
+        <Period>10</Period>
+        <InvoiceDate>2020-10-15</InvoiceDate>
+        <InvoiceType>FR</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T16:45:36</SystemEntryDate>
+        <CustomerID>0005.504482254</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>RUA PEDRO JOS� FERREIRA</StreetName>
+            <AddressDetail>O seu endere�o RUA PEDRO JOS� FERREIRA 200/210  4420-612 GONDOMAR</AddressDetail>
+            <City>GONDOMAR</City>
+            <PostalCode>4420-612</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Dr. Roberto Frias - FEUP</StreetName>
+            <AddressDetail>O Nosso Endere�o Rua Dr. Roberto Frias - FEUP   4200-465 Porto</AddressDetail>
+            <City>Porto</City>
+            <PostalCode>4200-465</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2020-12-13T16:44:43</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>CV0002</ProductCode>
+          <ProductDescription>Cavalete superficie lacada 70x92 cm</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>85.930000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Cavalete superficie lacada 70x92 cm</Description>
+          <CreditAmount>85.930000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>19.77</TaxPayable>
+          <NetTotal>85.93</NetTotal>
+          <GrossTotal>105.70</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FR 2020/2</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2020-12-13T16:53:14</InvoiceStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>hb/POXPbF5rFHelQDMqnWv1lSj6W2pae+dpTNzjHPBBVM2oxT4gz/Jis0N9ISUn6WLr4dMFUfeh6Q2g++QUDIjJfAWuWJQ3BW8IT8cJvVfKgrjOlr2bK8uIkjV/O+XcE7nP96iRJibx1jqJXFRqAG7jODHRhc+CoEFn6uOpH7ws=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <InvoiceDate>2020-11-04</InvoiceDate>
+        <InvoiceType>FR</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T16:53:14</SystemEntryDate>
+        <CustomerID>0010.513136150</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>RUA DOUTOR EDUARDO MARIA DOS SANTOS</StreetName>
+            <AddressDetail>O seu endere�o RUA DOUTOR EDUARDO MARIA DOS SANTOS BLOCO 1 1�  3525-072 CANAS DE SENHORIM</AddressDetail>
+            <City>CANAS DE SENHORIM</City>
+            <PostalCode>3525-072</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Dr. Roberto Frias - FEUP</StreetName>
+            <AddressDetail>O Nosso Endere�o Rua Dr. Roberto Frias - FEUP   4200-465 Porto</AddressDetail>
+            <City>Porto</City>
+            <PostalCode>4200-465</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2020-12-13T16:49:12</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>C0004</ProductCode>
+          <ProductDescription>Pack de 50 Canetas Bic (preto)</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>15.040000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Pack de 50 Canetas Bic (preto)</Description>
+          <CreditAmount>15.040000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>ARM0001</ProductCode>
+          <ProductDescription>Arm�rio de arquivo 100x198x42 cm (A�o preto)</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>68.600000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Arm�rio de arquivo 100x198x42 cm (A�o preto)</Description>
+          <CreditAmount>68.600000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>BG0001</ProductCode>
+          <ProductDescription>Bengaleiro 1,70 m A�o preto</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>56.080000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Bengaleiro 1,70 m A�o preto</Description>
+          <CreditAmount>56.080000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>32.14</TaxPayable>
+          <NetTotal>139.72</NetTotal>
+          <GrossTotal>171.86</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
+      <Invoice>
+        <InvoiceNo>FS 2020/3</InvoiceNo>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <InvoiceStatus>N</InvoiceStatus>
+          <InvoiceStatusDate>2020-12-13T17:00:23</InvoiceStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>RKYsaJOeimFb4IIWIxQK8JPXrvKIexCg1lp4a92AsOWC1uZ0QUtJhQZR8jQ3elaooshM+ffyssIO31TcFTLKjd3vomg3uC/h0AqR58uwt9A/70DimfxbFkP3XG7V1nBqMrmAn6d9XgURxeDll380Kmmq/bMOZenm7DagpIw3QN0=</Hash>
+        <HashControl>1</HashControl>
+        <Period>11</Period>
+        <InvoiceDate>2020-11-04</InvoiceDate>
+        <InvoiceType>FS</InvoiceType>
+        <SpecialRegimes>
+          <SelfBillingIndicator>0</SelfBillingIndicator>
+          <CashVATSchemeIndicator>0</CashVATSchemeIndicator>
+          <ThirdPartiesBillingIndicator>0</ThirdPartiesBillingIndicator>
+        </SpecialRegimes>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T17:00:23</SystemEntryDate>
+        <CustomerID>0016.510131824</CustomerID>
+        <ShipTo>
+          <Address>
+            <StreetName>PARQUE DO REDONDO</StreetName>
+            <AddressDetail>O seu endere�o PARQUE DO REDONDO 100  7170-110 REDONDO</AddressDetail>
+            <City>REDONDO</City>
+            <PostalCode>7170-110</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipTo>
+        <ShipFrom>
+          <Address>
+            <StreetName>Rua Dr. Roberto Frias - FEUP</StreetName>
+            <AddressDetail>O Nosso Endere�o Rua Dr. Roberto Frias - FEUP   4200-465 Porto</AddressDetail>
+            <City>Porto</City>
+            <PostalCode>4200-465</PostalCode>
+            <Region>Desconhecido</Region>
+            <Country>PT</Country>
+          </Address>
+        </ShipFrom>
+        <MovementStartTime>2020-12-13T17:02:23</MovementStartTime>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>CAD0002</ProductCode>
+          <ProductDescription>Cadeira estirador (tecido azul)</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>51.130000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Cadeira estirador (tecido azul)</Description>
+          <CreditAmount>51.130000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+          <SettlementAmount>0.000000</SettlementAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>11.76</TaxPayable>
+          <NetTotal>51.13</NetTotal>
+          <GrossTotal>62.89</GrossTotal>
+        </DocumentTotals>
+        <WithholdingTax>
+          <WithholdingTaxAmount>0.000000</WithholdingTaxAmount>
+        </WithholdingTax>
+      </Invoice>
     </SalesInvoices>
+    <WorkingDocuments>
+      <NumberOfEntries>5</NumberOfEntries>
+      <TotalDebit>0</TotalDebit>
+      <TotalCredit>1491.940000</TotalCredit>
+      <WorkDocument>
+        <DocumentNumber>ECL 2020/1</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <WorkStatus>N</WorkStatus>
+          <WorkStatusDate>2020-12-10T15:37:03</WorkStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>EsVYo8oR+oyyU+sLNrA/WLZdP7W4eAUgYvP+ydophhDNT7TKleqNYFwh8tN/nrJnVRjt8He2Oaw39s8WXf/RFoDUbg5TmCLsJypqqQlKVeK9k8sFdmZaN9wBIf4tXAF/EwqQDkxqB/rw2v/7mnlZJb+iRZ3vXs4BlXxTLiGzp/c=</Hash>
+        <HashControl>1</HashControl>
+        <Period>12</Period>
+        <WorkDate>2020-12-10</WorkDate>
+        <WorkType>NE</WorkType>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-10T15:37:03</SystemEntryDate>
+        <CustomerID>0001.2</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>001</ProductCode>
+          <ProductDescription>L�pis de grafite n� 2001</ProductDescription>
+          <Quantity>1.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>0.0000000000000000</UnitPrice>
+          <TaxPointDate>2020-12-10</TaxPointDate>
+          <Description>L�pis de grafite n� 2001</Description>
+          <CreditAmount>0.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>0.00</TaxPayable>
+          <NetTotal>0.00</NetTotal>
+          <GrossTotal>0.00</GrossTotal>
+        </DocumentTotals>
+      </WorkDocument>
+      <WorkDocument>
+        <DocumentNumber>ECL 2020/2</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <WorkStatus>N</WorkStatus>
+          <WorkStatusDate>2020-12-13T00:06:19</WorkStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>R/9NEf+GQKvvgDaHooYPSvGD5ReCovnBdp6NlZskZ0IfS5yfRsMKavyTbUMadUue0mJPbkzFMXaLGMFz1OjyCFlHcB19WwbMQRoynn6gyHF3DSK72LJ95ld7vu71Q1nk0dl2Jw0LMDT0+YyaBIHDTzm+BSyPlERnHbjig/+C+qg=</Hash>
+        <HashControl>1</HashControl>
+        <Period>12</Period>
+        <WorkDate>2020-12-13</WorkDate>
+        <WorkType>NE</WorkType>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T00:06:19</SystemEntryDate>
+        <CustomerID>0004.509491863</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>S0001</ProductCode>
+          <ProductDescription>Secret�ria Prata 160x75x80 cm</ProductDescription>
+          <Quantity>5.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>163.7800000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Secret�ria Prata 160x75x80 cm</Description>
+          <CreditAmount>818.900000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>188.35</TaxPayable>
+          <NetTotal>818.90</NetTotal>
+          <GrossTotal>1007.25</GrossTotal>
+        </DocumentTotals>
+      </WorkDocument>
+      <WorkDocument>
+        <DocumentNumber>ECL 2020/3</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <WorkStatus>N</WorkStatus>
+          <WorkStatusDate>2020-12-13T00:08:28</WorkStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>cxYCELa0Rsil+I3zgpP9WBO/U9zlK1xtIL8HPyisgn/3hQq0/hYGXmblwXCV43FVkxudshpDOsPHZbipi7GsQGYdglej+lDwK077qAEdcnasq1nXbONetx/L2fDmLHUor8iXze6/j6IDFrobyS3D428MLEFNA8OGCRmbMOzTJIo=</Hash>
+        <HashControl>1</HashControl>
+        <Period>12</Period>
+        <WorkDate>2020-12-13</WorkDate>
+        <WorkType>NE</WorkType>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T00:08:28</SystemEntryDate>
+        <CustomerID>0005.504482254</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>BG0001</ProductCode>
+          <ProductDescription>Bengaleiro 1,70 m A�o preto</ProductDescription>
+          <Quantity>10.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>6.3200000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Bengaleiro 1,70 m A�o preto</Description>
+          <CreditAmount>63.200000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>BG0002</ProductCode>
+          <ProductDescription>Bengaleiro decorativo 1,30x0,38 m MDF cores</ProductDescription>
+          <Quantity>20.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>13.9800000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Bengaleiro decorativo 1,30x0,38 m MDF cores</Description>
+          <CreditAmount>279.600000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>PP0002</ProductCode>
+          <ProductDescription>Resma 500 f papel A4</ProductDescription>
+          <Quantity>25.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>2.9600000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Resma 500 f papel A4</Description>
+          <CreditAmount>74.000000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>95.86</TaxPayable>
+          <NetTotal>416.80</NetTotal>
+          <GrossTotal>512.66</GrossTotal>
+        </DocumentTotals>
+      </WorkDocument>
+      <WorkDocument>
+        <DocumentNumber>ECL 2020/4</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <WorkStatus>N</WorkStatus>
+          <WorkStatusDate>2020-12-13T00:11:01</WorkStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>Cxx9eq/fIyWaeqgYtv7boY1LK74ayqLy3tFcSMSP8uVIuS1rjUP06dLXnFbbWUlRiJSJKYVTplvvvIRvSIiDUy872gfK0pDr/lhDshPif0/rsaA7F0sreugsr81N9gIE4+MwqMbT0tko8ICHhNV+7TeyhhQ7a1GWW7keNgbP/Ss=</Hash>
+        <HashControl>1</HashControl>
+        <Period>12</Period>
+        <WorkDate>2020-12-13</WorkDate>
+        <WorkType>NE</WorkType>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T00:11:01</SystemEntryDate>
+        <CustomerID>0009.503643327</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>C0004</ProductCode>
+          <ProductDescription>Pack de 50 Canetas Bic (preto)</ProductDescription>
+          <Quantity>4.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>18.1000000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Pack de 50 Canetas Bic (preto)</Description>
+          <CreditAmount>72.400000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>CD0001</ProductCode>
+          <ProductDescription>Caderno pautado A4</ProductDescription>
+          <Quantity>10.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>0.7500000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Caderno pautado A4</Description>
+          <CreditAmount>7.500000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <Line>
+          <LineNumber>3</LineNumber>
+          <ProductCode>CD0002</ProductCode>
+          <ProductDescription>Caderno quadriculado A4</ProductDescription>
+          <Quantity>10.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>0.7900000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Caderno quadriculado A4</Description>
+          <CreditAmount>7.900000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>20.19</TaxPayable>
+          <NetTotal>87.80</NetTotal>
+          <GrossTotal>107.99</GrossTotal>
+        </DocumentTotals>
+      </WorkDocument>
+      <WorkDocument>
+        <DocumentNumber>ECL 2020/5</DocumentNumber>
+        <ATCUD>0</ATCUD>
+        <DocumentStatus>
+          <WorkStatus>N</WorkStatus>
+          <WorkStatusDate>2020-12-13T00:13:02</WorkStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourceBilling>P</SourceBilling>
+        </DocumentStatus>
+        <Hash>Kcln5tY++q/46sGd0oVTBto3f06oryj5o21WQ6ME6Ghhv3D5d41sh00VEG87M20vwzLOFl2Evt4Otm8y9SteW0fvBwFBexriLHe5MHyZua70YTikwgtZPUtOYD0IZmocLdGnsoimki/sqSpPRKGTI7NtL0rqFhOQ1cMBU59Tgxc=</Hash>
+        <HashControl>1</HashControl>
+        <Period>12</Period>
+        <WorkDate>2020-12-13</WorkDate>
+        <WorkType>NE</WorkType>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T00:13:02</SystemEntryDate>
+        <CustomerID>0012.513900101</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <ProductCode>AG0003</ProductCode>
+          <ProductDescription>Agenda 147x210mm (azul)</ProductDescription>
+          <Quantity>2.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>2.9800000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Agenda 147x210mm (azul)</Description>
+          <CreditAmount>5.960000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <Line>
+          <LineNumber>2</LineNumber>
+          <ProductCode>ARM0001</ProductCode>
+          <ProductDescription>Arm�rio de arquivo 100x198x42 cm (A�o preto)</ProductDescription>
+          <Quantity>2.000000</Quantity>
+          <UnitOfMeasure>UN</UnitOfMeasure>
+          <UnitPrice>81.2400000000000000</UnitPrice>
+          <TaxPointDate>2020-12-13</TaxPointDate>
+          <Description>Arm�rio de arquivo 100x198x42 cm (A�o preto)</Description>
+          <CreditAmount>162.480000</CreditAmount>
+          <Tax>
+            <TaxType>IVA</TaxType>
+            <TaxCountryRegion>PT</TaxCountryRegion>
+            <TaxCode>NOR</TaxCode>
+            <TaxPercentage>23.000000</TaxPercentage>
+          </Tax>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>38.74</TaxPayable>
+          <NetTotal>168.44</NetTotal>
+          <GrossTotal>207.18</GrossTotal>
+        </DocumentTotals>
+      </WorkDocument>
+    </WorkingDocuments>
+    <Payments>
+      <NumberOfEntries>2</NumberOfEntries>
+      <TotalDebit>0</TotalDebit>
+      <TotalCredit>176.580000</TotalCredit>
+      <Payment>
+        <PaymentRefNo>REC 2020/2</PaymentRefNo>
+        <ATCUD>0</ATCUD>
+        <Period>12</Period>
+        <TransactionDate>2020-12-13</TransactionDate>
+        <PaymentType>RG</PaymentType>
+        <DocumentStatus>
+          <PaymentStatus>N</PaymentStatus>
+          <PaymentStatusDate>2020-12-13T00:04:57</PaymentStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourcePayment>P</SourcePayment>
+        </DocumentStatus>
+        <PaymentMethod>
+          <PaymentAmount>92.080000</PaymentAmount>
+          <PaymentDate>2020-12-13</PaymentDate>
+        </PaymentMethod>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T00:04:43</SystemEntryDate>
+        <CustomerID>0004.509491863</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <SourceDocumentID>
+            <OriginatingON>FA 2020/2</OriginatingON>
+            <InvoiceDate>2020-12-12</InvoiceDate>
+          </SourceDocumentID>
+          <CreditAmount>92.080000</CreditAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>0.00</TaxPayable>
+          <NetTotal>92.08</NetTotal>
+          <GrossTotal>92.08</GrossTotal>
+          <Settlement>
+            <SettlementAmount>0.000000</SettlementAmount>
+          </Settlement>
+        </DocumentTotals>
+      </Payment>
+      <Payment>
+        <PaymentRefNo>REC 2020/1</PaymentRefNo>
+        <ATCUD>0</ATCUD>
+        <Period>12</Period>
+        <TransactionDate>2020-12-13</TransactionDate>
+        <PaymentType>RG</PaymentType>
+        <DocumentStatus>
+          <PaymentStatus>N</PaymentStatus>
+          <PaymentStatusDate>2020-12-13T00:03:46</PaymentStatusDate>
+          <SourceID>up201706162@fe.up.pt</SourceID>
+          <SourcePayment>P</SourcePayment>
+        </DocumentStatus>
+        <PaymentMethod>
+          <PaymentAmount>84.500000</PaymentAmount>
+          <PaymentDate>2020-12-13</PaymentDate>
+        </PaymentMethod>
+        <SourceID>up201706162@fe.up.pt</SourceID>
+        <SystemEntryDate>2020-12-13T00:03:46</SystemEntryDate>
+        <CustomerID>0008.507485998</CustomerID>
+        <Line>
+          <LineNumber>1</LineNumber>
+          <SourceDocumentID>
+            <OriginatingON>FA 2020/4</OriginatingON>
+            <InvoiceDate>2020-12-12</InvoiceDate>
+          </SourceDocumentID>
+          <CreditAmount>84.500000</CreditAmount>
+        </Line>
+        <DocumentTotals>
+          <TaxPayable>0.00</TaxPayable>
+          <NetTotal>84.50</NetTotal>
+          <GrossTotal>84.50</GrossTotal>
+          <Settlement>
+            <SettlementAmount>0.000000</SettlementAmount>
+          </Settlement>
+        </DocumentTotals>
+      </Payment>
+    </Payments>
   </SourceDocuments>
 </AuditFile>
