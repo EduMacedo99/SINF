@@ -1,96 +1,32 @@
-module.exports = (server, db) => {
-    server.get('/sales/sales-per-district', (req, res) => {
-        let startDate = 'start-date' in req.query ? new Date(req.query['start-date']) : null;
-        let endDate = 'end-date' in req.query ? new Date(req.query['end-date']) : null;
+module.exports = (server, dbJasmin) => {
+    server.get('/api/sales/sales-per-location', (req, res) => {
+        const sales = dbJasmin.SourceDocuments.SalesInvoices.Invoice;
+        const validTypes = ['FT', 'FS', 'FR', 'VD'];
+        const salesPerLocation = {};
 
-        let cities = {};
+        if (Array.isArray(sales)) {
+            sales.forEach(sale => {
+                if (!(sale.Line.length && validTypes.includes(sale.InvoiceType))) return;
 
-        db.SalesInvoices.forEach((invoice) => {
-            const type = invoice.InvoiceType;
-
-            if (!(invoice.Line.length && (type == 'FT' || type == 'FS' || type == 'FR' || type == 'VD')))
-                return;
-
-            let invoiceDate = new Date(invoice.InvoiceDate);
-
-            if ((startDate != null && invoiceDate < startDate) || (endDate != null && invoiceDate > endDate))
-                return;
-
-            const city = invoice.ShipTo.Address.City;
-
-            if (cities.hasOwnProperty(city)) {
-                cities[city].quantity++;
-                cities[city].netTotal += parseInt(invoice.DocumentTotals.NetTotal);
-            } else {
-                cities[city] = {
-                    quantity: 1,
-                    netTotal: parseInt(invoice.DocumentTotals.NetTotal)
-                };
-            }
-        });
-
-        cities = Object.keys(cities)
-            //.sort((a, b) => cities[b].quantity - cities[a].quantity)
-            .map(elem =>
-                ({
-                    id: elem,
-                    value: cities[elem].quantity,
-                    netTotal: cities[elem].netTotal
-                }));
-
-        res.json(cities);
-    });
-
-    server.get('/sales/top-customers', (req, res) => {
-        let startDate = 'start-date' in req.query ? new Date(req.query['start-date']) : null;
-        let endDate = 'end-date' in req.query ? new Date(req.query['end-date']) : null;
-
-        let clients = {};
-
-        db.SalesInvoices.forEach((invoice) => {
-            const type = invoice.InvoiceType;
-            
-            if (!(invoice.Line.length && (type == 'FT' || type == 'FS' || type == 'FR' || type == 'VD')))
-                return;
-
-            let invoiceDate = new Date(invoice.InvoiceDate);
-
-            if ((startDate == null || startDate <= invoiceDate) && (endDate == null || invoiceDate <= endDate)) {
-                const customer = invoice.CustomerID;
-
-                let purchased = 0;
-
-                invoice.Line.forEach((line) => {
-                    const {
-                        UnitPrice,
-                        Quantity
-                    } = line;
-
-                    purchased += UnitPrice * Quantity;
-                })
-
-                if (clients.hasOwnProperty(customer)) {
-                    clients[customer].totalPurchased += purchased;
-                    clients[customer].nPurchases++;
+                if (salesPerLocation[sale.ShipTo.Address.City]) {
+                    salesPerLocation[sale.ShipTo.Address.City].quantity += 1;
+                    salesPerLocation[sale.ShipTo.Address.City].netTotal += parseFloat(
+                        sale.DocumentTotals.NetTotal,
+                    );
                 } else {
-                    clients[customer] = {
-                        totalPurchased: purchased,
-                        nPurchases: 1
-                    }
+                    salesPerLocation[sale.ShipTo.Address.City] = {
+                        quantity: 1,
+                        netTotal: parseFloat(sale.DocumentTotals.NetTotal),
+                    };
                 }
-            }
+            });
+        } else {
+            salesPerLocation[sales.ShipTo.Address.City] = {
+                quantity: 1,
+                netTotal: parseFloat(sales.DocumentTotals.NetTotal),
+            };
+        }
 
-        })
-
-
-        clients = Object.keys(clients).sort((a, b) =>
-            clients[b].totalPurchased - clients[a].totalPurchased).map(elem =>
-                ({
-                    client: elem,
-                    totalPurchased: clients[elem].totalPurchased,
-                    nPurchases: clients[elem].nPurchases
-                }));
-
-        res.json(clients);
-    })
+        res.json(salesPerLocation);
+    });
 }
