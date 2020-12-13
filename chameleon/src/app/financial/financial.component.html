@@ -211,8 +211,8 @@
                             </li>
                             <li *ngFor="let currentLiabilities of getCurrentLiabilities()">
                                 <div class="row">
-                                    <p class="col-sm-4">{{currentLiabilities['name']}}</p>
-                                    <p class="col-sm-4">€{{currentLiabilities['value']}}</p>
+                                    <p class="col-sm-6">{{currentLiabilities['name']}}</p>
+                                    <p class="col-sm-6">€{{currentLiabilities['value']}}</p>
                                 </div>
                             </li>
                         </ul>
@@ -242,37 +242,37 @@
                             <li>
                                 <div class="row">
                                     <p class="col-sm-6">Total Current Assets</p>
-                                    <p class="col-sm-6">{{getTotalCurrentAssets()}}</p>
+                                    <p class="col-sm-6">€{{getTotalCurrentAssets()}}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="row">
                                     <p class="col-sm-6">Total Non Current Assets</p>
-                                    <p class="col-sm-6">{{getTotalCurrentAssets()}}</p>
+                                    <p class="col-sm-6">€{{getTotalNonCurrentAssets()}}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="row">
                                     <p class="col-sm-6">Total Assets</p>
-                                    <p class="col-sm-6">{{getTotalAssets()}}</p>
+                                    <p class="col-sm-6">€{{getTotalAssets()}}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="row">
                                     <p class="col-sm-6">Total Current Liabilities</p>
-                                    <p class="col-sm-6">{{getTotalCurrentLiabilities()}}</p>
+                                    <p class="col-sm-6">€{{getTotalCurrentLiabilities()}}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="row">
                                     <p class="col-sm-6">Total Non Current Liabilities</p>
-                                    <p class="col-sm-6">{{getTotalCurrentLiabilities()}}</p>
+                                    <p class="col-sm-6">€{{getTotalNonCurrentLiabilities()}}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="row">
                                     <p class="col-sm-6">Total Liabilities</p>
-                                    <p class="col-sm-6">{{getTotalLiabilities()}}</p>
+                                    <p class="col-sm-6">€{{getTotalLiabilities()}}</p>
                                 </div>
                             </li>
                         </ul>
@@ -301,7 +301,7 @@
                         <li>
                             <div class="row">
                                 <p class="col-sm-6">Total Equity</p>
-                                <p class="col-sm-6">{{getTotalEquity()}}</p>
+                                <p class="col-sm-6">€{{getTotalEquity()}}</p>
                             </div>
                         </li>
                     </ul>

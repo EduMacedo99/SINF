@@ -41,19 +41,19 @@ export class FinancialComponent implements OnInit {
 
   getTotalCurrentAssets(): number {
     if (this.assets!= null && 'totalCurrent' in this.assets)
-      return this.assets['totalCurrent'];
+      return Math.round(this.assets['totalCurrent']*100)/100;
     return 0;
   }
 
   getTotalNonCurrentAssets(): number {
     if (this.assets!= null && 'totalNonCurrent' in this.assets)
-      return this.assets['totalNonCurrent'];
+      return Math.round(this.assets['totalNonCurrent']*100)/100;
     return 0;
   }
 
   getTotalAssets(): number {
     if (this.assets!= null && 'total' in this.assets)
-      return this.assets['total'];
+      return Math.round(this.assets['total']*100)/100;
     return 0;
   }
 
@@ -65,7 +65,7 @@ export class FinancialComponent implements OnInit {
 
   getTotalEquity(): number {
     if (this.equity!= null && 'total' in this.equity)
-      return this.equity['total'];
+      return Math.round(this.equity['total']*100/100);
     return 0;
   }
 
@@ -83,19 +83,19 @@ export class FinancialComponent implements OnInit {
 
   getTotalCurrentLiabilities(): number {
     if (this.liabilities!= null && 'totalCurrent' in this.liabilities)
-      return this.liabilities['totalCurrent'];
+      return Math.round(this.liabilities['totalCurrent']*100/100);
     return 0;
   }
 
   getTotalNonCurrentLiabilities(): number {
     if (this.liabilities!= null && 'totalNonCurrent' in this.liabilities)
-      return this.liabilities['totalNonCurrent'];
+      return Math.round(this.liabilities['totalNonCurrent']*100/100);
     return 0;
   }
 
   getTotalLiabilities(): number {
     if (this.liabilities!= null && 'total' in this.liabilities)
-      return this.liabilities['total'];
+      return Math.round(this.liabilities['total']*100/100);
     return 0;
   }
 }
