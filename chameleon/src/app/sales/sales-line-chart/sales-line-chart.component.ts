@@ -12,11 +12,14 @@ export class SalesLineChartComponent {
 
   private sales: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+  public chartDatasets: Array<any> = [];
+
   ngOnInit(): void {
     this.saftApi.get('api/sales/monthly-cumulative-sales').subscribe(
       (data:Object) => {
         if('sales' in data) {
           this.sales = data['sales'];
+          this.chartDatasets = this.getChartData();
         }
       }
     );
