@@ -30,13 +30,13 @@
             <div class="col-xl-6">
                 <div class="row board-50">
                     <div class="value_board flex-column">
-                        <h2>Sales per City</h2>
+                        <h2 class="mb-5">Sales per City</h2>
                         <app-bar-chart></app-bar-chart>
                     </div>
                 </div>
                 <div class="row board-50">
                     <div class="value_board flex-column">
-                        <h2>Cumulative Sales and Monthly Sales</h2>
+                        <h2 class="mb-5">Cumulative Sales and Monthly Sales</h2>
                         <app-sales-line-chart></app-sales-line-chart>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
             <div class="col-xl-3">
                 <div class="row board-100">
                     <div class="list_board info_board flex-column">
-                        <h2>Top getProducts</h2>
+                        <h2>Top Products</h2>
                         <ul>
                             <li *ngFor="let p of getProducts()">
                                 <div class="row">
