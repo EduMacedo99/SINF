@@ -16,18 +16,19 @@ export class PurchasesLineChartComponent implements OnInit {
   public chartDatasets: Array<any> = [];
 
   ngOnInit(): void {
-    this.saftApi.get('api/purchases/purchases').subscribe(
+    this.saftApi.get('api/purchases/monthly-purchases').subscribe(
       (data:Object) => {
-        if('purchases' in data) {
-          this.purchases = data['purchases'];
+        console.log(data)
+        if('monthlyPurchases' in data) {
+          this.purchases = data['monthlyPurchases'];
           this.chartDatasets = this.getChartData();
         }
       }
     );
     this.saftApi.get('api/purchases/monthly-cumulative-purchases').subscribe(
       (data:Object) => {
-        if('cumulative' in data) {
-          this.cumulativePurchases = data['cumulative'];
+        if('cumulativeMonthlyPurchases' in data) {
+          this.cumulativePurchases = data['cumulativeMonthlyPurchases'];
           this.chartDatasets = this.getChartData();
         }
       }

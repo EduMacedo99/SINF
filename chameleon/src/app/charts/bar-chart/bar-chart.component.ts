@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-bar-chart',
@@ -6,37 +6,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent {
-  public chartType: any = 'bar';
+  constructor() {
+  }
 
-  public chartDatasets: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'My First dataset' }
-  ];
+  ngOnInit() {
+  }
 
-  public chartLabels: Array<any> = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+  @Input() public data: any[] = [];
 
-  public chartColors: Array<any> = [
-    {
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 2,
+  @Input() public labels: any[] = [];
+
+  public options: any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    legend: {
+      position: 'bottom'
+    }
+  };
+
+  public type: any = 'bar';
+
+  public colors: Array<any> = [
+    { // blue
+      backgroundColor: ' #20689f73',
+      borderColor: '#20689f',
+      pointBackgroundColor: '#20689f',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: '#20689f'
+    },
+    { // green
+      backgroundColor: ' #209f797c',
+      borderColor: ' #209f79',
+      pointBackgroundColor: ' #209f79',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: ' #209f79'
     }
   ];
 
-  public chartOptions: any = {
-    responsive: true
-  };
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
+
 }

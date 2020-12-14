@@ -28,7 +28,7 @@ module.exports = (server, db) => {
                 netTotal: parseFloat(sales.DocumentTotals.NetTotal),
             };
         }
-
+        res.header("Access-Control-Allow-Origin", "*");
         res.json(salesPerCity);
     });
 

@@ -31,7 +31,6 @@ export class OverviewComponent implements OnInit {
   }
 
   private parseRevenue(data: any) {
-    console.log(data);
     this.revenue = data;
   }
 
