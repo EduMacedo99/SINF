@@ -49,9 +49,9 @@ module.exports = (server, db) => {
         });
 
         response.products = productsList.sort((a, b) => {
-            if (a.date < b.date) {
+            if (a.value < b.value) {
                 return 1;
-            } else if (a.date > b.date) {
+            } else if (a.value > b.value) {
                 return -1;
             }
 
