@@ -15,7 +15,7 @@ export class ApiService {
    * GET request to the api
    */
   get(endpoint: string): Observable<Object> {
-    return this.http.get(`${environment.jasmin}/${endpoint}`, {
+    return this.http.get(`${environment.safTApi}/${endpoint}`, {
       headers: new HttpHeaders({
         Authorization: this.getToken(),
       }),
@@ -26,7 +26,7 @@ export class ApiService {
    * POST request t the api
    */
   post(endpoint: string, body: any): Observable<Object> {
-    return this.http.post(`${environment.jasmin}/${endpoint}`, body, {
+    return this.http.post(`${environment.safTApi}/${endpoint}`, body, {
       headers: new HttpHeaders({
         Authorization: this.getToken(),
         'Content-Type': 'application/json',
