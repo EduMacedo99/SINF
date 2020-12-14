@@ -38,16 +38,19 @@ module.exports = (server, db) => {
 
     server.get('/api/sales/monthly-cumulative-sales', (req, res) => {
         const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
-        const sales = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        const cumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         salesInvoices.forEach(invoice => {
-            sales[parseInt(invoice.Period, 10) - 1] =
+            cumulative[parseInt(invoice.Period, 10) - 1] =
                 parseFloat(invoice.DocumentTotals.GrossTotal) +
-                sales[parseInt(invoice.Period, 10) - 1];
+                cumulative[parseInt(invoice.Period, 10) - 1];
         });
+        for(let i = 1; i < cumulative.length; i++) {
+            cumulative[i] += cumulative[i-1];
+        }
 
         res.header("Access-Control-Allow-Origin", "*");
-        res.json( {sales} );
+        res.json( {cumulative} );
     });
 
     server.get('/api/sales/top-products', (req, res) => {
@@ -171,14 +174,14 @@ module.exports = (server, db) => {
 
     server.get("/api/sales/revenue", (req, res) => {
       const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
-      const monthlyCumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      const revenue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       salesInvoices.forEach((invoice) => {
-        monthlyCumulative[parseInt(invoice.Period, 10) - 1] =
+        revenue[parseInt(invoice.Period, 10) - 1] =
           parseFloat(invoice.DocumentTotals.GrossTotal) +
-          monthlyCumulative[parseInt(invoice.Period, 10) - 1];
+          revenue[parseInt(invoice.Period, 10) - 1];
       });
       res.header("Access-Control-Allow-Origin", "*");
-      res.json({ monthlyCumulative });
+      res.json({ revenue });
     });
 
     server.get("/api/sales/revenueFromSales", (req, res) => {

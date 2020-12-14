@@ -11,14 +11,23 @@ export class SalesLineChartComponent {
   constructor(private saftApi: SaftApiService) { }
 
   private sales: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  private cumulativeSales: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   public chartDatasets: Array<any> = [];
 
   ngOnInit(): void {
+    this.saftApi.get('api/sales/revenue').subscribe(
+      (data:Object) => {
+        if('revenue' in data) {
+          this.sales = data['revenue'];
+          this.chartDatasets = this.getChartData();
+        }
+      }
+    );
     this.saftApi.get('api/sales/monthly-cumulative-sales').subscribe(
       (data:Object) => {
-        if('sales' in data) {
-          this.sales = data['sales'];
+        if('cumulative' in data) {
+          this.cumulativeSales = data['cumulative'];
           this.chartDatasets = this.getChartData();
         }
       }
@@ -28,7 +37,7 @@ export class SalesLineChartComponent {
   getChartData() : Array<Object> {
     let charData = [
       { data: this.sales, label: 'Monthly Sales' },
-      { data: this.sales, label: 'Cumulative Sales' }
+      { data: this.cumulativeSales, label: 'Cumulative Sales' }
     ];
     return charData;
   }
