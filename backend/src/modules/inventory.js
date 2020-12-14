@@ -58,7 +58,6 @@ module.exports = (server, db) => {
             return 0;
         }); /*.slice((page - 1) * pageSize, page * pageSize);*/
 
-        console.log(response);
         //res.json(response);
         return response;
     };
@@ -95,7 +94,7 @@ module.exports = (server, db) => {
             method: "GET",
             url: "https://my.jasminsoftware.com/api/242845/242845-0001/materialscore/materialsitems",
             headers: {
-                Authorization: "Bearer " + req.body.token,
+                Authorization: req.headers.authorization,
                 "Content-Type": "application/json",
             },
         };
@@ -114,7 +113,7 @@ module.exports = (server, db) => {
             method: "GET",
             url: "https://my.jasminsoftware.com/api/242845/242845-0001/materialscore/materialsitems",
             headers: {
-                Authorization: "Bearer " + req.body.token,
+                Authorization: req.headers.authorization,
                 "Content-Type": "application/json",
             },
         };
@@ -133,13 +132,12 @@ module.exports = (server, db) => {
             method: "GET",
             url: "https://my.jasminsoftware.com/api/242845/242845-0001/materialscore/materialsitems",
             headers: {
-                Authorization: "Bearer " + req.body.token,
+                Authorization: req.headers.authorization,
                 "Content-Type": "application/json",
             },
         };
 
         request(options, function(error, response, body) {
-            //console.log(body);
             stock = processProducts(JSON.parse(response.body));
             if (error) throw new Error(error);
             res.header("Access-Control-Allow-Origin", "*");
