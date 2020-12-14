@@ -51,7 +51,6 @@ export class FinancialComponent implements OnInit {
           this.revenue = data['revenue'];
         if('taxes' in data)
           this.taxes = data['taxes'];
-          console.log(data)
       }
     );
   }
