@@ -29,7 +29,6 @@ export class PurchasesComponent implements OnInit {
       });
 
     this.webApi.get('api/purchases/orders').subscribe((data: Object) => {
-      console.log(data);
       this.purchasesList = data;
     });
 

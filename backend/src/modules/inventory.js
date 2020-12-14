@@ -24,8 +24,8 @@ module.exports = (server, db) => {
     };
 
     const processProducts = (stockData) => {
-        /*const page = req.query.page || 1;
-        const pageSize = req.query.pageSize || 5;*/
+        const page =  1;
+        const pageSize = 8;
 
         const response = {
             products: []
@@ -56,7 +56,7 @@ module.exports = (server, db) => {
             }
 
             return 0;
-        }); /*.slice((page - 1) * pageSize, page * pageSize);*/
+        }).slice((page - 1) * pageSize, page * pageSize);
 
         //res.json(response);
         return response;

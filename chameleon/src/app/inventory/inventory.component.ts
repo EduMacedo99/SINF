@@ -10,23 +10,29 @@ import { ApiService } from 'src/app/webApi/web-api.service';
 export class InventoryComponent implements OnInit {
   constructor(private webApi: ApiService) {}
 
-  private assetsInStock:string= "0";
+  private assetsInStock: string = '0';
+  private products: any = [];
 
   ngOnInit(): void {
     this.webApi.get('api/inventory/total-stock').subscribe((data: Object) => {
       if ('stock' in data) {
-        this.assetsInStock = (Math.round(data['stock'] * 100) / 100).toFixed(2);;
+        this.assetsInStock = (Math.round(data['stock'] * 100) / 100).toFixed(2);
       }
     });
 
     this.webApi
       .get('api/inventory/products-stock')
       .subscribe((data: Object) => {
-        console.log(data);
+        console.log(data)
+        this.products = data;
       });
   }
 
   getStock() {
     return this.assetsInStock;
+  }
+
+  getProducts() {
+    return this.products['products']
   }
 }
