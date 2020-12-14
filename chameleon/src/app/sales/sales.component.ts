@@ -12,6 +12,10 @@ export class SalesComponent implements OnInit {
   private profitMargin: number = 0;
   private accountsReceivable = 0;
   public sales: Array<any> = [];
+  private revenue = 0;
+  private productsName: string[] = [];
+  private productsQuantity: number[] = [];
+  private products = [];
 
   ngOnInit(): void {
     this.saftApi
@@ -21,6 +25,14 @@ export class SalesComponent implements OnInit {
     this.saftApi
       .get('api/financial/accounts-receivable')
       .subscribe((data) => this.parseAccountsReceivable(data));
+
+    this.saftApi
+      .get('api/sales/revenueFromSales')
+      .subscribe((data) => this.parseRevenue(data));
+
+    this.saftApi
+      .get('api/sales/top-products')
+      .subscribe((data) => this.parseProducts(data));
   }
 
   private parseGrossProfitMargin(data: any) {
@@ -37,5 +49,21 @@ export class SalesComponent implements OnInit {
 
   public getAccountsReceivable() {
     return this.accountsReceivable;
+  }
+
+  private parseRevenue(data: any) {
+    this.revenue = data;
+  }
+
+  public getRevenue() {
+    return this.revenue;
+  }
+
+  public getProducts() {
+    return this.products;
+  }
+
+  private parseProducts(data: any) {
+    this.products = data;
   }
 }

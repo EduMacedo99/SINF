@@ -90,7 +90,7 @@ module.exports = (server, db) => {
             0
         );
 
-    server.get("/inventory/stock", (req, res) => {
+    server.get("/api/inventory/total-stock", (req, res) => {
         var stock = 0;
         const options = {
             method: "GET",
@@ -109,7 +109,7 @@ module.exports = (server, db) => {
         });
     });
 
-    server.get("/inventory/warehouses", (req, res) => {
+    server.get("/api/inventory/assets-top-warehouses", (req, res) => {
         var stock = 0;
         const options = {
             method: "GET",
@@ -128,7 +128,7 @@ module.exports = (server, db) => {
         });
     });
 
-    server.get("/inventory/products", (req, res) => {
+    server.get("/api/inventory/products-stock", (req, res) => {
         let stock;
         const options = {
             method: "GET",

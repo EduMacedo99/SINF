@@ -11,7 +11,7 @@
                 <div class="row board-25">
                     <div class="value_board flex-column">
                         <h2>Total Revenue from Sales</h2>
-                        <p>€800.675,00</p>
+                        <p>€{{getRevenue()}}</p>
                     </div>
                 </div>
                 <div class="row board-25">
@@ -44,79 +44,13 @@
             <div class="col-xl-3">
                 <div class="row board-100">
                     <div class="list_board info_board flex-column">
-                        <h2>Customer Accounts</h2>
+                        <h2>Top getProducts</h2>
                         <ul>
-                            <li>
+                            <li *ngFor="let p of getProducts()">
                                 <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
+                                    <p class="col-sm-6">{{p['name']}}</p>
+                                    <p class="col-sm-6">{{p['quantity']}} units</p>
                                 </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
                             </li>
                         </ul>
                     </div>
