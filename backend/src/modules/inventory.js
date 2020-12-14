@@ -103,7 +103,7 @@ module.exports = (server, db) => {
             stock = processStock(JSON.parse(response.body));
             if (error) throw new Error(error);
             res.header("Access-Control-Allow-Origin", "*");
-            res.json(stock);
+            res.json({stock});
         });
     });
 
