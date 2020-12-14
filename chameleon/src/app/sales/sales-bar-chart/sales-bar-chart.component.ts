@@ -20,7 +20,6 @@ export class SalesBarChartComponent implements OnInit {
     this.saftApi.get('api/sales/sales-per-city').subscribe(
       (data:any) => {
         this.data = data;
-        console.log(data)
         this.values = this.getChartData();
       }
     );
