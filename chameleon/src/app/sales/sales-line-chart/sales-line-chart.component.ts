@@ -10,7 +10,7 @@ export class SalesLineChartComponent {
 
   constructor(private saftApi: SaftApiService) { }
 
-  private sales: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200];
+  private sales: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   ngOnInit(): void {
     this.saftApi.get('api/sales/monthly-cumulative-sales').subscribe(
