@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { OverviewComponent } from './overview/overview.component';
 import { LoginComponent } from './account/login/login.component';
@@ -13,6 +14,11 @@ import { PurchasesComponent } from './purchases/purchases.component';
 import { FinancialComponent } from './financial/financial.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
+import { SalesLineChartComponent } from './sales/sales-line-chart/sales-line-chart.component';
+import { LineChartComponent } from './charts/line-chart/line-chart.component';
+import { PurchasesLineChartComponent } from './purchases/purchases-line-chart/purchases-line-chart.component';
+import { SalesBarChartComponent } from './sales/sales-bar-chart/sales-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +30,11 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     PurchasesComponent,
     FinancialComponent,
     InventoryComponent,
+    BarChartComponent,
+    SalesLineChartComponent,
+    LineChartComponent,
+    PurchasesLineChartComponent,
+    SalesBarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +43,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     FormsModule,
     ReactiveFormsModule,
     AngularFileUploaderModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

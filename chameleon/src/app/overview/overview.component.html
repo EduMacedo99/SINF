@@ -18,13 +18,13 @@
                 <div class="row board-33">
                     <div class="value_board flex-column">
                         <h2>Gross Profit Margin</h2>
-                        <p>87,5%</p>
+                        <p>{{getGrossProfitMargin()}}%</p>
                     </div>
                 </div>
                 <div class="row board-33">
                     <div class="value_board flex-column">
                         <h2>Total Revenue from Sales</h2>
-                        <p>€800.675,00</p>
+                        <p>€{{getRevenue()}}</p>
                     </div>
                 </div>
                 <div class="row board-34">
@@ -37,10 +37,11 @@
             <div class="col-xl-8">
                 <div class="row board-100">
                     <div class="value_board flex-column">
-                        <h2>Sales vs Cost of Goods Sold</h2>
+                        <h2 class="mb-5">Monthly Sales and Cumulative Sales</h2>
+                        <app-sales-line-chart></app-sales-line-chart>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 </main>

@@ -5,13 +5,13 @@
                 <div class="row board-25">
                     <div class="value_board flex-column">
                         <h2>Gross Profit Margin</h2>
-                        <p>87,5%</p>
+                        <p>{{getGrossProfitMargin()}}%</p>
                     </div>
                 </div>
                 <div class="row board-25">
                     <div class="value_board flex-column">
                         <h2>Total Revenue from Sales</h2>
-                        <p>€800.675,00</p>
+                        <p>€{{getRevenue()}}</p>
                     </div>
                 </div>
                 <div class="row board-25">
@@ -22,91 +22,35 @@
                 </div>
                 <div class="row board-25">
                     <div class="value_board flex-column">
-                        <h2>Acconts Receivable</h2>
-                        <p>€10.726,25</p>
+                        <h2>Accounts Receivable</h2>
+                        <p>€{{getAccountsReceivable()}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-xl-6">
                 <div class="row board-50">
                     <div class="value_board flex-column">
-                        <h2>Sales per District</h2>
+                        <h2 class="mb-5">Sales per City</h2>
+                        <app-sales-bar-chart></app-sales-bar-chart>
                     </div>
                 </div>
                 <div class="row board-50">
                     <div class="value_board flex-column">
-                        <h2>Cumulative Sales and Monthly Sales</h2>
+                        <h2 class="mb-5">Monthly Sales and Cumulative Sales</h2>
+                        <app-sales-line-chart></app-sales-line-chart>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3">
                 <div class="row board-100">
                     <div class="list_board info_board flex-column">
-                        <h2>Customer Accounts</h2>
+                        <h2>Top Products</h2>
                         <ul>
-                            <li>
+                            <li *ngFor="let p of getProducts()">
                                 <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
+                                    <p class="col-sm-6">{{p['name']}}</p>
+                                    <p class="col-sm-6">{{p['quantity']}} units</p>
                                 </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Ana Rodrigues</p>
-                                    <p class="col-sm-6">NIF 233045650</p>
-                                </div>
-                                <p>Av. 24 de Julho, Lisboa</p>
-                                <p>Portugal</p>
                             </li>
                         </ul>
                     </div>

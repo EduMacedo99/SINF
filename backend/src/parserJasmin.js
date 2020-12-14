@@ -2,8 +2,8 @@ import parser from "xml2json";
 import args from "./index.js";
 import read from "read-file";
 import shell from "shelljs";
+import { format } from "path";
 const fs = require("fs");
-
 
 
 if (shell.which("xmllint")) {
@@ -20,22 +20,38 @@ if (shell.which("xmllint")) {
   shell.echo('XML Validation requires "xmllint".');
 }
 
-fs.writeFile("db.json", "", function () {
+fs.writeFile("dbJasmin.json", "", function () {
   console.log("Emptied contents of the database");
+});
+
+fs.readFile(args.source, "utf8", function (err, data) {
+  let searchString = "<AuditFile xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"urn:OECD:StandardAuditFile-Tax:PT_1.04_01\">";
+    let re = new RegExp("^.*" + searchString + ".*$", "gm");
+    let formatted = data.replace(re, "<AuditFile xmlns=\"urn:OECD:StandardAuditFile-Tax:PT_1.04_01\">");
+
+  fs.writeFileSync(args.source, formatted, "utf8", function (err) {
+  });
+
+  console.log("changed line!");
+  console.log(formatted);
+
+  for (var i = 0; i < 10000; i++){
+  }
+
 });
 
 //Read and parse XML file contents
 read(args.source, (err, buffer) => {
-    console.log(args.source);
+
+  console.log(args.source);
+
   const string = parser.toJson(buffer);
 
   const json = JSON.parse(string);
 
-    console.log(json);
-
   const parsed = parseContents(json);
 
-  fs.writeFile("db.json", parsed, (err) => {
+  fs.writeFile("dbJasmin.json", parsed, (err) => {
     if (err) {
       throw err;
     }
@@ -55,57 +71,5 @@ const parseContents = (json) => {
   let MasterFiles = parsed.MasterFiles;
   delete parsed.MasterFiles;
 
-  parsed = {
-    ...parsed,
-    ...MasterFiles,
-  };
-
-  let TaxTable = parsed.TaxTable;
-  delete parsed.TaxTable;
-
-  parsed = {
-    ...parsed,
-    ...TaxTable,
-  };
-
-  // parseSourceDocuments(parsed);
-
   return JSON.stringify(parsed);
-};
-
-
-const parseSourceDocuments = (obj) => {
-  let SalesInvoices = obj.SourceDocuments.SalesInvoices;
-
-  const { Invoice, NumberOfEntries, TotalDebit, TotalCredit } = SalesInvoices;
-
-  obj.SalesInvoicesInfo = {
-    NumberOfEntries,
-    TotalDebit,
-    TotalCredit,
-  };
-
-  obj.SalesInvoices = Invoice;
-
-  if (!obj.SourceDocuments.MovementOfGoods) {
-    delete obj.SourceDocuments;
-    return;
-  }
-
-  let MovementOfGoods = obj.SourceDocuments.MovementOfGoods;
-
-  const {
-    NumberOfMovementLines,
-    TotalQuantityIssued,
-    StockMovement,
-  } = MovementOfGoods;
-
-  obj.StockMovementsInfo = {
-    NumberOfMovementLines,
-    TotalQuantityIssued,
-  };
-
-  obj.StockMovements = StockMovement;
-
-  delete obj.SourceDocuments;
 };
