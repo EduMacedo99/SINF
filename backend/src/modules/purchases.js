@@ -165,7 +165,10 @@ module.exports = (server, db, basePrimaveraUrl) => {
     });
 
     server.get('/api/purchases/total-purchases', (req, res) => {
-        var monthlyPurchases = 0;
+        let totalPurchases = 0;
+        let monthlyPurchasesAux;
+        let monthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let year = "2020-";
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
@@ -176,15 +179,51 @@ module.exports = (server, db, basePrimaveraUrl) => {
         };
 
         request(options, function(error, response, body) {
-            monthlyPurchases = processMonthlyPurchases(JSON.parse(response.body));
+            monthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
+            for (let i = 0; i < 12; i++) {
+                if (monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
+                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                }
+            }
+            for (let i = 0; i < monthlyPurchases.length; i++) {
+                totalPurchases += monthlyPurchases[i];
+            }
             if (error) throw new Error(error);
             res.header("Access-Control-Allow-Origin", "*");
-            res.json(monthlyPurchases);
+            res.json({ totalPurchases });
+        });
+    });
+
+    server.get('/api/purchases/monthly-purchases', (req, res) => {
+        let monthlyPurchasesAux;
+        let monthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let year = "2020-";
+        const options = {
+            method: "GET",
+            url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
+            headers: {
+                Authorization: "Bearer " + req.body.token,
+                "Content-Type": "application/json",
+            },
+        };
+
+        request(options, function(error, response, body) {
+            monthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
+            for (let i = 0; i < 12; i++) {
+                if (monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
+                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                }
+            }
+            if (error) throw new Error(error);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json({ monthlyPurchases });
         });
     });
 
     server.get('/api/purchases/monthly-cumulative-purchases', (req, res) => {
-        var monthlyPurchases = 0;
+        let cumulativeMonthlyPurchasesAux;
+        let cumulativeMonthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let year = "2020-";
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
@@ -195,10 +234,18 @@ module.exports = (server, db, basePrimaveraUrl) => {
         };
 
         request(options, function(error, response, body) {
-            monthlyPurchases = processMonthlyPurchases(JSON.parse(response.body));
+            cumulativeMonthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
+            for (let i = 0; i < 12; i++) {
+                if (cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
+                    cumulativeMonthlyPurchases[i] = cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                }
+            }
+            for (let i = 1; i < cumulativeMonthlyPurchases.length; i++) {
+                cumulativeMonthlyPurchases[i] += cumulativeMonthlyPurchases[i - 1];
+            }
             if (error) throw new Error(error);
             res.header("Access-Control-Allow-Origin", "*");
-            res.json(monthlyPurchases);
+            res.json({ cumulativeMonthlyPurchases });
         });
     });
 
