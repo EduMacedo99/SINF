@@ -38,7 +38,7 @@ export class FinancialComponent implements OnInit {
         if('depreciation' in data) 
           this.depreciation = data['depreciation'];
         if('ebit' in data)
-          this.ebit = data['ebit'];
+          this.ebit = (Math.round(data['ebit'] * 100) / 100).toFixed(2);
         if('ebitda' in data)
           this.ebitda = data['ebitda'];
         if('expenses' in data) 
@@ -46,7 +46,7 @@ export class FinancialComponent implements OnInit {
         if('interest' in data)
           this.interest = data['interest'];
         if('netIncome' in data)
-          this.netIncome = data['netIncome'];
+          this.netIncome = (Math.round(data['netIncome'] * 100) / 100).toFixed(2);
         if('revenue' in data)
           this.revenue = data['revenue'];
         if('taxes' in data)
