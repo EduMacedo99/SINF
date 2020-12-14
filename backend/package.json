@@ -9,7 +9,7 @@
         "build": "babel src -d lib",
         "parse": "node lib/parser.js",
         "parseJasmin": "node lib/parserJasmin.js",
-        "serve": "node lib/server.js"
+        "serve": "forever -w lib/server.js"
     },
     "author": "",
     "license": "ISC",
@@ -25,6 +25,7 @@
     "dependencies": {
         "@babel/polyfill": "^7.12.1",
         "command-line-args": "^5.1.1",
+        "forever": "^3.0.4",
         "read-file": "^0.2.0",
         "request": "^2.88.2",
         "shelljs": "^0.8.4",
