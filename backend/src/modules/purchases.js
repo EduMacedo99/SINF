@@ -130,7 +130,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/purchases/orders`,
             headers: {
-                Authorization: "Bearer " + req.body.token,
+                Authorization: "Bearer " + req.headers.token,
                 "Content-Type": "application/json",
             },
         };
@@ -173,7 +173,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
             headers: {
-                Authorization: "Bearer " + req.body.token,
+                Authorization: "Bearer " + req.headers.token,
                 "Content-Type": "application/json",
             },
         };
@@ -198,11 +198,12 @@ module.exports = (server, db, basePrimaveraUrl) => {
         let monthlyPurchasesAux;
         let monthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let year = "2020-";
+        let yearAux = new Date().getFullYear();
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
             headers: {
-                Authorization: "Bearer " + req.body.token,
+                Authorization: "Bearer " + req.headers.token,
                 "Content-Type": "application/json",
             },
         };
@@ -228,7 +229,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
             headers: {
-                Authorization: "Bearer " + req.body.token,
+                Authorization: "Bearer " + req.headers.token,
                 "Content-Type": "application/json",
             },
         };
@@ -255,7 +256,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/purchases/orders`,
             headers: {
-                Authorization: "Bearer " + req.body.token,
+                Authorization: "Bearer " + req.headers.token,
                 "Content-Type": "application/json",
             },
         };
