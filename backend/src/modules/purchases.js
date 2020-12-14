@@ -20,9 +20,9 @@ const processProductSuppliers = (suppliersData) => {
     });
     return ({
         suppliers: suppliers.sort((a, b) => {
-            if (a.priceRatio > b.priceRatio) {
+            if (a.supplierName > b.supplierName) {
                 return 1;
-            } else if (a.priceRatio < b.priceRatio) {
+            } else if (a.supplierName < b.supplierName) {
                 return -1;
             }
 
