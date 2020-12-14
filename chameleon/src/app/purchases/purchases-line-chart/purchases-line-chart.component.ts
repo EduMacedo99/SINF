@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SaftApiService } from 'src/app/saftApi/saft-api.service';
+import { ApiService } from 'src/app/webApi/web-api.service';
 
 @Component({
   selector: 'app-purchases-line-chart',
@@ -8,7 +8,7 @@ import { SaftApiService } from 'src/app/saftApi/saft-api.service';
 })
 export class PurchasesLineChartComponent implements OnInit {
 
-  constructor(private saftApi: SaftApiService) { }
+  constructor(private webApi: ApiService) { }
 
   private purchases: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   private cumulativePurchases: Array<number> = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -16,16 +16,15 @@ export class PurchasesLineChartComponent implements OnInit {
   public chartDatasets: Array<any> = [];
 
   ngOnInit(): void {
-    this.saftApi.get('api/purchases/monthly-purchases').subscribe(
+    this.webApi.get('api/purchases/monthly-purchases').subscribe(
       (data:Object) => {
-        console.log(data)
         if('monthlyPurchases' in data) {
           this.purchases = data['monthlyPurchases'];
           this.chartDatasets = this.getChartData();
         }
       }
     );
-    this.saftApi.get('api/purchases/monthly-cumulative-purchases').subscribe(
+    this.webApi.get('api/purchases/monthly-cumulative-purchases').subscribe(
       (data:Object) => {
         if('cumulativeMonthlyPurchases' in data) {
           this.cumulativePurchases = data['cumulativeMonthlyPurchases'];
