@@ -40,6 +40,7 @@ module.exports = (server, db) => {
                 productsList.push({
                     productKey: materialItem.itemKey,
                     name: materialItem.description,
+                    brand: materialItem.brand,
                     quantity: quantity,
                     value: value,
                     error: quantity < 0,
@@ -63,8 +64,6 @@ module.exports = (server, db) => {
     };
 
     const getStockQuantity = (item) => {
-
-
         return item.materialsItemWarehouses.reduce((accumulator, currValue) => {
             accumulator += currValue.stockBalance;
             return accumulator;
