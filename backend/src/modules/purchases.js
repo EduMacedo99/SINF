@@ -5,23 +5,18 @@ const processProductSuppliers = (suppliersData) => {
     const pageSize = req.query.pageSize || 15;*/
 
     const suppliers = [];
-    suppliersData.forEach((supplier) => {
-        const accumulator = supplier.documentLines.reduce((accumulator, order) => {
-            accumulator.quantity += order.quantity;
-            accumulator.totalPrice += order.unitPrice.amount;
-            accumulator.num++;
-            return accumulator;
-        }, { quantity: 0, totalPrice: 0, num: 0 });
-        suppliers.push({
-            supplierName: supplier.sellerSupplierPartyName,
-            supplierKey: supplier.sellerSupplierParty,
-            supplierNif: supplier.accountingPartyTaxId,
-            supplierAddress: supplier.loadingPointAddress,
-            supplierPostalCode: supplier.loadingPostalZone,
-            quantity: accumulator.quantity,
-            priceRatio: (accumulator.totalPrice / accumulator.num).toFixed(2)
-        });
+    const supplierNifAux = [];
 
+    suppliersData.forEach((supplier) => {
+        if (!supplierNifAux.includes(supplier.accountingPartyTaxId) && supplier.accountingPartyTaxId !== null) {
+            suppliers.push({
+                supplierName: supplier.sellerSupplierPartyName,
+                supplierNif: supplier.accountingPartyTaxId,
+                supplierAddress: supplier.loadingPointAddress,
+                supplierPostalCode: supplier.loadingPostalZone
+            });
+            supplierNifAux.push(supplier.accountingPartyTaxId);
+        }
     });
     return ({
         suppliers: suppliers.sort((a, b) => {
