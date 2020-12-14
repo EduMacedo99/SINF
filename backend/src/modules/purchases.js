@@ -130,7 +130,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/purchases/orders`,
             headers: {
-                Authorization: "Bearer " + req.headers.token,
+                Authorization: "Bearer " + req.headers.authorization,
                 "Content-Type": "application/json",
             },
         };
@@ -173,7 +173,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
             headers: {
-                Authorization: "Bearer " + req.headers.token,
+                Authorization: "Bearer " + req.headers.authorization,
                 "Content-Type": "application/json",
             },
         };
@@ -203,7 +203,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
             headers: {
-                Authorization: "Bearer " + req.headers.token,
+                Authorization: "Bearer " + req.headers.authorization,
                 "Content-Type": "application/json",
             },
         };
@@ -229,7 +229,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
             headers: {
-                Authorization: "Bearer " + req.headers.token,
+                Authorization: "Bearer " + req.headers.authorization,
                 "Content-Type": "application/json",
             },
         };
@@ -256,7 +256,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
             method: "GET",
             url: `${basePrimaveraUrl}/purchases/orders`,
             headers: {
-                Authorization: "Bearer " + req.headers.token,
+                Authorization: "Bearer " + req.headers.authorization,
                 "Content-Type": "application/json",
             },
         };
