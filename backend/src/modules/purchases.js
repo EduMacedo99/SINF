@@ -169,7 +169,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
         let totalPurchases = 0;
         let monthlyPurchasesAux;
         let monthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let year = "2020-";
+        let year = new Date().getFullYear();
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
@@ -182,8 +182,8 @@ module.exports = (server, db, basePrimaveraUrl) => {
         request(options, function(error, response, body) {
             monthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
             for (let i = 0; i < 12; i++) {
-                if (monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
-                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                if (monthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()] !== undefined) {
+                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()];
                 }
             }
             for (let i = 0; i < monthlyPurchases.length; i++) {
@@ -198,8 +198,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
     server.get('/api/purchases/monthly-purchases', (req, res) => {
         let monthlyPurchasesAux;
         let monthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let year = "2020-";
-        //let yearAux = new Date().getFullYear();
+        let year = new Date().getFullYear();
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
@@ -212,8 +211,8 @@ module.exports = (server, db, basePrimaveraUrl) => {
         request(options, function(error, response, body) {
             monthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
             for (let i = 0; i < 12; i++) {
-                if (monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
-                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                if (monthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()] !== undefined) {
+                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()];
                 }
             }
             if (error) throw new Error(error);
@@ -225,7 +224,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
     server.get('/api/purchases/monthly-cumulative-purchases', (req, res) => {
         let cumulativeMonthlyPurchasesAux;
         let cumulativeMonthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let year = "2020-";
+        let year = new Date().getFullYear();
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
@@ -238,8 +237,8 @@ module.exports = (server, db, basePrimaveraUrl) => {
         request(options, function(error, response, body) {
             cumulativeMonthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
             for (let i = 0; i < 12; i++) {
-                if (cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
-                    cumulativeMonthlyPurchases[i] = cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                if (cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()] !== undefined) {
+                    cumulativeMonthlyPurchases[i] = cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()];
                 }
             }
             for (let i = 1; i < cumulativeMonthlyPurchases.length; i++) {
