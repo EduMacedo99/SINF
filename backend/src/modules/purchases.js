@@ -33,6 +33,7 @@ const processProductSuppliers = (suppliersData) => {
 
             return 0;
         }) /*.slice((page - 1) * pageSize, page * pageSize)*/
+
     });
 };
 
@@ -160,7 +161,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
                 totalDebit += ret.totalDebit;
             }
         });
-
+        res.header("Access-Control-Allow-Origin", "*");
         res.json((totalCredit - totalDebit).toFixed(2));
     });
 
