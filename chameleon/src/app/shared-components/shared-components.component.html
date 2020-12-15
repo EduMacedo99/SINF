@@ -24,18 +24,17 @@
         </div>
         <div class="modal-body">
             <form [formGroup]="importForm">
-                <input type="file" id="myFile" ng-model="string" ng-required="true" formControlName="filename">
+                <input type="file" id="myFile" ng-model="string" ng-required="true" formControlName="filename"
+                    (change)="fileChange($event)">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" (click)="modalToggle()">Close</button>
-                    <input type="submit" class="btn btn-primary" (click)="modalToggle()" (click)="onClick()" value="Send">
+                    <input type="submit" class="btn btn-primary" (click)="modalToggle()" (click)="upload()"
+                        value="Send">
                 </div>
-            </form>              
+            </form>
         </div>
     </div>
 </div>
-
-<angular-file-uploader [config]="afuConfig">
-</angular-file-uploader>
 
 <!--Sidebar-->
 <div class="navbar navbar-expand-lg">

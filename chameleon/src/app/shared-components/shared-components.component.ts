@@ -1,25 +1,22 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpEventType, HttpErrorResponse } from '@angular/common/http'
+import { Component, OnInit } from '@angular/core';
+import { HttpClient,HttpHeaders } from '@angular/common/http'
 import { AuthenticationService } from 'src/app/account/authentication/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { UploadService } from '../upload.service';
 
 declare const $: any;
 declare interface RouteInfo {
-  path: string;
-  title: string;
-  class: string;
-  type: string;
+    path: string;
+    title: string;
+    class: string;
+    type: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: '/overview', title: 'Overview', class: '', type: 'overview' },
-  { path: '/sales', title: 'Sales', class: '', type: 'sales' },
-  { path: '/purchases', title: 'Purchases', class: '', type: 'purchases' },
-  { path: '/financial', title: 'Financial', class: '', type: 'financial' },
-  { path: '/inventory', title: 'Inventory', class: '', type: 'inventory' },
+    { path: '/overview', title: 'Overview', class: '', type: 'overview' },
+    { path: '/sales', title: 'Sales', class: '', type: 'sales' },
+    { path: '/purchases', title: 'Purchases', class: '', type: 'purchases' },
+    { path: '/financial', title: 'Financial', class: '', type: 'financial' },
+    { path: '/inventory', title: 'Inventory', class: '', type: 'inventory' },
 ];
 
 @Component({
@@ -28,40 +25,16 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./shared-components.component.scss'],
 })
 export class SharedComponentsComponent implements OnInit {
-  afuConfig = {
-    uploadAPI: {
-      url: 'http://localhost:3000/api/import',
-      headers: {
-        "Access-Control-Allow-Methods": "POST",
-        'Access-Control-Allow-Origin': '*',
-      },
-      responseType: 'blob',
-    },
-    theme: 'dragNDrop',
-    hideProgressBar: true,
-    hideResetBtn: true,
-    hideSelectBtn: true,
-    fileNameIndex: true,
-    replaceTexts: {
-      selectFileBtn: 'Select Files',
-      resetBtn: 'Reset',
-      uploadBtn: 'Upload',
-      dragNDropBox: 'Drag N Drop',
-      attachPinBtn: 'Attach Files...',
-      afterUploadMsg_success: 'Successfully Uploaded !',
-      afterUploadMsg_error: 'Upload Failed !',
-    },
-  };
 
   menuItems: any[] = [];
   private sidebarVisible: boolean;
   private modalVisible: boolean;
+  public uploadedFiles: Array <File> = [];
   public importForm = new FormGroup({
     filename: new FormControl('', [Validators.required]),
   });
 
-  @ViewChild("fileUpload", { static: false }) fileUpload?: ElementRef; files = [];
-  constructor(private auth: AuthenticationService, private http: HttpClient, private uploadService: UploadService) {
+  constructor(private auth: AuthenticationService, private http: HttpClient) {
     this.sidebarVisible = false;
     this.modalVisible = false;
   }
@@ -159,47 +132,31 @@ export class SharedComponentsComponent implements OnInit {
     };
     this.http
       .put<any>(
-        `http://localhost:3000/api/import?filename="${filename}"`,
+        `${environment.safTApi}/api/import?filename="${filename}"`,
         {},
         requestOptions
       )
       .subscribe();
   }
 
-  uploadFile(file: any) {
-    const formData = new FormData();
-    formData.append('file', file.data);
-    file.inProgress = true;
-    this.uploadService.upload(formData).pipe(
-      map(event => {
-        switch (event.type) {
-          case HttpEventType.UploadProgress:
-            if (event.total === undefined)
-              throw new Error("'event.total' is undefined");
-            file.progress = Math.round(event.loaded * 100 / event.total);
-            return 0;
-          case HttpEventType.Response:
-            return event;
-          default:
-            return -1;
-        }
-      }),
-      catchError((error: HttpErrorResponse) => {
-        file.inProgress = false;
-        return of(`Upload failed: ${file.data.name}`);
-      })).subscribe((event: any) => {
-        if (typeof (event) === 'object') {
-          console.log(event.body);
-        }
-      });
+  fileChange(element:any) {
+    this.uploadedFiles = element.target.files;
   }
 
-  onClick() {
-    if (this.fileUpload === undefined)
-      throw new Error("'fileUpload' is undefined");
-    const fileUpload = this.fileUpload.nativeElement; fileUpload.onchange = () => {
-      this.uploadFile(fileUpload.files[0]);
+  upload() {
+    let formData = new FormData();
+    for (var i = 0; i < this.uploadedFiles.length; i++) {
+        formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
+    }
+    const headerDict = {
+      'Access-Control-Allow-Origin': '*',
     };
-    fileUpload.click();
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    this.http.post(`${environment.safTApi}/upload`, formData,requestOptions)
+        .subscribe((response) => {
+            console.log('response received is ', response);
+        })
   }
 }
