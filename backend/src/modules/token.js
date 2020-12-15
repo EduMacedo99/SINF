@@ -1,4 +1,5 @@
 const request = require("request");
+const sha256 = require("sha256");
 
 module.exports = (server, db, accounts) => {
   server.get("/token", (req, res) => {
@@ -6,7 +7,7 @@ module.exports = (server, db, accounts) => {
     let password = 'password' in req.query ? req.query['password'] : null;
     let isValid = false;
     for (let i = 0; i < accounts.User.length; i++) {
-      if (JSON.stringify(accounts.User[i].username) == username && JSON.stringify(accounts.User[i].password) == password) {
+      if (JSON.stringify(accounts.User[i].username) == username && JSON.stringify(accounts.User[i].password) == JSON.stringify(sha256(password))) {
         isValid = true;
         break;
       }
