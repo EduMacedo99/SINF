@@ -19,7 +19,6 @@ module.exports = (server, db) => {
       console.log("Uploaded " + file.name);
 
       let ret = shell.exec("yarn parseJasmin -s " + file.name);
-      console(ret.code);
       if (ret.code !== 0) {
         shell.echo("Parsing failed");
       } else {

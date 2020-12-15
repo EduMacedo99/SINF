@@ -33,7 +33,6 @@ fs.readFile(args.source, "utf8", function (err, data) {
   });
 
   console.log("changed line!");
-  console.log(formatted);
 
   for (var i = 0; i < 10000; i++){
   }

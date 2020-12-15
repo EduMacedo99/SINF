@@ -9,8 +9,7 @@
         "build": "babel src -d lib",
         "parse": "node lib/parser.js",
         "parseJasmin": "node lib/parserJasmin.js",
-        "serve": "forever --watch --watchDirectory ./databases lib/server.js",
-        "kill": "taskkill /f /im node.exe"
+        "serve": "nodemon lib/server.js"
     },
     "author": "",
     "license": "ISC",
@@ -21,14 +20,13 @@
         "@babel/register": "^7.4.0",
         "json-server": "^0.16.3",
         "mocha": "^8.2.1",
-        "nodemon": "^1.17.5"
+        "nodemon": "^2.0.6"
     },
     "dependencies": {
         "@babel/polyfill": "^7.12.1",
         "command-line-args": "^5.1.1",
         "formidable": "^1.2.2",
         "multer": "^1.4.2",
-        "forever": "^3.0.4",
         "read-file": "^0.2.0",
         "request": "^2.88.2",
         "shelljs": "^0.8.4",
