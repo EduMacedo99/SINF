@@ -5,7 +5,7 @@
     "main": "lib/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "yarn kill && yarn && yarn build && yarn serve",
+        "start": "yarn && yarn build && yarn serve",
         "build": "babel src -d lib",
         "parse": "node lib/parser.js",
         "parseJasmin": "node lib/parserJasmin.js",
