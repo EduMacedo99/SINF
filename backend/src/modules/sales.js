@@ -2,6 +2,35 @@ const request = require("request");
 
 module.exports = (server, db) => {
 
+    const processMonthlySales = (salesData) => {
+        const salesByTimestamp = {};
+
+        const monthlySales = {
+            salesByTimestamp: {}
+        };
+
+        salesData.forEach((sale) => {
+            const timestamp = extractTimestamp(sale.documentDate.split("T")[0]);
+
+            if (salesByTimestamp[timestamp] == undefined) {
+                salesByTimestamp[timestamp] = 0;
+            }
+
+            salesByTimestamp[timestamp] += sale.grossValue.amount;
+        });
+
+        Object.keys(salesByTimestamp).sort().forEach((key) => {
+            monthlySales.salesByTimestamp[key] = salesByTimestamp[key];
+        });
+
+        return monthlySales;
+    };
+
+    const extractTimestamp = (date) => {
+        const match = date.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+        return `${match[1]}-${match[2]}`;
+    }
+
     const processTopProducts = (salesData) => {
         let topProducts = [];
 
@@ -108,23 +137,54 @@ module.exports = (server, db) => {
     server.get('/api/sales/total-sales', (req, res) => {
         // TODO
     });
+    /*
+        server.get('/api/sales/monthly-cumulative-sales', (req, res) => {
+            const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
+            const cumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-    server.get('/api/sales/monthly-cumulative-sales', (req, res) => {
-        const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
-        const cumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            salesInvoices.forEach(invoice => {
+                cumulative[parseInt(invoice.Period, 10) - 1] =
+                    parseFloat(invoice.DocumentTotals.GrossTotal) +
+                    cumulative[parseInt(invoice.Period, 10) - 1];
+            });
+            for (let i = 1; i < cumulative.length; i++) {
+                cumulative[i] += cumulative[i - 1];
+            }
 
-        salesInvoices.forEach(invoice => {
-            cumulative[parseInt(invoice.Period, 10) - 1] =
-                parseFloat(invoice.DocumentTotals.GrossTotal) +
-                cumulative[parseInt(invoice.Period, 10) - 1];
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json({ cumulative });
+        });*/
+
+    server.get("/api/sales/monthly-cumulative-sales", (req, res) => {
+        let cumulativeMonthlySalesAux;
+        let cumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let year = new Date().getFullYear();
+
+        const options = {
+            method: "GET",
+            url: "https://my.jasminsoftware.com/api/242845/242845-0001/billing/invoices",
+            headers: {
+                Authorization: req.headers.authorization,
+                "Content-Type": "application/json",
+            },
+        };
+
+        request(options, function(error, response, body) {
+            cumulativeMonthlySalesAux = processMonthlySales(JSON.parse(response.body));
+            for (let i = 0; i < 12; i++) {
+                if (cumulativeMonthlySalesAux.salesByTimestamp[year.toString() + "-" + (i + 1).toString()] !== undefined) {
+                    cumulative[i] = cumulativeMonthlySalesAux.salesByTimestamp[year.toString() + "-" + (i + 1).toString()];
+                }
+            }
+            for (let i = 1; i < cumulative.length; i++) {
+                cumulative[i] += cumulative[i - 1];
+            }
+            if (error) throw new Error(error);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json({ cumulative });
         });
-        for (let i = 1; i < cumulative.length; i++) {
-            cumulative[i] += cumulative[i - 1];
-        }
-
-        res.header("Access-Control-Allow-Origin", "*");
-        res.json({ cumulative });
     });
+
     /*
         server.get('/api/sales/top-products', (req, res) => {
             let products = {};
@@ -264,7 +324,7 @@ module.exports = (server, db) => {
         res.json(sorted);
     });
 
-    server.get("/api/sales/revenue", (req, res) => {
+    /*server.get("/api/sales/revenue", (req, res) => {
         const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
         const revenue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         salesInvoices.forEach((invoice) => {
@@ -274,7 +334,35 @@ module.exports = (server, db) => {
         });
         res.header("Access-Control-Allow-Origin", "*");
         res.json({ revenue });
+    });*/
+
+    server.get("/api/sales/revenue", (req, res) => {
+        let monthlySalesAux;
+        let revenue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let year = new Date().getFullYear();
+
+        const options = {
+            method: "GET",
+            url: "https://my.jasminsoftware.com/api/242845/242845-0001/billing/invoices",
+            headers: {
+                Authorization: req.headers.authorization,
+                "Content-Type": "application/json",
+            },
+        };
+
+        request(options, function(error, response, body) {
+            monthlySalesAux = processMonthlySales(JSON.parse(response.body));
+            for (let i = 0; i < 12; i++) {
+                if (monthlySalesAux.salesByTimestamp[year.toString() + "-" + (i + 1).toString()] !== undefined) {
+                    revenue[i] = monthlySalesAux.salesByTimestamp[year.toString() + "-" + (i + 1).toString()];
+                }
+            }
+            if (error) throw new Error(error);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json({ revenue });
+        });
     });
+
     /*
         server.get("/api/sales/revenueFromSales", (req, res) => {
             const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
