@@ -1,35 +1,81 @@
 const request = require("request");
 
 module.exports = (server, db) => {
-    server.get('/api/sales/sales-per-city', (req, res) => {
-        const sales = db.SourceDocuments.SalesInvoices.Invoice;
-        const validTypes = ['FT', 'FS', 'FR', 'VD'];
-        const salesPerCity = {};
 
-        if (Array.isArray(sales)) {
-            sales.forEach(sale => {
-                if (!(sale.Line.length && validTypes.includes(sale.InvoiceType))) return;
+    const processSalesPerCity = (salesData) => {
+        let salesPerCity = {};
 
-                if (salesPerCity[sale.ShipTo.Address.City]) {
-                    salesPerCity[sale.ShipTo.Address.City].quantity += 1;
-                    salesPerCity[sale.ShipTo.Address.City].netTotal += parseFloat(
-                        sale.DocumentTotals.NetTotal,
-                    );
-                } else {
-                    salesPerCity[sale.ShipTo.Address.City] = {
-                        quantity: 1,
-                        netTotal: parseFloat(sale.DocumentTotals.NetTotal),
-                    };
-                }
-            });
-        } else {
-            salesPerCity[sales.ShipTo.Address.City] = {
-                quantity: 1,
-                netTotal: parseFloat(sales.DocumentTotals.NetTotal),
-            };
-        }
-        res.header("Access-Control-Allow-Origin", "*");
-        res.json(salesPerCity);
+        salesData.forEach((sale) => {
+            if (salesPerCity[sale.unloadingCityName] && sale.unloadingCityName != null) {
+                salesPerCity[sale.unloadingCityName].netTotal += parseFloat(sale.grossValue.amount);
+            } else if (sale.unloadingCityName != null) {
+                salesPerCity[sale.unloadingCityName] = {
+                    netTotal: parseFloat(sale.grossValue.amount),
+                };
+            }
+        });
+
+        return salesPerCity;
+    }
+
+    const processRevenueFromSales = (salesData) => {
+        let revenueFromSales = 0;
+
+        salesData.forEach((sale) => {
+            revenueFromSales += sale.grossValue.amount;
+        });
+
+        return revenueFromSales;
+    };
+
+    /*    server.get('/api/sales/sales-per-city', (req, res) => {
+            const sales = db.SourceDocuments.SalesInvoices.Invoice;
+            const validTypes = ['FT', 'FS', 'FR', 'VD'];
+            const salesPerCity = {};
+
+            if (Array.isArray(sales)) {
+                sales.forEach(sale => {
+                    if (!(sale.Line.length && validTypes.includes(sale.InvoiceType))) return;
+
+                    if (salesPerCity[sale.ShipTo.Address.City]) {
+                        salesPerCity[sale.ShipTo.Address.City].quantity += 1;
+                        salesPerCity[sale.ShipTo.Address.City].netTotal += parseFloat(
+                            sale.DocumentTotals.NetTotal,
+                        );
+                    } else {
+                        salesPerCity[sale.ShipTo.Address.City] = {
+                            quantity: 1,
+                            netTotal: parseFloat(sale.DocumentTotals.NetTotal),
+                        };
+                    }
+                });
+            } else {
+                salesPerCity[sales.ShipTo.Address.City] = {
+                    quantity: 1,
+                    netTotal: parseFloat(sales.DocumentTotals.NetTotal),
+                };
+            }
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json(salesPerCity);
+        });*/
+
+    server.get("/api/sales/sales-per-city", (req, res) => {
+        let salesPerCity;
+        const options = {
+            method: "GET",
+            url: "https://my.jasminsoftware.com/api/242845/242845-0001/billing/invoices",
+            headers: {
+                Authorization: req.headers.authorization,
+                "Content-Type": "application/json",
+            },
+        };
+
+        request(options, function(error, response, body) {
+            salesPerCity = processSalesPerCity(JSON.parse(response.body));
+            if (error) throw new Error(error);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json(salesPerCity);
+        });
     });
 
     server.get('/api/sales/total-sales', (req, res) => {
@@ -45,12 +91,12 @@ module.exports = (server, db) => {
                 parseFloat(invoice.DocumentTotals.GrossTotal) +
                 cumulative[parseInt(invoice.Period, 10) - 1];
         });
-        for(let i = 1; i < cumulative.length; i++) {
-            cumulative[i] += cumulative[i-1];
+        for (let i = 1; i < cumulative.length; i++) {
+            cumulative[i] += cumulative[i - 1];
         }
 
         res.header("Access-Control-Allow-Origin", "*");
-        res.json( {cumulative} );
+        res.json({ cumulative });
     });
 
     server.get('/api/sales/top-products', (req, res) => {
@@ -173,45 +219,63 @@ module.exports = (server, db) => {
     });
 
     server.get("/api/sales/revenue", (req, res) => {
-      const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
-      const revenue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-      salesInvoices.forEach((invoice) => {
-        revenue[parseInt(invoice.Period, 10) - 1] =
-          parseFloat(invoice.DocumentTotals.GrossTotal) +
-          revenue[parseInt(invoice.Period, 10) - 1];
-      });
-      res.header("Access-Control-Allow-Origin", "*");
-      res.json({ revenue });
+        const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
+        const revenue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        salesInvoices.forEach((invoice) => {
+            revenue[parseInt(invoice.Period, 10) - 1] =
+                parseFloat(invoice.DocumentTotals.GrossTotal) +
+                revenue[parseInt(invoice.Period, 10) - 1];
+        });
+        res.header("Access-Control-Allow-Origin", "*");
+        res.json({ revenue });
     });
+    /*
+        server.get("/api/sales/revenueFromSales", (req, res) => {
+            const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
+            const monthlyCumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            salesInvoices.forEach((invoice) => {
+                monthlyCumulative[parseInt(invoice.Period, 10) - 1] =
+                    parseFloat(invoice.DocumentTotals.GrossTotal) +
+                    monthlyCumulative[parseInt(invoice.Period, 10) - 1];
+            });
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json(monthlyCumulative[11]);
+        });*/
 
     server.get("/api/sales/revenueFromSales", (req, res) => {
-      const salesInvoices = db.SourceDocuments.SalesInvoices.Invoice;
-      const monthlyCumulative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-      salesInvoices.forEach((invoice) => {
-        monthlyCumulative[parseInt(invoice.Period, 10) - 1] =
-          parseFloat(invoice.DocumentTotals.GrossTotal) +
-          monthlyCumulative[parseInt(invoice.Period, 10) - 1];
-      });
-      res.header("Access-Control-Allow-Origin", "*");
-      res.json(monthlyCumulative[11]);
+        let revenueFromSales;
+        const options = {
+            method: "GET",
+            url: "https://my.jasminsoftware.com/api/242845/242845-0001/billing/invoices",
+            headers: {
+                Authorization: req.headers.authorization,
+                "Content-Type": "application/json",
+            },
+        };
+
+        request(options, function(error, response, body) {
+            revenueFromSales = processRevenueFromSales(JSON.parse(response.body));
+            if (error) throw new Error(error);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json(revenueFromSales);
+        });
     });
 
     server.get("/api/customers", (req, res) => {
-      
+
         const options = {
-          method: "GET",
-          url:
-            "https://my.jasminsoftware.com/api/242845/242845-0001/salesCore/customerParties",
-          headers: {
-            Authorization: "Bearer " + req.body.token,
-            "Content-Type": "application/json",
-          },
+            method: "GET",
+            url: "https://my.jasminsoftware.com/api/242845/242845-0001/salesCore/customerParties",
+            headers: {
+                Authorization: "Bearer " + req.body.token,
+                "Content-Type": "application/json",
+            },
         };
 
-        request(options, function (error, response, body) {
-          
-          res.header("Access-Control-Allow-Origin", "*");
-          res.json((JSON.parse(body)));
+        request(options, function(error, response, body) {
+
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json((JSON.parse(body)));
         });
 
     });

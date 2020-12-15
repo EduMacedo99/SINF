@@ -19,7 +19,7 @@
     <StartDate>2020-12-01</StartDate>
     <EndDate>2020-12-31</EndDate>
     <CurrencyCode xsi:type="xsd:string">EUR</CurrencyCode>
-    <DateCreated>2020-12-14</DateCreated>
+    <DateCreated>2020-12-15</DateCreated>
     <TaxEntity>GLOBAL</TaxEntity>
     <ProductCompanyTaxID>503140600</ProductCompanyTaxID>
     <SoftwareCertificateNumber>2616</SoftwareCertificateNumber>
