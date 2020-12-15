@@ -17,8 +17,7 @@ module.exports = (server, db) => {
 
     form.on("file", function (name, file) {
       console.log("Uploaded " + file.name);
-
-      let ret = shell.exec("yarn parseJasmin -s " + file.name);
+      let ret = shell.exec("yarn parse -s " + file.name);
       if (ret.code !== 0) {
         shell.echo("Parsing failed");
       } else {
