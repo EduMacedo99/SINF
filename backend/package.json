@@ -9,7 +9,7 @@
         "build": "babel src -d lib",
         "parse": "node lib/parser.js",
         "parseJasmin": "node lib/parserJasmin.js",
-        "serve": "nodemon lib/server.js"
+        "serve": "nodemon --watch databases lib/server.js"
     },
     "author": "",
     "license": "ISC",

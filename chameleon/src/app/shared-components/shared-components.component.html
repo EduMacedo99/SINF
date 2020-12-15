@@ -23,12 +23,12 @@
             <button type="button" class="close" (click)="modalToggle()">&times;</button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="importForm">
+            <form [formGroup]="importForm" (ngSubmit)="upload()">
                 <input type="file" id="myFile" ng-model="string" ng-required="true" formControlName="filename"
                     (change)="fileChange($event)">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" (click)="modalToggle()">Close</button>
-                    <input type="submit" class="btn btn-primary" (click)="modalToggle()" (click)="upload()"
+                    <input type="submit" class="btn btn-primary" (click)="modalToggle()"
                         value="Send">
                 </div>
             </form>
