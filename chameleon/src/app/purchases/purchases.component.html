@@ -6,13 +6,12 @@
                     <div class="list_board info_board flex-column">
                         <h2>Suppliers</h2>
                         <ul>
-                            <li>
+                            <li *ngFor="let supplier of getSuppliers()">
                                 <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
+                                    <p class="col-sm-4">{{supplier['supplierName']}}</p>
+                                    <p class="col-sm-4" font-size="1em">{{supplier['supplierAddress']}}</p>
+                                    <p class="col-sm-4">{{supplier['supplierNif']}}</p>
                                 </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
                             </li>
                         </ul>
                     </div>

@@ -14,6 +14,7 @@ export class PurchasesComponent implements OnInit {
   private accountsPayable = 0;
   private totalPurchases = 0;
   private purchasesList: any = [];
+  private suppliers: any = [];
 
   ngOnInit(): void {
     this.saftApi
@@ -29,11 +30,12 @@ export class PurchasesComponent implements OnInit {
       });
 
     this.webApi.get('api/purchases/orders').subscribe((data: Object) => {
+      console.log(data)
       this.purchasesList = data;
     });
 
     this.webApi.get('api/purchases/suppliers').subscribe((data: Object) => {
-      console.log(data);
+      this.suppliers = data;
     });
   }
 
@@ -51,5 +53,9 @@ export class PurchasesComponent implements OnInit {
 
   public getPurchasesList() {
     return this.purchasesList['purchasesList'];
+  }
+
+  public getSuppliers() {
+    return this.suppliers['suppliers'];
   }
 }
