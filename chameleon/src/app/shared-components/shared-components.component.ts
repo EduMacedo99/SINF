@@ -125,18 +125,6 @@ export class SharedComponentsComponent implements OnInit {
     this.auth.logout();
   }
 
-  /*sendFile() {
-    const {filename} = this.importForm.value;
-    const headerDict = {
-      'Access-Control-Allow-Origin': '*',
-    };
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
-    this.http.put<any>(`${environment.safTApi}/api/import?filename="${filename}"`,{},requestOptions)
-        .subscribe();
-  };*/
-
   fileChange(element:any) {
     this.uploadedFiles = element.target.files;
   }
