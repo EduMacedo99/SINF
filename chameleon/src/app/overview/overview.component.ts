@@ -19,9 +19,11 @@ export class OverviewComponent implements OnInit {
       .get('api/financial/gross-profit-margin')
       .subscribe((data) => this.parseGrossProfitMargin(data));
 
-    this.saftApi
-      .get('api/sales/revenueFromSales')
-      .subscribe((data) => this.parseRevenue(data));
+    this.webApi.get('api/sales/revenueFromSales').subscribe((data: Object) => {
+      if ('totalPurchases' in data) {
+        this.revenue = data['revenue'];
+      }
+    });
 
     this.webApi
       .get('api/purchases/total-purchases')
@@ -38,10 +40,6 @@ export class OverviewComponent implements OnInit {
 
   public getGrossProfitMargin() {
     return this.profitMargin;
-  }
-
-  private parseRevenue(data: any) {
-    this.revenue = data;
   }
 
   public getRevenue() {

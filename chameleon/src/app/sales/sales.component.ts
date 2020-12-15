@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SaftApiService } from 'src/app/saftApi/saft-api.service';
+import { ApiService } from 'src/app/webApi/web-api.service';
 
 @Component({
   selector: 'app-sales',
@@ -7,7 +8,7 @@ import { SaftApiService } from 'src/app/saftApi/saft-api.service';
   styleUrls: ['./sales.component.scss', '../app.component.scss'],
 })
 export class SalesComponent implements OnInit {
-  constructor(private saftApi: SaftApiService) {}
+  constructor(private saftApi: SaftApiService, private webApi: ApiService) {}
 
   private profitMargin: number = 0;
   private accountsReceivable = 0;
@@ -24,9 +25,9 @@ export class SalesComponent implements OnInit {
       .get('api/financial/accounts-receivable')
       .subscribe((data) => this.parseAccountsReceivable(data));
 
-    this.saftApi
-      .get('api/sales/revenueFromSales')
-      .subscribe((data) => this.parseRevenue(data));
+    this.webApi.get('api/sales/revenueFromSales').subscribe((data: any) => {
+        this.revenue = data;
+    });
 
     this.saftApi
       .get('api/sales/top-products')
@@ -47,10 +48,6 @@ export class SalesComponent implements OnInit {
 
   public getAccountsReceivable() {
     return this.accountsReceivable;
-  }
-
-  private parseRevenue(data: any) {
-    this.revenue = data;
   }
 
   public getRevenue() {
