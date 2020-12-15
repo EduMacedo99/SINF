@@ -1,31 +1,33 @@
-import formidable from 'formidable'
+import formidable from "formidable";
+import shell from "shelljs";
 const fs = require("fs");
 
 module.exports = (server, db) => {
-    server.post('/api/import', (req, res) => {
-        console.log("aaaaaaaaaaa");
-        console.log(req);
-        res.header("Access-Control-Allow-Origin", "*");
-        res.json("receieved file");
-    })
+  server.post("/upload", (req, res) => {
+    var form = new formidable.IncomingForm();
+    form.parse(req);
 
-    server.post("/upload", (req, res) => {
-      var form = new formidable.IncomingForm();
-      form.parse(req);
-
-      form.on("fileBegin", function (name, file) {
-        var path = __dirname;
-        if (!fs.existsSync(path)) {
-          fs.mkdirSync(path);
-        }
-        file.path = __dirname + "/../../" + file.name;
-      });
-
-      console.log(form)
-      form.on("file", function (name, file) {
-        console.log("Uploaded " + file.name);
-        res.header("Access-Control-Allow-Origin", "*");
-        res.send({ message: "uploaded" });
-      });
+    form.on("fileBegin", function (name, file) {
+      var path = __dirname;
+      if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
+      }
+      file.path = __dirname + "/../../" + file.name;
     });
-}
+
+    form.on("file", function (name, file) {
+      console.log("Uploaded " + file.name);
+
+      let ret = shell.exec("yarn parseJasmin -s " + file.name);
+      console(ret.code);
+      if (ret.code !== 0) {
+        shell.echo("Parsing failed");
+      } else {
+        shell.echo("DB updated");
+      }
+
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send({ message: "uploaded" });
+    });
+  });
+};
