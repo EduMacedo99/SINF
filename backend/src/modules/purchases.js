@@ -37,15 +37,21 @@ const processOrders = (purchasesData) => {
     const pageSize = req.query.pageSize || 15;*/
 
     const purchasesList = [];
+    let productsList = [];
 
     purchasesData.forEach((document) => {
+        document["documentLines"].forEach((product) => {
+            productsList.push([product.description, product.quantity]);
+        });
         purchasesList.push({
             supplierName: document.sellerSupplierPartyName,
             supplierTaxID: document.sellerSupplierPartyTaxId,
             totalValue: new Intl.NumberFormat('en-UK').format(document.payableAmount.amount),
             date: document.exchangeRateDate.split("T")[0],
             purchaseId: document.documentLines[0].orderId,
+            products: productsList
         });
+        productsList = [];
     });
 
     return ({
