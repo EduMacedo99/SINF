@@ -29,9 +29,9 @@ export class SalesComponent implements OnInit {
         this.revenue = data;
     });
 
-    this.saftApi
-      .get('api/sales/top-products')
-      .subscribe((data) => this.parseProducts(data));
+    this.webApi.get('api/sales/top-products').subscribe((data: any) => {
+      this.parseProducts(data)
+    });
   }
 
   private parseGrossProfitMargin(data: any) {

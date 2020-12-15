@@ -17,11 +17,6 @@ export class SalesBarChartComponent implements OnInit {
   private data: Array<any> = [];
 
   ngOnInit(): void {
-    // this.saftApi.get('api/sales/sales-per-city').subscribe((data: any) => {
-    //   this.data = data;
-    //   this.values = this.getChartData();
-    // });
-
     this.webApi.get('api/sales/sales-per-city').subscribe((data: any) => {
       this.data = data;
       this.values = this.getChartData();
