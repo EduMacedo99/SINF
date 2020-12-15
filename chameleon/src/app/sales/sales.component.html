@@ -41,7 +41,7 @@
                         <div class="list_board info_board flex-column">
                             <h2>Top Products</h2>
                             <ul>
-                                <li *ngFor="let p of getProducts()">
+                                <li class="with-border" *ngFor="let p of getProducts()">
                                     <div class="row">
                                         <p class="col-sm-6">{{p['name']}}</p>
                                         <p class="col-sm-6">{{p['quantity']}} units</p>

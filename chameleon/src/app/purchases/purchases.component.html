@@ -28,11 +28,16 @@
                     <div class="list_board info_board flex-column">
                         <h2>Orders</h2>
                         <ul>
-                            <li *ngFor="let order of getPurchasesList()">
+                            <li class="with-border" *ngFor="let order of getPurchasesList()">
+                                <p>Supplier: {{order['supplierName']}}</p>
+                                <ul class="mt-0 mb-2 pl-4">
+                                    <li *ngFor="let product of getPurchasesProductsList(order)">
+                                        {{product[0]}}
+                                    </li>
+                                </ul>
                                 <div class="row">
-                                    <p class="col-sm-4">{{order['supplierName']}}</p>
-                                    <p class="col-sm-4">{{order['totalValue']}}€</p>
-                                    <p class="col-sm-4">{{order['date']}}</p>
+                                    <p class="col-sm-6">Total value: {{order['totalValue']}} €</p>
+                                    <p class="col-sm-6">Date: {{order['date']}}</p>
                                 </div>
                             </li>
                         </ul>
@@ -42,11 +47,11 @@
                     <div class="list_board info_board flex-column">
                         <h2>Suppliers</h2>
                         <ul>
-                            <li *ngFor="let supplier of getSuppliers()">
+                            <li class="with-border" *ngFor="let supplier of getSuppliers()">
                                 <div class="row">
-                                    <p class="col-sm-4">{{supplier['supplierName']}}</p>
+                                    <p class="col-sm-5">{{supplier['supplierName']}}</p>
                                     <p class="col-sm-4" font-size="1em">{{supplier['supplierAddress']}}</p>
-                                    <p class="col-sm-4">{{supplier['supplierNif']}}</p>
+                                    <p class="col-sm-2">NIF: {{supplier['supplierNif']}}</p>
                                 </div>
                             </li>
                         </ul>

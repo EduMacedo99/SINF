@@ -55,6 +55,10 @@ export class PurchasesComponent implements OnInit {
     return this.purchasesList['purchasesList'];
   }
 
+  public getPurchasesProductsList(purchase:any) {
+    return purchase['products'];
+  }
+
   public getSuppliers() {
     return this.suppliers['suppliers'];
   }
