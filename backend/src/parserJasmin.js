@@ -20,7 +20,7 @@ if (shell.which("xmllint")) {
   shell.echo('XML Validation requires "xmllint".');
 }
 
-fs.writeFile("dbJasmin.json", "", function () {
+fs.writeFile("databases/dbJasmin.json", "", function () {
   console.log("Emptied contents of the database");
 });
 
@@ -51,7 +51,7 @@ read(args.source, (err, buffer) => {
 
   const parsed = parseContents(json);
 
-  fs.writeFile("dbJasmin.json", parsed, (err) => {
+  fs.writeFile("databases/dbJasmin.json", parsed, (err) => {
     if (err) {
       throw err;
     }

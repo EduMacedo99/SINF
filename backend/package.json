@@ -9,7 +9,7 @@
         "build": "babel src -d lib",
         "parse": "node lib/parser.js",
         "parseJasmin": "node lib/parserJasmin.js",
-        "serve": "forever -w lib/server.js",
+        "serve": "forever --watch --watchDirectory ./databases lib/server.js",
         "kill": "taskkill /f /im node.exe"
     },
     "author": "",
