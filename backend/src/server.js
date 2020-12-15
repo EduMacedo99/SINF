@@ -13,7 +13,12 @@ const sales = require('./modules/sales');
 const token = require("./modules/token");
 const saft = require("./modules/importSaft");
 const inventory = require("./modules/inventory");
+const bodyParser = require("body-parser");
 server.use(jsonServer.bodyParser);
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({
+    extended: true
+}));
 const account = require("./modules/accounts");
 const purchases = require('./modules/purchases')
 const url = "https://my.jasminsoftware.com/api/242845/242845-0001"

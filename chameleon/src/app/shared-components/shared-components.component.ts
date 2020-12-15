@@ -35,6 +35,8 @@ export class SharedComponentsComponent implements OnInit {
     ])
   });
 
+  public uploadedFiles: Array <File> = [];
+
   constructor(private auth: AuthenticationService, private http: HttpClient) { 
     this.sidebarVisible = false;
     this.modalVisible = false;
@@ -123,7 +125,7 @@ export class SharedComponentsComponent implements OnInit {
     this.auth.logout();
   }
 
-  sendFile() {
+  /*sendFile() {
     const {filename} = this.importForm.value;
     const headerDict = {
       'Access-Control-Allow-Origin': '*',
@@ -133,5 +135,26 @@ export class SharedComponentsComponent implements OnInit {
     };
     this.http.put<any>(`${environment.safTApi}/api/import?filename="${filename}"`,{},requestOptions)
         .subscribe();
-  };
+  };*/
+
+  fileChange(element:any) {
+    this.uploadedFiles = element.target.files;
+  }
+
+  upload() {
+    let formData = new FormData();
+    for (var i = 0; i < this.uploadedFiles.length; i++) {
+        formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
+    }
+    const headerDict = {
+      'Access-Control-Allow-Origin': '*',
+    };
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    this.http.post(`${environment.safTApi}/api/import`, formData,requestOptions)
+        .subscribe((response) => {
+            console.log('response received is ', response);
+        })
+  }
 }

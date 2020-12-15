@@ -25,7 +25,10 @@
     },
     "dependencies": {
         "@babel/polyfill": "^7.12.1",
+        "body-parser": "^1.19.0",
         "command-line-args": "^5.1.1",
+        "connect-multiparty": "^2.2.0",
+        "express": "^4.17.1",
         "forever": "^3.0.4",
         "read-file": "^0.2.0",
         "request": "^2.88.2",
