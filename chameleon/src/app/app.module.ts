@@ -13,7 +13,6 @@ import { SalesComponent } from './sales/sales.component';
 import { PurchasesComponent } from './purchases/purchases.component';
 import { FinancialComponent } from './financial/financial.component';
 import { InventoryComponent } from './inventory/inventory.component';
-import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { SalesLineChartComponent } from './sales/sales-line-chart/sales-line-chart.component';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
@@ -44,7 +43,6 @@ import { InventoryBarChartComponent } from './inventory/inventory-bar-chart/inve
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFileUploaderModule,
     ChartsModule
   ],
   providers: [],
