@@ -24,10 +24,11 @@
         </div>
         <div class="modal-body">
             <form [formGroup]="importForm">
-                <input type="file" id="myFile" ng-model="string" ng-required="true" formControlName="filename">
+                <!-- <input type="file" id="myFile" ng-model="string" ng-required="true" formControlName="filename"> -->
+                <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.txt">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" (click)="modalToggle()">Close</button>
-                    <input type="submit" class="btn btn-primary" (click)="modalToggle()" (click)="sendFile()" value="Send">
+                    <input type="submit" class="btn btn-primary" (click)="modalToggle()" (click)="fileChange($event)" value="Send">
                 </div>
             </form>              
         </div>

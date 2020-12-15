@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http'
 import { AuthenticationService } from 'src/app/account/authentication/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -134,4 +135,31 @@ export class SharedComponentsComponent implements OnInit {
     this.http.put<any>(`${environment.safTApi}/api/import?filename="${filename}"`,{},requestOptions)
         .subscribe();
   };
+
+  fileChange(event : any) {
+    let fileList: FileList = event.target.files;
+    console.log("aqui");
+    console.log(event);
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        console.log(file);
+        console.log(file.name);
+        const headerDict = {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        };
+        const requestOptions = {
+          headers: new HttpHeaders(headerDict),
+        };
+        console.log(formData.get('uploadFile'));
+        this.http.post(`${environment.safTApi}/api/import`, formData, requestOptions)
+            // .pipe(map((res : any) => res.json()))
+            .subscribe(
+                (data : any) => console.log(data),
+                (error : any) => console.log(error)
+            )
+    }
+}
 }

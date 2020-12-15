@@ -13,6 +13,7 @@ const sales = require('./modules/sales');
 const token = require("./modules/token");
 const saft = require("./modules/importSaft");
 const inventory = require("./modules/inventory");
+const multer = require('multer');
 server.use(jsonServer.bodyParser);
 const account = require("./modules/accounts");
 const purchases = require('./modules/purchases')
@@ -30,7 +31,7 @@ server.get('/echo', (req, res) => {
 sales(server, dbJasmin, url);
 purchases(server, db, url);
 token(server, db, accounts);
-saft(server, db);
+saft(server, db, multer);
 inventory(server, db);
 account(server, db);
 
