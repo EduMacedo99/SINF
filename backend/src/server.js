@@ -1,8 +1,8 @@
 const jsonServer = require('json-server')
 const server = jsonServer.create()
-const router = jsonServer.router('db.json')
-const routerJasmin = jsonServer.router('dbJasmin.json')
-const router2 = jsonServer.router('accounts.json')
+const router = jsonServer.router("databases/db.json");
+const routerJasmin = jsonServer.router("databases/dbJasmin.json");
+const router2 = jsonServer.router("databases/accounts.json");
 const middlewares = jsonServer.defaults()
 
 const db = router.db.__wrapped__;
