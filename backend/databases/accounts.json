@@ -1,6 +1,9 @@
 {
-    "User": {
-        "username": "up201703658@fe.up.pt",
-        "password": "MyPassword"
-    }
+    "User": [
+        {"username": "up201703658@fe.up.pt","password": "MyPassword"},
+        {"username": "up201706162@fe.up.pt","password": "MyPassword"},
+        {"username": "up201706162@fe.up.pt","password": "MyPassword"},
+        {"username": "up201705616@fe.up.pt","password": "MyPassword"},
+        {"username": "up201706828@fe.up.pt","password": "MyPassword"}
+    ]
 }
