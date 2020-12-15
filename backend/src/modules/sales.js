@@ -2,6 +2,33 @@ const request = require("request");
 
 module.exports = (server, db) => {
 
+    const processTopProducts = (salesData) => {
+        let topProducts = [];
+
+        salesData.forEach((sale) => {
+            sale.documentLines.forEach((product) => {
+                if (Object.prototype.hasOwnProperty.call(topProducts, product.salesItem)) {
+                    topProducts[product.salesItem].Quantity += parseInt(product.quantity, 10);
+                } else {
+                    topProducts[product.salesItem] = {
+                        ProductDescription: product.description,
+                        Quantity: parseInt(product.quantity, 10),
+                    };
+                }
+            });
+        });
+
+        topProducts = Object.keys(topProducts)
+            .sort((a, b) => topProducts[b].Quantity - topProducts[a].Quantity)
+            .map(productCode => ({
+                id: productCode,
+                name: topProducts[productCode].ProductDescription,
+                quantity: topProducts[productCode].Quantity
+            }));
+
+        return topProducts;
+    };
+
     const processSalesPerCity = (salesData) => {
         let salesPerCity = {};
 
@@ -27,8 +54,8 @@ module.exports = (server, db) => {
 
         return revenueFromSales;
     };
-
-    /*    server.get('/api/sales/sales-per-city', (req, res) => {
+    /*
+        server.get('/api/sales/sales-per-city', (req, res) => {
             const sales = db.SourceDocuments.SalesInvoices.Invoice;
             const validTypes = ['FT', 'FS', 'FR', 'VD'];
             const salesPerCity = {};
@@ -98,44 +125,63 @@ module.exports = (server, db) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.json({ cumulative });
     });
+    /*
+        server.get('/api/sales/top-products', (req, res) => {
+            let products = {};
+            const validTypes = ['FT', 'FS', 'FR', 'VD'];
 
-    server.get('/api/sales/top-products', (req, res) => {
-        let products = {};
-        const validTypes = ['FT', 'FS', 'FR', 'VD'];
+            db.SourceDocuments.SalesInvoices.Invoice.forEach(invoice => {
+                const type = invoice.InvoiceType;
 
-        db.SourceDocuments.SalesInvoices.Invoice.forEach(invoice => {
-            const type = invoice.InvoiceType;
+                if (!(invoice.Line.length && validTypes.includes(type))) return;
 
-            if (!(invoice.Line.length && validTypes.includes(type))) return;
-
-            invoice.Line.forEach(line => {
-                const { ProductCode, UnitPrice, ProductDescription, Quantity } = line;
-                if (Object.prototype.hasOwnProperty.call(products, ProductCode)) {
-                    products[ProductCode].Quantity += parseInt(Quantity, 10);
-                } else {
-                    products[ProductCode] = {
-                        ProductDescription,
-                        UnitPrice: parseFloat(UnitPrice, 10),
-                        Quantity: parseInt(Quantity, 10),
-                    };
-                }
+                invoice.Line.forEach(line => {
+                    const { ProductCode, UnitPrice, ProductDescription, Quantity } = line;
+                    if (Object.prototype.hasOwnProperty.call(products, ProductCode)) {
+                        products[ProductCode].Quantity += parseInt(Quantity, 10);
+                    } else {
+                        products[ProductCode] = {
+                            ProductDescription,
+                            UnitPrice: parseFloat(UnitPrice, 10),
+                            Quantity: parseInt(Quantity, 10),
+                        };
+                    }
+                });
             });
-        });
 
-        products = Object.keys(products)
-            .sort((a, b) => products[b].Quantity - products[a].Quantity)
-            .map(productCode => ({
-                id: productCode,
-                name: products[productCode].ProductDescription,
-                quantity: products[productCode].Quantity,
-                value: Number(
-                    (
-                        products[productCode].Quantity * products[productCode].UnitPrice
-                    ).toFixed(2),
-                ),
-            }));
-        res.header("Access-Control-Allow-Origin", "*");
-        res.json(products);
+            products = Object.keys(products)
+                .sort((a, b) => products[b].Quantity - products[a].Quantity)
+                .map(productCode => ({
+                    id: productCode,
+                    name: products[productCode].ProductDescription,
+                    quantity: products[productCode].Quantity,
+                    value: Number(
+                        (
+                            products[productCode].Quantity * products[productCode].UnitPrice
+                        ).toFixed(2),
+                    ),
+                }));
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json(products);
+        });*/
+
+    server.get("/api/sales/top-products", (req, res) => {
+        let topProducts;
+        const options = {
+            method: "GET",
+            url: "https://my.jasminsoftware.com/api/242845/242845-0001/billing/invoices",
+            headers: {
+                Authorization: req.headers.authorization,
+                "Content-Type": "application/json",
+            },
+        };
+
+        request(options, function(error, response, body) {
+            topProducts = processTopProducts(JSON.parse(response.body));
+            if (error) throw new Error(error);
+            res.header("Access-Control-Allow-Origin", "*");
+            res.json(topProducts);
+        });
     });
 
     server.get('/api/sales/top-customers', (req, res) => {
