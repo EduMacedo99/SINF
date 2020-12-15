@@ -5,34 +5,30 @@ const processProductSuppliers = (suppliersData) => {
     const pageSize = req.query.pageSize || 15;*/
 
     const suppliers = [];
-    suppliersData.forEach((supplier) => {
-        const accumulator = supplier.documentLines.reduce((accumulator, order) => {
-            accumulator.quantity += order.quantity;
-            accumulator.totalPrice += order.unitPrice.amount;
-            accumulator.num++;
-            return accumulator;
-        }, { quantity: 0, totalPrice: 0, num: 0 });
-        suppliers.push({
-            supplierName: supplier.sellerSupplierPartyName,
-            supplierKey: supplier.sellerSupplierParty,
-            supplierNif: supplier.accountingPartyTaxId,
-            supplierAddress: supplier.loadingPointAddress,
-            supplierPostalCode: supplier.loadingPostalZone,
-            quantity: accumulator.quantity,
-            priceRatio: (accumulator.totalPrice / accumulator.num).toFixed(2)
-        });
+    const supplierNifAux = [];
 
+    suppliersData.forEach((supplier) => {
+        if (!supplierNifAux.includes(supplier.accountingPartyTaxId) && supplier.accountingPartyTaxId !== null) {
+            suppliers.push({
+                supplierName: supplier.sellerSupplierPartyName,
+                supplierNif: supplier.accountingPartyTaxId,
+                supplierAddress: supplier.loadingPointAddress,
+                supplierPostalCode: supplier.loadingPostalZone
+            });
+            supplierNifAux.push(supplier.accountingPartyTaxId);
+        }
     });
     return ({
         suppliers: suppliers.sort((a, b) => {
-            if (a.priceRatio > b.priceRatio) {
+            if (a.supplierName > b.supplierName) {
                 return 1;
-            } else if (a.priceRatio < b.priceRatio) {
+            } else if (a.supplierName < b.supplierName) {
                 return -1;
             }
 
             return 0;
         }) /*.slice((page - 1) * pageSize, page * pageSize)*/
+
     });
 };
 
@@ -41,15 +37,21 @@ const processOrders = (purchasesData) => {
     const pageSize = req.query.pageSize || 15;*/
 
     const purchasesList = [];
+    let productsList = [];
 
     purchasesData.forEach((document) => {
+        document["documentLines"].forEach((product) => {
+            productsList.push([product.description, product.quantity]);
+        });
         purchasesList.push({
             supplierName: document.sellerSupplierPartyName,
             supplierTaxID: document.sellerSupplierPartyTaxId,
             totalValue: new Intl.NumberFormat('en-UK').format(document.payableAmount.amount),
             date: document.exchangeRateDate.split("T")[0],
             purchaseId: document.documentLines[0].orderId,
+            products: productsList
         });
+        productsList = [];
     });
 
     return ({
@@ -160,7 +162,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
                 totalDebit += ret.totalDebit;
             }
         });
-
+        res.header("Access-Control-Allow-Origin", "*");
         res.json((totalCredit - totalDebit).toFixed(2));
     });
 
@@ -168,7 +170,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
         let totalPurchases = 0;
         let monthlyPurchasesAux;
         let monthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let year = "2020-";
+        let year = new Date().getFullYear();
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
@@ -181,8 +183,8 @@ module.exports = (server, db, basePrimaveraUrl) => {
         request(options, function(error, response, body) {
             monthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
             for (let i = 0; i < 12; i++) {
-                if (monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
-                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                if (monthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()] !== undefined) {
+                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()];
                 }
             }
             for (let i = 0; i < monthlyPurchases.length; i++) {
@@ -197,8 +199,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
     server.get('/api/purchases/monthly-purchases', (req, res) => {
         let monthlyPurchasesAux;
         let monthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let year = "2020-";
-        //let yearAux = new Date().getFullYear();
+        let year = new Date().getFullYear();
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
@@ -211,8 +212,8 @@ module.exports = (server, db, basePrimaveraUrl) => {
         request(options, function(error, response, body) {
             monthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
             for (let i = 0; i < 12; i++) {
-                if (monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
-                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                if (monthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()] !== undefined) {
+                    monthlyPurchases[i] = monthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()];
                 }
             }
             if (error) throw new Error(error);
@@ -224,7 +225,7 @@ module.exports = (server, db, basePrimaveraUrl) => {
     server.get('/api/purchases/monthly-cumulative-purchases', (req, res) => {
         let cumulativeMonthlyPurchasesAux;
         let cumulativeMonthlyPurchases = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let year = "2020-";
+        let year = new Date().getFullYear();
         const options = {
             method: "GET",
             url: `${basePrimaveraUrl}/invoiceReceipt/invoices`,
@@ -237,8 +238,8 @@ module.exports = (server, db, basePrimaveraUrl) => {
         request(options, function(error, response, body) {
             cumulativeMonthlyPurchasesAux = processMonthlyPurchases(JSON.parse(response.body));
             for (let i = 0; i < 12; i++) {
-                if (cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()] !== undefined) {
-                    cumulativeMonthlyPurchases[i] = cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year + (i + 1).toString()];
+                if (cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()] !== undefined) {
+                    cumulativeMonthlyPurchases[i] = cumulativeMonthlyPurchasesAux.purchasesByTimestamp[year.toString() + "-" + (i + 1).toString()];
                 }
             }
             for (let i = 1; i < cumulativeMonthlyPurchases.length; i++) {

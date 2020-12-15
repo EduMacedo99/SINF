@@ -13,8 +13,6 @@ export class SalesComponent implements OnInit {
   private accountsReceivable = 0;
   public sales: Array<any> = [];
   private revenue = 0;
-  private productsName: string[] = [];
-  private productsQuantity: number[] = [];
   private products = [];
 
   ngOnInit(): void {

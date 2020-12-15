@@ -24,8 +24,8 @@ module.exports = (server, db) => {
     };
 
     const processProducts = (stockData) => {
-        /*const page = req.query.page || 1;
-        const pageSize = req.query.pageSize || 5;*/
+        const page =  1;
+        const pageSize = 8;
 
         const response = {
             products: []
@@ -49,14 +49,14 @@ module.exports = (server, db) => {
         });
 
         response.products = productsList.sort((a, b) => {
-            if (a.date < b.date) {
+            if (a.value < b.value) {
                 return 1;
-            } else if (a.date > b.date) {
+            } else if (a.value > b.value) {
                 return -1;
             }
 
             return 0;
-        }); /*.slice((page - 1) * pageSize, page * pageSize);*/
+        }).slice((page - 1) * pageSize, page * pageSize);
 
         //res.json(response);
         return response;
@@ -103,7 +103,7 @@ module.exports = (server, db) => {
             stock = processStock(JSON.parse(response.body));
             if (error) throw new Error(error);
             res.header("Access-Control-Allow-Origin", "*");
-            res.json(stock);
+            res.json({stock});
         });
     });
 

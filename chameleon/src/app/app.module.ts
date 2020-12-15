@@ -19,6 +19,7 @@ import { SalesLineChartComponent } from './sales/sales-line-chart/sales-line-cha
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { PurchasesLineChartComponent } from './purchases/purchases-line-chart/purchases-line-chart.component';
 import { SalesBarChartComponent } from './sales/sales-bar-chart/sales-bar-chart.component';
+import { InventoryBarChartComponent } from './inventory/inventory-bar-chart/inventory-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SalesBarChartComponent } from './sales/sales-bar-chart/sales-bar-chart.
     SalesLineChartComponent,
     LineChartComponent,
     PurchasesLineChartComponent,
-    SalesBarChartComponent
+    SalesBarChartComponent,
+    InventoryBarChartComponent
   ],
   imports: [
     BrowserModule,

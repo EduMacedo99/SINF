@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SaftApiService } from 'src/app/saftApi/saft-api.service';
+import { ApiService } from 'src/app/webApi/web-api.service';
 
 @Component({
   selector: 'app-overview',
@@ -9,8 +10,9 @@ import { SaftApiService } from 'src/app/saftApi/saft-api.service';
 export class OverviewComponent implements OnInit {
   private profitMargin: number = 0;
   private revenue = 0;
+  private totalPurchases = 0;
 
-  constructor(private saftApi: SaftApiService) {}
+  constructor(private saftApi: SaftApiService, private webApi: ApiService) {}
 
   ngOnInit(): void {
     this.saftApi
@@ -20,6 +22,14 @@ export class OverviewComponent implements OnInit {
     this.saftApi
       .get('api/sales/revenueFromSales')
       .subscribe((data) => this.parseRevenue(data));
+
+    this.webApi
+      .get('api/purchases/total-purchases')
+      .subscribe((data: Object) => {
+        if ('totalPurchases' in data) {
+          this.totalPurchases = data['totalPurchases'];
+        }
+      });
   }
 
   private parseGrossProfitMargin(data: any) {
@@ -36,5 +46,9 @@ export class OverviewComponent implements OnInit {
 
   public getRevenue() {
     return this.revenue;
+  }
+
+  public getTotalPurchases() {
+    return this.totalPurchases;
   }
 }

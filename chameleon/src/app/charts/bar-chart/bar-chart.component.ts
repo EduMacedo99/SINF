@@ -28,7 +28,7 @@ export class BarChartComponent {
 
   public colors: Array<any> = [
     { // blue
-      backgroundColor: ' #20689f73',
+      backgroundColor: ' #20689f',
       borderColor: '#20689f',
       pointBackgroundColor: '#20689f',
       pointBorderColor: '#fff',

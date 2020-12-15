@@ -14,70 +14,6 @@
                                 <p>S. João da Madeira</p>
                                 <p>Portugal</p>
                             </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
-                                </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
-                                </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
-                                </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
-                                </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
-                                </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
-                                </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
-                                </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">NIF 233045642</p>
-                                </div>
-                                <p>S. João da Madeira</p>
-                                <p>Portugal</p>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -86,13 +22,13 @@
                 <div class="row board-25">
                     <div class="value_board flex-column">
                         <h2>Accounts Payable</h2>
-                        <p>€3.613,45</p>
+                        <p>{{getPayable()}} €</p>
                     </div>
                 </div>
                 <div class="row board-25">
                     <div class="value_board flex-column">
                         <h2>Total Purchases</h2>
-                        <p>€101.382,00</p>
+                        <p>{{getTotalPurchases()}} €</p>
                     </div>
                 </div>
                 <div class="row board-50">
@@ -107,89 +43,12 @@
                     <div class="list_board info_board flex-column">
                         <h2>Orders</h2>
                         <ul>
-                            <li>
+                            <li *ngFor="let order of getPurchasesList()">
                                 <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
+                                    <p class="col-sm-4">{{order['supplierName']}}</p>
+                                    <p class="col-sm-4">{{order['totalValue']}}€</p>
+                                    <p class="col-sm-4">{{order['date']}}</p>
                                 </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <p class="col-sm-6">Viarco</p>
-                                    <p class="col-sm-6">5000 unit.</p>
-                                </div>
-                                <p>Lápis de grafite nº 2001</p>
                             </li>
                         </ul>
                     </div>
