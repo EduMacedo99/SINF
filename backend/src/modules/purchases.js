@@ -41,7 +41,7 @@ const processOrders = (purchasesData) => {
 
     purchasesData.forEach((document) => {
         document["documentLines"].forEach((product) => {
-            productsList.push([product.description, product.quantity]);
+            productsList.push([product.description, product.quantity, product.unitPrice.amount]);
         });
         purchasesList.push({
             supplierName: document.sellerSupplierPartyName,
