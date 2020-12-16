@@ -31,8 +31,10 @@
                             <li class="with-border" *ngFor="let order of getPurchasesList()">
                                 <p>Supplier: {{order['supplierName']}}</p>
                                 <ul class="mt-0 mb-2 pl-4">
-                                    <li *ngFor="let product of getPurchasesProductsList(order)">
-                                        {{product[0]}}
+                                    <li *ngFor="let product of getPurchasesProductsList(order)" class="row">
+                                        <p class="col-sm-6">{{product[0]}}</p>
+                                        <p class="col-sm-3">{{product[1]}} units</p>
+                                        <p class="col-sm-3">{{product[2]}} €/unit</p>
                                     </li>
                                 </ul>
                                 <div class="row">
