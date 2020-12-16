@@ -31,8 +31,6 @@ read(args.source, (err, buffer) => {
 
   const json = JSON.parse(string);
 
-    console.log(json);
-
   const parsed = parseContents(json);
 
   fs.writeFile("databases/db.json", parsed, (err) => {
