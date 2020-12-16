@@ -140,6 +140,7 @@ export class SharedComponentsComponent implements OnInit {
     this.http.post(`${environment.safTApi}/upload`, formData,requestOptions)
         .subscribe((response) => {
             console.log('response received is ', response);
+            location.reload();
         })
   }
 }
