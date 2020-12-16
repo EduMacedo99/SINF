@@ -1280,7 +1280,9 @@ const processTaxonomySum = (taxonomy, accounts) => {
     // fetch the account ids for all accounts with this taxonomy code
     const results = [];
     let balance = 0;
+    var i = 0
     accounts.forEach(account => {
+
         if (account.TaxonomyCode == taxonomy) {
             balance =
                 Number(account.ClosingDebitBalance) -
@@ -1288,9 +1290,10 @@ const processTaxonomySum = (taxonomy, accounts) => {
             results.push({
                 taxonomy: taxonomy,
                 account: account.AccountID,
-                balanceType: balance > 0 ? 'debit' : 'credt',
-                balanceValue: balance > 0 ? balance : -balance,
+                balanceType: balance > 0 ? 'debit' : 'credit',
+                balanceValue:  balance > 0 ? balance : -balance,
             });
+            // if(results[i] !== undefined) console.log(results[i].balanceValue)
         }
     });
 
@@ -1316,7 +1319,7 @@ const processTaxonomySumViaTransactions = (taxonomy, accounts, journals) => {
         results.push({
             taxonomy: taxonomy,
             account: code,
-            balanceType: balance > 0 ? 'debit' : 'credt',
+            balanceType: balance > 0 ? 'debit' : 'credit',
             balanceValue: balance > 0 ? balance : -balance,
         });
         // return the same we returned before
@@ -1434,6 +1437,7 @@ const calculateEquity = accounts => {
                 });
             });
         }
+        currentSum = Math.round(currentSum * 100) / 100;
         equity.accounts.push({ name: equityAccount.name, value: currentSum });
         sum += currentSum;
         currentSum = 0;
@@ -1513,6 +1517,7 @@ const calculateAssets = accounts => {
                 });
             });
         }
+        currentSum = Math.round(currentSum * 100)/100
         assets.current.push({ name: assetAccount.name, value: currentSum });
         totalCurrent += currentSum;
         currentSum = 0;
@@ -1577,6 +1582,7 @@ const calculateAssets = accounts => {
                 });
             });
         }
+        currentSum = Math.round(currentSum * 100) / 100;
         assets.nonCurrent.push({ name: assetAccount.name, value: currentSum });
         totalNonCurrent += currentSum;
         currentSum = 0;
@@ -1659,6 +1665,7 @@ const calculateLiabilities = accounts => {
                 });
             });
         }
+        currentSum = Math.round(currentSum * 100) / 100;
         liabilities.current.push({
             name: liabilityAccount.name,
             value: currentSum,
@@ -1726,6 +1733,7 @@ const calculateLiabilities = accounts => {
                 });
             });
         }
+        currentSum = Math.round(currentSum * 100) / 100;
         liabilities.nonCurrent.push({
             name: liabilityAccount.name,
             value: currentSum,
@@ -1831,6 +1839,7 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
+        currentSum = Math.round(currentSum * 100) / 100;
         pl.revenue.push({ name: revenueAccount.name, value: currentSum });
         currentSum = 0;
     });
@@ -1871,6 +1880,7 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
+        currentSum = Math.round(currentSum * 100) / 100;
         pl.expenses.push({ name: expensesAccount.name, value: currentSum });
         currentSum = 0;
     });
@@ -1911,6 +1921,7 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
+        currentSum = Math.round(currentSum * 100) / 100;
         pl.interest.push({ name: interestAccount.name, value: currentSum });
         currentSum = 0;
     });
@@ -1951,6 +1962,7 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
+        currentSum = Math.round(currentSum * 100) / 100;
         pl.depreciation.push({ name: depreciationAccount.name, value: currentSum });
         currentSum = 0;
     });
@@ -1991,6 +2003,7 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
+        currentSum = Math.round(currentSum * 100) / 100;
         pl.taxes.push({ name: taxesAccount.name, value: currentSum });
         currentSum = 0;
     });
