@@ -12,13 +12,13 @@
                     <div class="board">
                         <div class="value_board flex-column">
                             <h2>Accounts Payable</h2>
-                            <p>{{getPayable()}} €</p>
+                            <p>{{getPayable()}}€</p>
                         </div>
                     </div>
                     <div class="board">
                         <div class="value_board flex-column">
                             <h2>Total Purchases</h2>
-                            <p>{{getTotalPurchases()}} €</p>
+                            <p>{{getTotalPurchases()}}€</p>
                         </div>
                     </div>
                 </div>
@@ -32,13 +32,13 @@
                                 <p>Supplier: {{order['supplierName']}}</p>
                                 <ul class="mt-0 mb-2 pl-4">
                                     <li *ngFor="let product of getPurchasesProductsList(order)" class="row">
-                                        <p class="col-sm-6">{{product[0]}}</p>
-                                        <p class="col-sm-3">{{product[1]}} units</p>
-                                        <p class="col-sm-3">{{product[2]}} €/unit</p>
+                                        <p class="col-sm-7">{{product[0]}}</p>
+                                        <p class="col-sm-2">{{product[1]}} units</p>
+                                        <p class="col-sm-3">{{product[2]}}€/unit</p>
                                     </li>
                                 </ul>
                                 <div class="row">
-                                    <p class="col-sm-6">Total value: {{order['totalValue']}} €</p>
+                                    <p class="col-sm-6">Total value: {{order['totalValue']}}€ (w/ VAT)</p>
                                     <p class="col-sm-6">Date: {{order['date']}}</p>
                                 </div>
                             </li>
