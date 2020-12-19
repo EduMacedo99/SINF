@@ -3,15 +3,16 @@ const request = require("request");
 module.exports = (server, db) => {
 
     const processWarehouses = (items) => {
-        const warehouses = {};
+        const top5Warehouses = {};
+
         if (items) {
             items.forEach((item) => {
                 item.materialsItemWarehouses.forEach((materialsItem) => {
-                    if (warehouses[materialsItem.warehouse]) {
-                        warehouses[materialsItem.warehouse].amount +=
+                    if (top5Warehouses[materialsItem.warehouse]) {
+                        top5Warehouses[materialsItem.warehouse].amount +=
                             materialsItem.inventoryBalance.reportingAmount; // ?? or just .amount
                     } else {
-                        warehouses[materialsItem.warehouse] = {
+                        top5Warehouses[materialsItem.warehouse] = {
                             id: materialsItem.warehouse,
                             name: materialsItem.warehouseDescription,
                             amount: materialsItem.inventoryBalance.reportingAmount,
@@ -20,11 +21,12 @@ module.exports = (server, db) => {
                 });
             });
         }
-        return Object.keys(warehouses).map((warehouse) => warehouses[warehouse]);
+
+        return Object.keys(top5Warehouses).map((warehouse) => top5Warehouses[warehouse]);
     };
 
     const processProducts = (stockData) => {
-        const page =  1;
+        const page = 1;
         const pageSize = 8;
 
         const response = {
@@ -58,35 +60,26 @@ module.exports = (server, db) => {
             return 0;
         }).slice((page - 1) * pageSize, page * pageSize);
 
-        //res.json(response);
         return response;
     };
 
     const getStockQuantity = (item) => {
-        return item.materialsItemWarehouses.reduce((accumulator, currValue) => {
-            accumulator += currValue.stockBalance;
-            return accumulator;
+        return item.materialsItemWarehouses.reduce((aux, val) => {
+            aux += val.stockBalance;
+            return aux;
         }, 0);
     }
 
     const getStockValue = (item) => {
 
-        return item.materialsItemWarehouses.reduce((accumulator, currValue) => {
-            accumulator += currValue.inventoryBalance.amount;
-            return accumulator;
+        return item.materialsItemWarehouses.reduce((aux, val) => {
+            aux += val.inventoryBalance.amount;
+            return aux;
         }, 0);
     }
 
     const processStock = (materials) =>
-        materials.reduce(
-            (accum, val) =>
-            accum +
-            val.materialsItemWarehouses.reduce(
-                (accum2, val2) => accum2 + val2.inventoryBalance.amount,
-                0
-            ),
-            0
-        );
+        materials.reduce((aux, val) => aux + val.materialsItemWarehouses.reduce((aux1, val1) => aux1 + val1.inventoryBalance.amount, 0), 0);
 
     server.get("/api/inventory/total-stock", (req, res) => {
         var stock = 0;
@@ -103,7 +96,7 @@ module.exports = (server, db) => {
             stock = processStock(JSON.parse(response.body));
             if (error) throw new Error(error);
             res.header("Access-Control-Allow-Origin", "*");
-            res.json({stock});
+            res.json({ stock });
         });
     });
 
