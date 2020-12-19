@@ -19,7 +19,7 @@ export class OverviewComponent implements OnInit {
       .get('api/financial/gross-profit-margin')
       .subscribe((data) => this.parseGrossProfitMargin(data));
 
-    this.webApi.get('api/sales/revenueFromSales').subscribe((data: any) => {
+    this.webApi.get('api/sales/revenue-from-sales').subscribe((data: any) => {
         this.revenue = data;
     });
 

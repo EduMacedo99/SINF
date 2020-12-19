@@ -179,7 +179,7 @@ module.exports = (server, db) => {
         });
     });
 
-    server.get("/api/sales/revenueFromSales", (req, res) => {
+    server.get("/api/sales/revenue-from-sales", (req, res) => {
         let revenueFromSales;
         const options = {
             method: "GET",

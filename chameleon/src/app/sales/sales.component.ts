@@ -25,7 +25,7 @@ export class SalesComponent implements OnInit {
       .get('api/financial/accounts-receivable')
       .subscribe((data) => this.parseAccountsReceivable(data));
 
-    this.webApi.get('api/sales/revenueFromSales').subscribe((data: any) => {
+    this.webApi.get('api/sales/revenue-from-sales').subscribe((data: any) => {
         this.revenue = data;
     });
 
