@@ -1761,22 +1761,6 @@ const calculateCash = accounts => {
     const cashCalculations = ['11', '12', '13'];
     let total = 0;
     let currentAccount;
-    /*
-    cashCalculations.forEach(account => {
-      currentAccount = fetchAccount(accounts, Math.abs(account));
-      if (currentAccount) {
-        if (account < 0) {
-          total -=
-            currentAccount.ClosingDebitBalance -
-            currentAccount.ClosingCreditBalance;
-        } else {
-          total +=
-            currentAccount.ClosingDebitBalance -
-            currentAccount.ClosingCreditBalance;
-        }
-      }
-    });
-    */
     cashCalculations.forEach(account => {
         currentAccount = processJournalEntries(accounts, account, false);
         if (currentAccount) {
