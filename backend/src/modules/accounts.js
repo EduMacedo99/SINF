@@ -1437,12 +1437,11 @@ const calculateEquity = accounts => {
                 });
             });
         }
-        currentSum = Math.round(currentSum * 100) / 100;
-        equity.accounts.push({ name: equityAccount.name, value: currentSum });
+        equity.accounts.push({ name: equityAccount.name, value: currentSum.toFixed(2) });
         sum += currentSum;
         currentSum = 0;
     });
-    equity.total = sum;
+    equity.total = sum.toFixed(2);
 
     return equity;
 };
@@ -1517,8 +1516,7 @@ const calculateAssets = accounts => {
                 });
             });
         }
-        currentSum = Math.round(currentSum * 100)/100
-        assets.current.push({ name: assetAccount.name, value: currentSum });
+        assets.current.push({ name: assetAccount.name, value: currentSum.toFixed(2) });
         totalCurrent += currentSum;
         currentSum = 0;
     });
@@ -1582,15 +1580,15 @@ const calculateAssets = accounts => {
                 });
             });
         }
-        currentSum = Math.round(currentSum * 100) / 100;
-        assets.nonCurrent.push({ name: assetAccount.name, value: currentSum });
+        assets.nonCurrent.push({ name: assetAccount.name, value: currentSum.toFixed(2) });
         totalNonCurrent += currentSum;
         currentSum = 0;
     });
 
-    assets.totalCurrent = totalCurrent;
-    assets.totalNonCurrent = totalNonCurrent;
+    assets.totalCurrent = totalCurrent.toFixed(2);
+    assets.totalNonCurrent = totalNonCurrent.toFixed(2);
     assets.total = totalCurrent + totalNonCurrent;
+    assets.total = assets.total.toFixed(2);
 
     return assets;
 };
@@ -1665,10 +1663,9 @@ const calculateLiabilities = accounts => {
                 });
             });
         }
-        currentSum = Math.round(currentSum * 100) / 100;
         liabilities.current.push({
             name: liabilityAccount.name,
-            value: currentSum,
+            value: currentSum.toFixed(2),
         });
         totalCurrent += currentSum;
         currentSum = 0;
@@ -1733,18 +1730,18 @@ const calculateLiabilities = accounts => {
                 });
             });
         }
-        currentSum = Math.round(currentSum * 100) / 100;
         liabilities.nonCurrent.push({
             name: liabilityAccount.name,
-            value: currentSum,
+            value: currentSum.toFixed(2),
         });
         totalNonCurrent += currentSum;
         currentSum = 0;
     });
 
-    liabilities.totalCurrent = totalCurrent;
-    liabilities.totalNonCurrent = totalNonCurrent;
+    liabilities.totalCurrent = totalCurrent.toFixed(2);
+    liabilities.totalNonCurrent = totalNonCurrent.toFixed(2);
     liabilities.total = totalCurrent + totalNonCurrent;
+    liabilities.total = liabilities.total.toFixed(2);
 
     return liabilities;
 };
@@ -1777,6 +1774,16 @@ const calculateCash = accounts => {
 const calculateProfitLoss = (journals, accounts) => {
     let currentSum = 0;
     const pl = {
+        revenue: [],
+        expenses: [],
+        interest: [],
+        depreciation: [],
+        taxes: [],
+        ebitda: 0,
+        ebit: 0,
+        netIncome: 0,
+    };
+    const pl2 = {
         revenue: [],
         expenses: [],
         interest: [],
@@ -1823,8 +1830,8 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
-        currentSum = Math.round(currentSum * 100) / 100;
-        pl.revenue.push({ name: revenueAccount.name, value: currentSum });
+        pl.revenue.push({ name: revenueAccount.name, value: currentSum.toFixed(2) });
+        pl2.revenue.push({ name: revenueAccount.name, value: currentSum });
         currentSum = 0;
     });
 
@@ -1864,8 +1871,8 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
-        currentSum = Math.round(currentSum * 100) / 100;
-        pl.expenses.push({ name: expensesAccount.name, value: currentSum });
+        pl.expenses.push({ name: expensesAccount.name, value: currentSum.toFixed(2) });
+        pl2.expenses.push({ name: expensesAccount.name, value: currentSum });
         currentSum = 0;
     });
 
@@ -1905,8 +1912,8 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
-        currentSum = Math.round(currentSum * 100) / 100;
-        pl.interest.push({ name: interestAccount.name, value: currentSum });
+        pl.interest.push({ name: interestAccount.name, value: currentSum.toFixed(2) });
+        pl2.interest.push({ name: interestAccount.name, value: currentSum });
         currentSum = 0;
     });
 
@@ -1946,8 +1953,8 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
-        currentSum = Math.round(currentSum * 100) / 100;
-        pl.depreciation.push({ name: depreciationAccount.name, value: currentSum });
+        pl.depreciation.push({ name: depreciationAccount.name, value: currentSum.toFixed(2) });
+        pl2.depreciation.push({ name: depreciationAccount.name, value: currentSum });
         currentSum = 0;
     });
 
@@ -1987,30 +1994,33 @@ const calculateProfitLoss = (journals, accounts) => {
             });
         }
 
-        currentSum = Math.round(currentSum * 100) / 100;
-        pl.taxes.push({ name: taxesAccount.name, value: currentSum });
+        pl.taxes.push({ name: taxesAccount.name, value: currentSum.toFixed(2) });
+        pl2.taxes.push({ name: taxesAccount.name, value: currentSum });
         currentSum = 0;
     });
 
     pl.ebitda =
-        pl.revenue.reduce((acc, curr) => acc + curr.value, 0) -
-        pl.expenses.reduce((acc, curr) => acc + curr.value, 0);
+        pl2.revenue.reduce((acc, curr) => acc + curr.value, 0) -
+        pl2.expenses.reduce((acc, curr) => acc + curr.value, 0);
     pl.ebit =
-        pl.ebitda - pl.depreciation.reduce((acc, curr) => acc + curr.value, 0);
+        pl.ebitda - pl2.depreciation.reduce((acc, curr) => acc + curr.value, 0);
     let incomeInterest = 0;
     let expensesInterest = 0;
     for (let i = 0; i < pl.interest.length; i++) {
         if (pl.interest[i].name === 'Juros e rendimentos similares obtidos') {
-            incomeInterest = pl.interest[i].value;
+            incomeInterest = pl2.interest[i].value;
         } else if (pl.interest[i].name === 'Juros e gastos similares suportados') {
-            expensesInterest = pl.interest[i].value;
+            expensesInterest = pl2.interest[i].value;
         }
     }
     pl.netIncome =
         pl.ebit +
         incomeInterest -
         expensesInterest -
-        pl.taxes.reduce((acc, curr) => acc + curr.value, 0);
+        pl2.taxes.reduce((acc, curr) => acc + curr.value, 0);
+
+    pl.ebit = pl.ebit.toFixed(2);
+    pl.netIncome = pl.netIncome.toFixed(2);
 
     return pl;
 };
@@ -2124,7 +2134,7 @@ module.exports = (server, db) => {
             }
         }
         res.header("Access-Control-Allow-Origin", "*");
-        res.json(assets.current[i].value.toFixed(2));
+        res.json(assets.current[i].value);
     });
 
     server.get('/api/financial/equity', (req, res) => {

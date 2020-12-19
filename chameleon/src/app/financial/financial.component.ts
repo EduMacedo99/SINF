@@ -38,7 +38,7 @@ export class FinancialComponent implements OnInit {
         if('depreciation' in data) 
           this.depreciation = data['depreciation'];
         if('ebit' in data)
-          this.ebit = (Math.round(data['ebit'] * 100) / 100).toFixed(2);
+          this.ebit = data['ebit'];
         if('ebitda' in data)
           this.ebitda = data['ebitda'];
         if('expenses' in data) 
@@ -46,7 +46,7 @@ export class FinancialComponent implements OnInit {
         if('interest' in data)
           this.interest = data['interest'];
         if('netIncome' in data)
-          this.netIncome = (Math.round(data['netIncome'] * 100) / 100).toFixed(2);
+          this.netIncome = data['netIncome'];
         if('revenue' in data)
           this.revenue = data['revenue'];
         if('taxes' in data)
@@ -69,19 +69,19 @@ export class FinancialComponent implements OnInit {
 
   getTotalCurrentAssets(): number {
     if (this.assets!= null && 'totalCurrent' in this.assets)
-      return Math.round(this.assets['totalCurrent']*100)/100;
+      return this.assets['totalCurrent'];
     return 0;
   }
 
   getTotalNonCurrentAssets(): number {
     if (this.assets!= null && 'totalNonCurrent' in this.assets)
-      return Math.round(this.assets['totalNonCurrent']*100)/100;
+      return this.assets['totalNonCurrent'];
     return 0;
   }
 
   getTotalAssets(): number {
     if (this.assets!= null && 'total' in this.assets)
-      return Math.round(this.assets['total']*100)/100;
+      return this.assets['total'];
     return 0;
   }
 
@@ -93,7 +93,7 @@ export class FinancialComponent implements OnInit {
 
   getTotalEquity(): number {
     if (this.equity!= null && 'total' in this.equity)
-      return Math.round(this.equity['total']*100/100);
+      return this.equity['total'];
     return 0;
   }
 
@@ -111,19 +111,19 @@ export class FinancialComponent implements OnInit {
 
   getTotalCurrentLiabilities(): number {
     if (this.liabilities!= null && 'totalCurrent' in this.liabilities)
-      return Math.round(this.liabilities['totalCurrent']*100/100);
+      return this.liabilities['totalCurrent'];
     return 0;
   }
 
   getTotalNonCurrentLiabilities(): number {
     if (this.liabilities!= null && 'totalNonCurrent' in this.liabilities)
-      return Math.round(this.liabilities['totalNonCurrent']*100/100);
+      return this.liabilities['totalNonCurrent'];
     return 0;
   }
 
   getTotalLiabilities(): number {
     if (this.liabilities!= null && 'total' in this.liabilities)
-      return Math.round(this.liabilities['total']*100/100);
+      return this.liabilities['total'];
     return 0;
   }
 
