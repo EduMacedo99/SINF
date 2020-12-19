@@ -1,9 +1,6 @@
 const request = require("request");
 
 const processProductSuppliers = (suppliersData) => {
-    /*const page = req.query.page || 1;
-    const pageSize = req.query.pageSize || 15;*/
-
     const suppliers = [];
     const supplierNifAux = [];
 
@@ -27,15 +24,11 @@ const processProductSuppliers = (suppliersData) => {
             }
 
             return 0;
-        }) /*.slice((page - 1) * pageSize, page * pageSize)*/
-
+        })
     });
 };
 
 const processOrders = (purchasesData) => {
-    /*const page = req.query.page || 1;
-    const pageSize = req.query.pageSize || 15;*/
-
     const purchasesList = [];
     let productsList = [];
 
@@ -48,7 +41,6 @@ const processOrders = (purchasesData) => {
             supplierTaxID: document.sellerSupplierPartyTaxId,
             totalValue: new Intl.NumberFormat('en-UK').format(document.payableAmount.amount),
             date: document.exchangeRateDate.split("T")[0],
-            purchaseId: document.documentLines[0].orderId,
             products: productsList
         });
         productsList = [];
@@ -63,29 +55,29 @@ const processOrders = (purchasesData) => {
             }
 
             return 0;
-        }) /*.slice((page - 1) * pageSize, page * pageSize)*/
+        })
     });
 };
 
 const processMonthlyPurchases = (purchasesData) => {
-    const purchasesByTimestamp = {};
+    const monthlyPurchasesByTimestamp = {};
 
     const response = {
         purchasesByTimestamp: {}
     };
 
     purchasesData.forEach((purchase) => {
-        const timestamp = extractTimestamp(purchase.documentDate.split("T")[0]);
+        const timestamp = getTimestamp(purchase.documentDate.split("T")[0]);
 
-        if (purchasesByTimestamp[timestamp] == undefined) {
-            purchasesByTimestamp[timestamp] = 0;
+        if (monthlyPurchasesByTimestamp[timestamp] == undefined) {
+            monthlyPurchasesByTimestamp[timestamp] = 0;
         }
 
-        purchasesByTimestamp[timestamp] += purchase.payableAmount.amount;
+        monthlyPurchasesByTimestamp[timestamp] += purchase.payableAmount.amount;
     });
 
-    Object.keys(purchasesByTimestamp).sort().forEach((key) => {
-        response.purchasesByTimestamp[key] = purchasesByTimestamp[key];
+    Object.keys(monthlyPurchasesByTimestamp).sort().forEach((key) => {
+        response.purchasesByTimestamp[key] = monthlyPurchasesByTimestamp[key];
     });
     return response;
 };
@@ -120,9 +112,9 @@ function processTransaction(transaction, account_filter) {
     }
 }
 
-const extractTimestamp = (date) => {
-    const match = date.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
-    return `${match[1]}-${match[2]}`;
+const getTimestamp = (date) => {
+    const aux = date.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+    return `${aux[1]}-${aux[2]}`;
 }
 
 module.exports = (server, db, basePrimaveraUrl) => {
