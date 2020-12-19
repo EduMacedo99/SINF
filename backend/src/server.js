@@ -14,7 +14,7 @@ const token = require("./modules/token");
 const saft = require("./modules/importSaft");
 const inventory = require("./modules/inventory");
 server.use(jsonServer.bodyParser);
-const account = require("./modules/accounts");
+const financial = require("./modules/financial");
 const purchases = require('./modules/purchases')
 const url = "https://my.jasminsoftware.com/api/242845/242845-0001"
 
@@ -34,7 +34,7 @@ purchases(server, db, url);
 token(server, db, accounts);
 saft(server, db);
 inventory(server, db);
-account(server, db);
+financial(server, db);
 
 // set a timestamp on every resource created, probably not needed
 server.use(jsonServer.bodyParser)
