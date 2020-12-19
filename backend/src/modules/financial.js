@@ -2037,93 +2037,6 @@ const calculateGrossProfitMargin = journal => {
 };
 
 module.exports = (server, db) => {
-    /**
-     * @param accountId
-     * @param year (required)
-     * @param monthly (required) if true, returns the total credit and debit values
-     * for the year; otherwise, it returns an array for the credit and debit values
-     * for each month
-     */
-    server.get('/api/financial/account-balance', (req, res) => {
-        const journalEntries = db.GeneralLedgerEntries.Journal;
-
-        if (!req.query.monthly || !req.query.accountId) {
-            res.json({
-                error:
-                    'The request should be as follows: /api/financial/accountBalance?accountId=<accountId>&monthly=<true|false>',
-            });
-            return;
-        }
-
-        const totalJournalValues = processJournalEntries(
-            journalEntries,
-            req.query.accountId,
-            req.query.monthly === 'true',
-        );
-
-        res.json(totalJournalValues);
-    });
-
-    /**
-     * @param accountId
-     * NEED TO ADD THE YEAR PARAMETER
-     */
-    server.get('/api/financial/account-balance-sheet', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        const balance = processAccounts(accounts, req.query.accountId);
-        res.json(balance);
-    });
-
-    server.get('/api/financial/accounts', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-
-        if (!req.query.accountId) {
-            res.json({
-                error:
-                    'The request should be as follows: /api/financial/accountBalance?accountId=<accountId>',
-            });
-            return;
-        }
-
-        let accountValues = fetchAccount(accounts, req.query.accountId);
-        if (!accountValues) {
-            accountValues = { error: 'No account was found for the specified ID' };
-        } else {
-            accountValues.OpeningCreditBalance = parseFloat(
-                accountValues.OpeningCreditBalance,
-            );
-            accountValues.OpeningDebitBalance = parseFloat(
-                accountValues.OpeningDebitBalance,
-            );
-            accountValues.ClosingCreditBalance = parseFloat(
-                accountValues.ClosingCreditBalance,
-            );
-            accountValues.ClosingDebitBalance = parseFloat(
-                accountValues.ClosingDebitBalance,
-            );
-        }
-
-        res.json(accountValues);
-    });
-
-    server.get('/api/financial/ebitda', (req, res) => {
-        const journals = db.GeneralLedgerEntries.Journal;
-        const accounts = db.GeneralLedgerAccounts.Account;
-        res.json(calculateProfitLoss(journals, accounts).ebitda);
-    });
-
-    server.get('/api/financial/ebit', (req, res) => {
-        const journals = db.GeneralLedgerEntries.Journal;
-        const accounts = db.GeneralLedgerAccounts.Account;
-        res.json(calculateProfitLoss(journals, accounts).ebit);
-    });
-
-    server.get('/api/financial/earnings', (req, res) => {
-        const journals = db.GeneralLedgerEntries.Journal;
-        const accounts = db.GeneralLedgerAccounts.Account;
-        res.json(calculateProfitLoss(journals, accounts).netIncome);
-    });
-
     server.get('/api/financial/accounts-receivable', (req, res) => {
         const accounts = db.GeneralLedgerAccounts.Account;
         const assets = calculateAssets(accounts);
@@ -2137,71 +2050,11 @@ module.exports = (server, db) => {
         res.json(assets.current[i].value);
     });
 
-    server.get('/api/financial/equity', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        const equity = calculateEquity(accounts);
-        res.json(parseFloat(equity.total));
-    });
-
-    server.get('/api/financial/assets', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        const assets = calculateAssets(accounts);
-        res.json(parseFloat(assets.total));
-    });
-
-    server.get('/api/financial/liabilities', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        const liabilities = calculateLiabilities(accounts);
-        res.json(parseFloat(liabilities.total));
-    });
-
     server.get('/api/financial/balance-sheet', (req, res) => {
         const accounts = db.GeneralLedgerAccounts.Account;
         const balanceSheetResponse = calculateBalanceSheet(accounts);
         res.header("Access-Control-Allow-Origin", "*");
         res.json(balanceSheetResponse);
-    });
-
-    server.get('/api/financial/liabilities/current', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        res.json(calculateLiabilities(accounts).totalCurrent);
-    });
-
-    server.get('/api/financial/assets/current', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        res.json(calculateAssets(accounts).totalCurrent);
-    });
-
-    server.get('/api/financial/assets/cash', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        res.json(calculateCash(accounts));
-    });
-
-    server.get('/api/financial/ratios/cash', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        const assets = calculateAssets(accounts);
-        let i = 0;
-        for (i; i < assets.current.length; i++) {
-            if (assets.current[i].name == 'Caixa e depósitos bancários') {
-                break;
-            }
-        }
-        const currentLiabilities = calculateLiabilities(accounts).totalCurrent;
-        res.json((assets.current[i].value / currentLiabilities).toFixed(2));
-    });
-
-    server.get('/api/financial/ratios/current', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        const currentAssets = calculateAssets(accounts).totalCurrent;
-        const currentLiabilities = calculateLiabilities(accounts).totalCurrent;
-        res.json((currentAssets / currentLiabilities).toFixed(2));
-    });
-
-    server.get('/api/financial/working-capital', (req, res) => {
-        const accounts = db.GeneralLedgerAccounts.Account;
-        const currentAssets = calculateAssets(accounts).totalCurrent;
-        const currentLiabilities = calculateLiabilities(accounts).totalCurrent;
-        res.json((currentAssets - currentLiabilities).toFixed(2));
     });
 
     server.get('/api/financial/gross-profit-margin', (req, res) => {
