@@ -13,6 +13,7 @@ export class UnauthGuard implements CanActivate {
       if (this.auth.isAuthenticated()) {
         this.router.navigateByUrl('');
         return false;
-      } else return true;
+      } 
+      else return true;
   }
 }
